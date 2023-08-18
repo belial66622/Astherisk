@@ -9,8 +9,9 @@ using static ThePatient.Player.InputActions.PlayerInputActions;
 namespace ThePatient
 {
     [CreateAssetMenu(fileName = "PlayerInput", menuName = "InputAction/PlayerInput")]
-    public class InputReader : ScriptableObject, IPlayerActions
+    public class InputReader : ScriptableObject, IPlayerActions, IDialogueActions
     {
+        //player action inputs
         public event Action<Vector2> Move = delegate { };
         public event Action<Vector2, bool> Look = delegate { };
         public event Action<bool> Jump = delegate { };
@@ -19,6 +20,9 @@ namespace ThePatient
         public event Action Sprint = delegate { };
         public event Action Fire = delegate { };
         public event Action Interact = delegate { };
+       
+        //dialogue action inputs
+        public event Action NextDialogue = delegate { };
 
         public Vector3 MoveInput => _inputs.Player.Move.ReadValue<Vector2>();
         public bool IsCrouching => crouchInputState;// _inputs.Player.Crouch.ReadValue<float>() > 0;
@@ -35,13 +39,26 @@ namespace ThePatient
             {
                 _inputs = new PlayerInputActions();
                 _inputs.Player.SetCallbacks(this);
+                _inputs.Dialogue.SetCallbacks(this);
             }
         }
 
         public void EnablePlayerControll()
         {
-            _inputs.Enable();
+            _inputs.Player.Enable();
             ResetInputState();
+        }
+        public void DisablePlayerControll()
+        {
+            _inputs.Player.Disable();
+        }
+        public void EnableDialogueControll()
+        {
+            _inputs.Dialogue.Enable();
+        }
+        public void DisableDialogueControll()
+        {
+            _inputs.Dialogue.Disable();
         }
 
         void ResetInputState()
@@ -133,6 +150,16 @@ namespace ThePatient
                     break;
                 case InputActionPhase.Canceled:
                     Sprint.Invoke();
+                    break;
+            }
+        }
+
+        public void OnNextDialogue(InputAction.CallbackContext context)
+        {
+            switch(context.phase)
+            {
+                case InputActionPhase.Performed:
+                    NextDialogue.Invoke();
                     break;
             }
         }

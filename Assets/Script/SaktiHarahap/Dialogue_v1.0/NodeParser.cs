@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using XNode;
+using ThePatient;
 
-public class NodeParser : MonoBehaviour
+public class NodeParser : Interactable
 {
+    [SerializeField] InputReader _input;
     public DialogueGraph graph;
     Coroutine _parser;
     public TextMeshProUGUI speaker;
@@ -16,18 +18,11 @@ public class NodeParser : MonoBehaviour
     [SerializeField] int currentDialogue;
 
     [SerializeField] GameObject dialogueCanva;
+
+    public override bool OnHold { get; set; }
+
     void Start()
     {
-        foreach (BaseNode b in graph.nodes)
-        {
-            if(b.GetString() == "Start")
-            {
-                graph.current = b; 
-                break;
-            }
-        }
-            _parser = StartCoroutine(ParseNode());
-
         Debug.Log("total node = " + graph.nodes.Count);
     }
 
@@ -38,6 +33,9 @@ public class NodeParser : MonoBehaviour
         string[] dataParts = data.Split('/');
         if (dataParts[0] == "Start")
         {
+            dialogueCanva.SetActive(true);
+            _input.DisablePlayerControll();
+            _input.EnableDialogueControll();
             NextNode("exit");
         }
         if (dataParts[0] == "DialogueNode")
@@ -55,6 +53,8 @@ public class NodeParser : MonoBehaviour
             }
             else
             {
+                _input.EnablePlayerControll();
+                _input.DisableDialogueControll();
                 dialogueCanva.SetActive(false);
             }
         }
@@ -78,4 +78,27 @@ public class NodeParser : MonoBehaviour
         _parser = StartCoroutine(ParseNode());
     }
 
+    public override void Interact()
+    {
+        foreach (BaseNode b in graph.nodes)
+        {
+            if (b.GetString() == "Start")
+            {
+                graph.current = b;
+                break;
+            }
+        }
+
+        _parser = StartCoroutine(ParseNode());
+    }
+
+    public override void OnFinishInteractEvent()
+    {
+        EventAggregate<InteractionTextEventArgs>.Instance.TriggerEvent(new InteractionTextEventArgs(false, ""));
+    }
+
+    public override void OnInteractEvent(string name)
+    {
+        EventAggregate<InteractionTextEventArgs>.Instance.TriggerEvent(new InteractionTextEventArgs(true, "Talk To " + name));
+    }
 }

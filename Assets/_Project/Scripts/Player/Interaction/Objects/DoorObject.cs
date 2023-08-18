@@ -1,9 +1,5 @@
-using Mono.Cecil;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using ThePatient;
-using UnityEditor;
 using UnityEngine;
 
 public class DoorObject : Interactable
@@ -161,7 +157,7 @@ public class DoorObject : Interactable
     public override void OnInteractEvent(string objectName)
     {
         EventAggregate<InteractionTextEventArgs>.Instance.TriggerEvent(new InteractionTextEventArgs(true,
-            doorState == DoorState.Locked ? $"LOCKED {doorState}" : $"Press E To Interact with {doorState}" + objectName));
+            doorState == DoorState.Locked ? $"LOCKED" : $"Press E To Interact with " + objectName));
 
         if (lockTimer >= .2f * timeToLock && lockTimer < timeToLock && doorState != DoorState.Opened && OnHold)
         {

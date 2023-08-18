@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8941700212206498459
+--- !u!114 &-7715234888282497968
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13,37 +13,40 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 888, y: -168}
+  position: {x: 504, y: -168}
   ports:
     keys:
     - entry
     - exit
     values:
     - _fieldName: entry
-      _node: {fileID: -8941700212206498459}
+      _node: {fileID: -7715234888282497968}
       _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: exit
-        node: {fileID: 6828849229750317964}
+        node: {fileID: 4995142858651619925}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: exit
-      _node: {fileID: -8941700212206498459}
+      _node: {fileID: -7715234888282497968}
       _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: entry
+        node: {fileID: 5395458883688355901}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
   entry: 0
   exit: 0
-  speakerName: eris
-  dialogueLine: okee
+  speakerName: Mikha
+  dialogueLine: Maaf, saya pegawai baru di rumah sakit ini pak
   sprite: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -61,9 +64,9 @@ MonoBehaviour:
   - {fileID: 7296943126322973678}
   - {fileID: 9196294335304388058}
   - {fileID: 4995142858651619925}
-  - {fileID: 6828849229750317964}
-  - {fileID: -8941700212206498459}
-  current: {fileID: -8941700212206498459}
+  - {fileID: -7715234888282497968}
+  - {fileID: 5395458883688355901}
+  current: {fileID: 9196294335304388058}
 --- !u!114 &4995142858651619925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,7 +104,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: entry
-        node: {fileID: 6828849229750317964}
+        node: {fileID: -7715234888282497968}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -109,13 +112,10 @@ MonoBehaviour:
       _dynamic: 0
   entry: 0
   exit: 0
-  speakerName: eris
-  dialogueLine: 'ada apa  or avoids pleasure itself, because it is pleasure, but
-    because those who do not know how to pursue pleasure rationally encounter consequences
-    that are extremely painful. Nor again is there anyone who loves or pursues or
-    desires to obtain pain of itself, because it is pain, '
+  speakerName: Agha
+  dialogueLine: Malam, sudah tahu dengan pekerjaan mu di rumah sakit ini?
   sprite: {fileID: 0}
---- !u!114 &6828849229750317964
+--- !u!114 &5395458883688355901
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,40 +128,38 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 584, y: -184}
+  position: {x: 765.5, y: -106.5}
   ports:
     keys:
     - entry
     - exit
     values:
     - _fieldName: entry
-      _node: {fileID: 6828849229750317964}
+      _node: {fileID: 5395458883688355901}
       _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: exit
-        node: {fileID: 4995142858651619925}
+        node: {fileID: -7715234888282497968}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: exit
-      _node: {fileID: 6828849229750317964}
+      _node: {fileID: 5395458883688355901}
       _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: entry
-        node: {fileID: -8941700212206498459}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
   entry: 0
   exit: 0
-  speakerName: Sakti
-  dialogueLine: tidak ada apa"
+  speakerName: Agha
+  dialogueLine: Baik, kalau belum pergi ke ruang keamanan untuk mengecek tugas-tugas
+    mu sebagai satpan di rumah sakit ini
   sprite: {fileID: 0}
 --- !u!114 &7296943126322973678
 MonoBehaviour:
@@ -239,9 +237,6 @@ MonoBehaviour:
       _dynamic: 0
   entry: 0
   exit: 0
-  speakerName: Sakti
-  dialogueLine: But I must explain to you how all this mistaken idea of denouncing
-    pleasure and praising pain was born and I will give you a complete account of
-    the system, and expound the actual teachings of the great explorer of the truth,
-    the master-builder of human happiness. No one rejects, dislikes
+  speakerName: Mikha
+  dialogueLine: Selamat malam pak
   sprite: {fileID: 0}
