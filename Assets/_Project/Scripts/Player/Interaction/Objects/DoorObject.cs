@@ -1,157 +1,155 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using ThePatient;
 using UnityEngine;
+using Utilities;
 
 public class DoorObject : Interactable
 {
-    public enum DoorState
+    enum DoorState
     {
         Closed,
         Opened,
         Locked
     }
+    [Header("Reference")]
     [SerializeField] Transform doorPivot;
+    [SerializeField] DoorState doorState = DoorState.Closed;
 
-    [Header("Timer Parameter")]
-    [SerializeField] float doorCooldown;
-    [SerializeField] float timeToLock;
-
-
-    [Header("Audio Parameter")]
-    [SerializeField] AudioClip doorOpenAudio;
-    [SerializeField] AudioClip lockUnlockAudio;
-    [SerializeField] AudioClip rattleAudio;
-    [SerializeField] new AudioSource audio;
-
-    [Header("Door State Parameter")]
+    [Header("Door Settings")]
     [SerializeField] float closedRotation;
-    [SerializeField] float openedRotation;
+    [SerializeField] float openRotation;
     [SerializeField] float rattleRotation;
-    [SerializeField] private DoorState doorState;
+    [SerializeField] float openOrCloseDuration = 1f;
+    [SerializeField] float rattleDuration = .05f;
+    [SerializeField] float cooldownTime = 0f;
+    [SerializeField] float lockDuration = 1f;
 
-    Coroutine coroutine;
-    public float timerCooldown;
-    public float lockTimer;
-    [field: SerializeField] public bool openingDoor { get; private set; }
-    [field: SerializeField] public override bool OnHold { get; set; }
+    CountdownTimer doorCooldownTimer;
+    CountdownTimer rattleTimer;
+    CountdownTimer openOrCloseTimer;
+    StopwatchTimer lockTimer;
 
+    public override bool OnHold { get; set; }
+
+    private void Start()
+    {
+        doorCooldownTimer = new CountdownTimer(cooldownTime);
+        openOrCloseTimer = new CountdownTimer(openOrCloseDuration);
+        rattleTimer = new CountdownTimer(rattleDuration);
+        lockTimer = new StopwatchTimer();
+
+        openOrCloseTimer.OnTimerStop += () => doorCooldownTimer.Start();
+        lockTimer.OnTimerStop += () => doorCooldownTimer.Start();
+        doorCooldownTimer.OnTimerStart += () => OnFinishInteractEvent();
+    }
     private void Update()
     {
-        if(timerCooldown > 0) timerCooldown -= Time.deltaTime;
+        doorCooldownTimer.Tick(Time.deltaTime);
+        openOrCloseTimer.Tick(Time.deltaTime);
+        lockTimer.Tick(Time.deltaTime);
+        rattleTimer.Tick(Time.deltaTime);
 
-        if (OnHold)
+        if(OnHold && !lockTimer.IsRunning && !doorCooldownTimer.IsRunning)
         {
-            lockTimer += Time.deltaTime;
-            if(lockTimer >= timeToLock)
-            {
-                DoorStateHandle(doorState);
-                OnFinishInteractEvent();
-                OnHold = false;
-            }
+            lockTimer.Start();
+            
         }
-
+        else if(!OnHold && lockTimer.IsRunning && lockTimer.GetTime() < lockDuration)
+        {
+            OnFinishInteractEvent();
+            lockTimer.Reset();
+            lockTimer.Stop();
+        }
+        else if(OnHold && lockTimer.GetTime() >= lockDuration)
+        {
+            Interact();
+            OnFinishInteractEvent();
+            lockTimer.Reset();
+            lockTimer.Stop();
+        }
     }
 
-    private void DoorStateHandle(DoorState tempState)
+    public override void Interact()
     {
-        if (timerCooldown <= 0)
+        HandleDoorState(doorState);
+    }
+
+    private void HandleDoorState(DoorState state)
+    {
+        if(doorCooldownTimer.IsRunning) return;
+        if(openOrCloseTimer.IsRunning) return;
+
+        switch (state)
         {
-            switch (tempState)
-            {
-                case DoorState.Locked:
-                    if (lockTimer >= timeToLock)
-                    {
-                        doorState = DoorState.Closed;
-                        audio.PlayOneShot(lockUnlockAudio);
-                        lockTimer = 0;
-                        timerCooldown = doorCooldown / 2f;
-                        break;
-                    }
-                    else
-                    {
-                        //StartCoroutine(RattleDoorRepeat());
-                        //timerCooldown = doorCooldown / 2;
-                    }
-                    break;
-                case DoorState.Opened:
-                    audio.PlayOneShot(doorOpenAudio);
-                    coroutine = StartCoroutine(OpenOrCloseDoor(openedRotation, closedRotation, doorCooldown));
-                    timerCooldown = doorCooldown / 2;
-                    break;
-                case DoorState.Closed:
-                    if (lockTimer >= timeToLock)
-                    {
-                        doorState = DoorState.Locked;
-                        audio.PlayOneShot(lockUnlockAudio);
-                        lockTimer = 0;
-                        timerCooldown = doorCooldown / 2;
-                        break;
-                    }
-                    else
-                    {
-                        coroutine = StartCoroutine(OpenOrCloseDoor(closedRotation, openedRotation, doorCooldown));
-                        timerCooldown = doorCooldown / 2;
-                    }
-                    break;
-                default:
-                    break;
-            }
+            case DoorState.Closed:
+                if(lockTimer.GetTime() >= lockDuration)
+                {
+                    doorState = DoorState.Locked;
+                }
+                else
+                {
+                    StartCoroutine(ToggleDoor(closedRotation, openRotation, openOrCloseTimer));
+                    doorState = DoorState.Opened;
+                }
+                break;
+            case DoorState.Opened:
+                StartCoroutine(ToggleDoor(openRotation, closedRotation, openOrCloseTimer));
+                doorState = DoorState.Closed;
+                break;
+            case DoorState.Locked:
+                if (lockTimer.GetTime() >= lockDuration)
+                {
+                    doorState = DoorState.Closed;
+                }
+                else
+                {
+                    StartCoroutine(RattleDoorRepeat());
+                }
+                break;
         }
-        
+    }
+
+    IEnumerator ToggleDoor(float startRot, float targetRot, TimerUtils time)
+    {
+        time.Start();
+
+        Quaternion startRotation = Quaternion.AngleAxis(startRot, Vector3.up);
+        Quaternion targetRotation = Quaternion.AngleAxis(targetRot, Vector3.up);
+
+        while (time.InverseProgress < 1)
+        {
+            float t = time.InverseProgress * time.InverseProgress * (3 - 2 * time.InverseProgress);
+
+            var currentRot = Quaternion.Slerp(startRotation, targetRotation, t);
+            doorPivot.localRotation = currentRot;
+            yield return null;
+        }
+
+        time.Stop();
     }
     IEnumerator RattleDoorRepeat()
     {
         for (int i = 0; i < 4; i++)
         {
-            StartCoroutine(RattleDoor());
+            StartCoroutine(RattleDoorOnce());
             yield return new WaitForSeconds(.125f);
         }
-        doorPivot.transform.localRotation = Quaternion.Euler(0, closedRotation, 0);
     }
-    IEnumerator RattleDoor()
+    IEnumerator RattleDoorOnce()
     {
-        openingDoor = true;
-        audio.PlayOneShot(rattleAudio);
-        StartCoroutine(ToogleDoor(closedRotation, rattleRotation, 20));
+        //audioSource.PlayOneShot(rattleAudio);
+        StartCoroutine(ToggleDoor(closedRotation, rattleRotation, rattleTimer));
         yield return new WaitForSeconds(.075f);
-        StartCoroutine(ToogleDoor(rattleRotation, closedRotation, 20));
+        StartCoroutine(ToggleDoor(rattleRotation, closedRotation, rattleTimer));
         yield return new WaitForSeconds(.075f);
-        openingDoor = false;
-        
-    }
-    IEnumerator OpenOrCloseDoor(float startRot, float targetRot, float time)
-    {
-        openingDoor = true;
-
-        audio.PlayOneShot(doorOpenAudio);
-
-        //if (coroutine != null) StopCoroutine(coroutine);
-        coroutine = StartCoroutine(ToogleDoor(startRot, targetRot, time));
-        doorState = doorState == DoorState.Closed ? DoorState.Opened : DoorState.Closed;
-
-        yield return null;
-
-        openingDoor = false;
-        
     }
 
-    IEnumerator ToogleDoor(float startRot, float targetRot, float time)
+    public override void OnFinishInteractEvent()
     {
-        var startRotation = startRot;
-        float targetRotation = targetRot;
-        float timer = 0;
-
-        while (timer < 1)
-        {
-            float x = timer * timer * (3 - 2 * timer);
-
-            float angle = Mathf.LerpAngle(startRotation, targetRotation, x);
-            doorPivot.localRotation = Quaternion.Euler(doorPivot.localRotation.x, angle, doorPivot.localRotation.z);
-
-            timer += Time.deltaTime * (1 / time);
-            yield return null;
-        }
-        doorPivot.localEulerAngles = new Vector3(doorPivot.localRotation.x, targetRotation, doorPivot.localRotation.z);
+        EventAggregate<InteractionTextEventArgs>.Instance.TriggerEvent(new InteractionTextEventArgs(false, ""));
+        EventAggregate<InteractionLockUIEventArgs>.Instance.TriggerEvent(new InteractionLockUIEventArgs(false, 0));
     }
 
     public override void OnInteractEvent(string objectName)
@@ -159,28 +157,9 @@ public class DoorObject : Interactable
         EventAggregate<InteractionTextEventArgs>.Instance.TriggerEvent(new InteractionTextEventArgs(true,
             doorState == DoorState.Locked ? $"LOCKED" : $"Press E To Interact with " + objectName));
 
-        if (lockTimer >= .2f * timeToLock && lockTimer < timeToLock && doorState != DoorState.Opened && OnHold)
+        if (lockTimer.GetTime() >= .2f && lockTimer.GetTime() < lockDuration && doorState != DoorState.Opened)
         {
-            EventAggregate<InteractionLockUIEventArgs>.Instance.TriggerEvent(new InteractionLockUIEventArgs(true, (lockTimer / timeToLock)));
+            EventAggregate<InteractionLockUIEventArgs>.Instance.TriggerEvent(new InteractionLockUIEventArgs(true, lockTimer.GetTime()));
         }
-    }
-
-
-    public override void Interact()
-    {
-        if (openingDoor)
-        {
-            return;
-        }
-        DoorStateHandle(doorState);
-        OnFinishInteractEvent();
-        lockTimer = 0;
-        timerCooldown = doorCooldown / 2f;
-    }
-
-    public override void OnFinishInteractEvent()
-    {
-        EventAggregate<InteractionTextEventArgs>.Instance.TriggerEvent(new InteractionTextEventArgs(false, ""));
-        EventAggregate<InteractionLockUIEventArgs>.Instance.TriggerEvent(new InteractionLockUIEventArgs(false, 0));
     }
 }

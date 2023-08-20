@@ -23,7 +23,7 @@ public class NodeParser : Interactable
 
     void Start()
     {
-        Debug.Log("total node = " + graph.nodes.Count);
+        //Debug.Log("total node = " + graph.nodes.Count);
     }
 
     IEnumerator ParseNode()

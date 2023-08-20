@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33954472189120040}
   - component: {fileID: 23994196753615828}
   - component: {fileID: 64354846292301542}
-  - component: {fileID: 6141951650849319530}
+  - component: {fileID: 1829185188}
   m_Layer: 7
   m_Name: Door
   m_TagString: Untagged
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a5f6fa497cf53d7469bd1066732507c6, type: 2}
+  - {fileID: 2100000, guid: 5ab1aaf85345f0c42abdd2a9c333fb18, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -99,7 +99,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: 30a37ce794ca1c94192e4d8721b12940, type: 3}
---- !u!114 &6141951650849319530
+--- !u!114 &1829185188
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,24 +108,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1085274250471148}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5a12249bd05a4547a1c0f2ba3d51496, type: 3}
+  m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   doorPivot: {fileID: 1332054773997148444}
-  doorCooldown: 0.7
-  timeToLock: 1
-  doorOpenAudio: {fileID: 0}
-  lockUnlockAudio: {fileID: 0}
-  rattleAudio: {fileID: 0}
-  audio: {fileID: 0}
-  closedRotation: 0
-  openedRotation: -130
-  rattleRotation: -1
   doorState: 0
-  timerCooldown: 0
-  lockTimer: 0
-  <openingDoor>k__BackingField: 0
-  <OnHold>k__BackingField: 0
+  closedRotation: 0
+  openRotation: -130
+  rattleRotation: -1
+  openOrCloseDuration: 1
+  rattleDuration: 0.05
+  cooldownTime: 0.3
+  lockDuration: 1
 --- !u!1 &1119892339220620
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +146,7 @@ Transform:
   m_GameObject: {fileID: 1119892339220620}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.122473, y: 4.2569033e-16, z: -19.17139}
-  m_LocalScale: {x: 1.8, y: 1.8, z: 1.8}
+  m_LocalScale: {x: 7.315, y: 1.386, z: 9}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4213656023516796}
@@ -173,7 +167,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 0ac251ddf9831b54db7f948d187ca6ad, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1.1
   Loop: 0
   Mute: 0
@@ -319,7 +313,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: efaf25d412a96c1489d5aa3458f8cb18, type: 2}
+  - {fileID: 2100000, guid: e029cea7a9bb6e14e9b9f361e1e6935d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

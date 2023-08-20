@@ -10,6 +10,10 @@ public class TickUpdateSystem
 
 
     TickUpdateSystemObject timeTickSystemObject;
+    /// <summary>
+    /// TickUpdateSystem
+    /// </summary>
+    /// <param name="tickTime">Tick every certain frame in milliseconds</param>
     public TickUpdateSystem(float tickTime)
     {
         GameObject timeTickSystemObjectGO = null;
@@ -34,7 +38,7 @@ public class TickUpdateSystem
         TickUpdateSystem tickUpdateSystem;
         public void SetUpdateTime(float timer, TickUpdateSystem tickUpdateSystem)
         {
-            tickUpdateTime = timer;
+            tickUpdateTime = timer / 1000;
             this.tickUpdateSystem = tickUpdateSystem;
         }
         void Update()

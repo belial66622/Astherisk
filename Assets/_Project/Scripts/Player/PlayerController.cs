@@ -127,7 +127,7 @@ namespace ThePatient
             // Setup Timer Events
             _jumpTimer.OnTimerStart += () => _jumpVelocity = _jumpForce;
             _jumpTimer.OnTimerStop += () => _jumpCooldownTimer.Start();
-            _crouchTimer.OnTimerTickUpdate += (int tick) => { if (tick == 5) Debug.Log("Tick Number : " + tick); };
+            //_crouchTimer.OnTimerTickUpdate += (int tick) => { if (tick == 5) Debug.Log("Tick Number : " + tick); };
         }
 
         void AtState(IState fromState, IState toState, IPredicate predicate) => _stateMachine.AddTransition(fromState, toState, predicate);

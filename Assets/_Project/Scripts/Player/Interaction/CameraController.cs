@@ -29,7 +29,11 @@ namespace ThePatient
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             _input.Interact += OnInteract;
+            new TickUpdateSystem(10).TickUpdate += CameraController_TickUpdate;
         }
+
+        
+
         private void OnDisable()
         {
             Cursor.lockState = CursorLockMode.None;
@@ -49,11 +53,14 @@ namespace ThePatient
                 interactable.Interact();
             }
         }
+        private void CameraController_TickUpdate(int tick)
+        {
+            HandleRaycast();
+        }
 
         private void Update()
         {
             transform.position = player.transform.position;
-            HandleRaycast();
         }
 
         private void HandleRaycast()
