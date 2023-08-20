@@ -29,7 +29,7 @@ namespace ThePatient
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             _input.Interact += OnInteract;
-            new TickUpdateSystem(10).TickUpdate += CameraController_TickUpdate;
+            new TickUpdateSystem(15).TickUpdate += CameraController_TickUpdate;
         }
 
         
@@ -59,6 +59,11 @@ namespace ThePatient
         }
 
         private void Update()
+        {
+            CameraFollowPlayer();
+        }
+
+        void CameraFollowPlayer()
         {
             transform.position = player.transform.position;
         }

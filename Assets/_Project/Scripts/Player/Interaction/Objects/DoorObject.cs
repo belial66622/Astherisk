@@ -86,25 +86,30 @@ public class DoorObject : Interactable
             case DoorState.Closed:
                 if(lockTimer.GetTime() >= lockDuration)
                 {
+                    //locked sound
                     doorState = DoorState.Locked;
                 }
                 else
                 {
+                    //open sound
                     StartCoroutine(ToggleDoor(closedRotation, openRotation, openOrCloseTimer));
                     doorState = DoorState.Opened;
                 }
                 break;
             case DoorState.Opened:
+                //close sound
                 StartCoroutine(ToggleDoor(openRotation, closedRotation, openOrCloseTimer));
                 doorState = DoorState.Closed;
                 break;
             case DoorState.Locked:
                 if (lockTimer.GetTime() >= lockDuration)
                 {
+                    //unlock sound
                     doorState = DoorState.Closed;
                 }
                 else
                 {
+                    //ratlle sound
                     StartCoroutine(RattleDoorRepeat());
                 }
                 break;

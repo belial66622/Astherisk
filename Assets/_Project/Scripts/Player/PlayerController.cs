@@ -205,8 +205,7 @@ namespace ThePatient
             for (int i = 0; i <= 180; i+=45)
             {
                 //  Get the direction of the raycast
-                Quaternion rotation = Quaternion.AngleAxis(i, _orientation.up);
-                Vector3 direction = rotation * _orientation.right;
+                Vector3 direction = Quaternion.AngleAxis(i, _orientation.up) * _orientation.right;
 
                 //  Check if there is a step in front of the player
                 if (Physics.Raycast(_stepLowerTransform.position, transform.TransformDirection(direction), out _, _stepHitRange))
