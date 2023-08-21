@@ -19,8 +19,6 @@ public class NodeParser : Interactable
 
     [SerializeField] GameObject dialogueCanva;
 
-    public override bool OnHold { get; set; }
-
     void Start()
     {
         //Debug.Log("total node = " + graph.nodes.Count);

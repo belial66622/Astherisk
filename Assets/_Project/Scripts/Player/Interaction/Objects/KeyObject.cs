@@ -4,8 +4,6 @@ namespace ThePatient
 {
     public class KeyObject : Interactable
     {
-        public override bool OnHold { get; set; }
-
         private void Update()
         {
         }

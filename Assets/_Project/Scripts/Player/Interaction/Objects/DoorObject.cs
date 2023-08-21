@@ -13,6 +13,7 @@ public class DoorObject : Interactable
         Opened,
         Locked
     }
+
     [Header("Reference")]
     [SerializeField] Transform doorPivot;
     [SerializeField] DoorState doorState = DoorState.Closed;
@@ -30,8 +31,6 @@ public class DoorObject : Interactable
     CountdownTimer rattleTimer;
     CountdownTimer openOrCloseTimer;
     StopwatchTimer lockTimer;
-
-    public override bool OnHold { get; set; }
 
     private void Start()
     {

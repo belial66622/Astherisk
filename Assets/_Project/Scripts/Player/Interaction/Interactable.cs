@@ -4,7 +4,7 @@ namespace ThePatient
 {
     public abstract class Interactable : MonoBehaviour, IInteractable
     {
-        public abstract bool OnHold { get; set; }
+        public bool OnHold { get; set; }
 
         public abstract void Interact();
 
