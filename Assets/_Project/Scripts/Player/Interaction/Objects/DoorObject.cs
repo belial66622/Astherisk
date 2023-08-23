@@ -17,6 +17,7 @@ public class DoorObject : Interactable
     [Header("Reference")]
     [SerializeField] Transform doorPivot;
     [SerializeField] DoorState doorState = DoorState.Closed;
+    [SerializeField] GameObject requiredKey;
 
     [Header("Door Settings")]
     [SerializeField] float closedRotation;
@@ -32,6 +33,8 @@ public class DoorObject : Interactable
     CountdownTimer openOrCloseTimer;
     StopwatchTimer lockTimer;
 
+    IPickupable key;
+
     private void Start()
     {
         doorCooldownTimer = new CountdownTimer(cooldownTime);
@@ -42,6 +45,8 @@ public class DoorObject : Interactable
         openOrCloseTimer.OnTimerStop += () => doorCooldownTimer.Start();
         lockTimer.OnTimerStop += () => doorCooldownTimer.Start();
         doorCooldownTimer.OnTimerStart += () => OnFinishInteractEvent();
+
+        key = requiredKey.GetComponent<IPickupable>();
     }
     private void Update()
     {
@@ -50,10 +55,9 @@ public class DoorObject : Interactable
         lockTimer.Tick(Time.deltaTime);
         rattleTimer.Tick(Time.deltaTime);
 
-        if(OnHold && !lockTimer.IsRunning && !doorCooldownTimer.IsRunning)
+        if(OnHold && !lockTimer.IsRunning && !doorCooldownTimer.IsRunning && Inventory.Instance.HasItem(key))
         {
             lockTimer.Start();
-            
         }
         else if(!OnHold && lockTimer.IsRunning && lockTimer.GetTime() < lockDuration)
         {
@@ -83,7 +87,7 @@ public class DoorObject : Interactable
         switch (state)
         {
             case DoorState.Closed:
-                if(lockTimer.GetTime() >= lockDuration)
+                if (lockTimer.GetTime() >= lockDuration)
                 {
                     //locked sound
                     doorState = DoorState.Locked;
@@ -159,7 +163,7 @@ public class DoorObject : Interactable
     public override void OnInteractEvent(string objectName)
     {
         EventAggregate<InteractionTextEventArgs>.Instance.TriggerEvent(new InteractionTextEventArgs(true,
-            doorState == DoorState.Locked ? $"LOCKED" : $"Press E To Interact with " + objectName));
+            doorState == DoorState.Locked ? Inventory.Instance.HasItem(key) ? "Locked" : "Required Door Key" : "Press E To Interact with " + objectName));
 
         if (lockTimer.GetTime() >= .2f && lockTimer.GetTime() < lockDuration && doorState != DoorState.Opened)
         {

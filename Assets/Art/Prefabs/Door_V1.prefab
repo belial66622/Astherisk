@@ -113,6 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorPivot: {fileID: 1332054773997148444}
   doorState: 0
+  requiredKey: {fileID: 0}
   closedRotation: 0
   openRotation: -130
   rattleRotation: -1
@@ -146,7 +147,7 @@ Transform:
   m_GameObject: {fileID: 1119892339220620}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.122473, y: 4.2569033e-16, z: -19.17139}
-  m_LocalScale: {x: 7.315, y: 1.386, z: 9}
+  m_LocalScale: {x: 1.463, y: 1.386, z: 1.3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4213656023516796}

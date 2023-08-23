@@ -10,21 +10,18 @@ namespace ThePatient
 
         public override void Interact()
         {
-            if (!OnHold)
-            {
-                // do something
-                Debug.Log("mirror");
-            }
+            Pickup();
+            gameObject.SetActive(false);
         }
 
         public override void OnFinishInteractEvent()
         {
-
+            EventAggregate<InteractionTextEventArgs>.Instance.TriggerEvent(new InteractionTextEventArgs(false, ""));
         }
 
         public override void OnInteractEvent(string name)
         {
-
+            EventAggregate<InteractionTextEventArgs>.Instance.TriggerEvent(new InteractionTextEventArgs(true, "Pickup Door Key"));
         }
 
     }
