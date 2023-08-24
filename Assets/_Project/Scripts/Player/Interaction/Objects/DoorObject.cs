@@ -14,6 +14,7 @@ public class DoorObject : Interactable
         Locked
     }
 
+
     [Header("Reference")]
     [SerializeField] Transform doorPivot;
     [SerializeField] DoorState doorState = DoorState.Closed;
@@ -31,6 +32,9 @@ public class DoorObject : Interactable
     CountdownTimer rattleTimer;
     CountdownTimer openOrCloseTimer;
     StopwatchTimer lockTimer;
+
+
+    [SerializeField] LevelManager level;
 
     private void Start()
     {
@@ -91,6 +95,7 @@ public class DoorObject : Interactable
                 else
                 {
                     //open sound
+                    AudioManager.Instance.PlayBGM("LevelBGM");
                     StartCoroutine(ToggleDoor(closedRotation, openRotation, openOrCloseTimer));
                     doorState = DoorState.Opened;
                 }
