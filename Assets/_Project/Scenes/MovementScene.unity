@@ -7150,50 +7150,40 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 918220512}
     m_Modifications:
-    - target: {fileID: 5540582996244027543, guid: d0b9cf862179659458ef727a9e9d2d4b,
+    - target: {fileID: 8502584464430985911, guid: d0b9cf862179659458ef727a9e9d2d4b,
         type: 3}
-      propertyPath: m_IsActive
+      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6351446098249104975, guid: d0b9cf862179659458ef727a9e9d2d4b,
+    - target: {fileID: 8502584464430985911, guid: d0b9cf862179659458ef727a9e9d2d4b,
         type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8502584464949337992, guid: d0b9cf862179659458ef727a9e9d2d4b,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8502584464949337993, guid: d0b9cf862179659458ef727a9e9d2d4b,
+    - target: {fileID: 8502584464949337992, guid: d0b9cf862179659458ef727a9e9d2d4b,
         type: 3}
-      propertyPath: m_StopNaN
+      propertyPath: m_LocalPosition.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8502584464949337993, guid: d0b9cf862179659458ef727a9e9d2d4b,
-        type: 3}
-      propertyPath: m_Dithering
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8502584464949337993, guid: d0b9cf862179659458ef727a9e9d2d4b,
-        type: 3}
-      propertyPath: m_Antialiasing
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8502584464949337993, guid: d0b9cf862179659458ef727a9e9d2d4b,
-        type: 3}
-      propertyPath: m_RendererIndex
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8502584464949337993, guid: d0b9cf862179659458ef727a9e9d2d4b,
-        type: 3}
-      propertyPath: m_RenderPostProcessing
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8502584464949337995, guid: d0b9cf862179659458ef727a9e9d2d4b,
         type: 3}
-      propertyPath: m_ClearFlags
-      value: 2
+      propertyPath: field of view
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 8502584464949337995, guid: d0b9cf862179659458ef727a9e9d2d4b,
+        type: 3}
+      propertyPath: m_FocalLength
+      value: 20.78461
+      objectReference: {fileID: 0}
+    - target: {fileID: 8502584464949337995, guid: d0b9cf862179659458ef727a9e9d2d4b,
+        type: 3}
+      propertyPath: far clip plane
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 8502584464949337995, guid: d0b9cf862179659458ef727a9e9d2d4b,
         type: 3}
@@ -7202,33 +7192,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8502584464949337995, guid: d0b9cf862179659458ef727a9e9d2d4b,
         type: 3}
-      propertyPath: m_OcclusionCulling
+      propertyPath: m_projectionMatrixMode
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8502584464949337995, guid: d0b9cf862179659458ef727a9e9d2d4b,
+    - target: {fileID: 8502584464954926472, guid: d0b9cf862179659458ef727a9e9d2d4b,
         type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0
+      propertyPath: m_VerticalRecentering.m_enabled
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8502584464949337995, guid: d0b9cf862179659458ef727a9e9d2d4b,
+    - target: {fileID: 8502584464954926472, guid: d0b9cf862179659458ef727a9e9d2d4b,
         type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0
+      propertyPath: m_VerticalRecentering.m_WaitTime
+      value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 8502584464949337995, guid: d0b9cf862179659458ef727a9e9d2d4b,
+    - target: {fileID: 8502584464954926472, guid: d0b9cf862179659458ef727a9e9d2d4b,
         type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0
+      propertyPath: m_HorizontalRecentering.m_enabled
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8502584465407112532, guid: d0b9cf862179659458ef727a9e9d2d4b,
+    - target: {fileID: 8502584464954926472, guid: d0b9cf862179659458ef727a9e9d2d4b,
         type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8502584465407112533, guid: d0b9cf862179659458ef727a9e9d2d4b,
-        type: 3}
-      propertyPath: interactLayer.m_Bits
-      value: 129
+      propertyPath: m_HorizontalRecentering.m_WaitTime
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8502584466218720082, guid: d0b9cf862179659458ef727a9e9d2d4b,
         type: 3}
