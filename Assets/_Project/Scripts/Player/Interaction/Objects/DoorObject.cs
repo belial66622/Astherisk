@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ThePatient;
+using UnityEditor;
 using UnityEngine;
 using Utilities;
 
@@ -35,7 +36,7 @@ public class DoorObject : Interactable
 
     IPickupable key;
 
-    private void Start()
+    protected override void Start()
     {
         doorCooldownTimer = new CountdownTimer(cooldownTime);
         openOrCloseTimer = new CountdownTimer(openOrCloseDuration);
@@ -48,7 +49,12 @@ public class DoorObject : Interactable
 
         key = requiredKey.GetComponent<IPickupable>();
     }
-    private void Update()
+
+    private void OnEnable()
+    {
+    }
+
+    protected override void Update()
     {
         doorCooldownTimer.Tick(Time.deltaTime);
         openOrCloseTimer.Tick(Time.deltaTime);
@@ -160,14 +166,31 @@ public class DoorObject : Interactable
         EventAggregate<InteractionLockUIEventArgs>.Instance.TriggerEvent(new InteractionLockUIEventArgs(false, 0));
     }
 
+    
+
     public override void OnInteractEvent(string objectName)
     {
         EventAggregate<InteractionTextEventArgs>.Instance.TriggerEvent(new InteractionTextEventArgs(true,
-            doorState == DoorState.Locked ? Inventory.Instance.HasItem(key) ? "Locked" : "Required Door Key" : "Press E To Interact with " + objectName));
+            GetText(doorState, objectName)));
 
         if (lockTimer.GetTime() >= .2f && lockTimer.GetTime() < lockDuration && doorState != DoorState.Opened)
         {
             EventAggregate<InteractionLockUIEventArgs>.Instance.TriggerEvent(new InteractionLockUIEventArgs(true, lockTimer.GetTime()));
         }
+    }
+    string GetText(DoorState state, string name)
+    {
+        if (state == DoorState.Locked)
+        {
+            if (Inventory.Instance.HasItem(key))
+            {
+                return $"[ HOLD E ]\nUnlock";
+            }
+            else
+            {
+                return "Required Key";
+            }
+        }
+        return $"[ E ]\nInteract With {name}";
     }
 }

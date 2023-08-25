@@ -1,26 +1,24 @@
-﻿using UnityEngine;
-using static UnityEditorInternal.ReorderableList;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace ThePatient
 {
-    public class KeyObject : Interactable
+    public class TestInspect : Interactable
     {
         void OnEnable()
         {
-            _input.InspectExit += DestroyInspect;
+            _input.InspectExit += StopInspect;
         }
         private void OnDisable()
         {
-            _input.InspectExit -= DestroyInspect;
+            _input.InspectExit -= StopInspect;
         }
 
         public override void Interact()
         {
-            Pickup();
             Inspect();
         }
-
-
 
         public override void OnFinishInteractEvent()
         {
@@ -34,6 +32,4 @@ namespace ThePatient
         }
 
     }
-
-
 }

@@ -6,7 +6,7 @@ namespace ThePatient
     public class Inventory : Singleton<Inventory>
     {
         [SerializeField] List<IPickupable> items = new List<IPickupable>();
-
+        
         public void AddItem(IPickupable item)
         {
             if (HasItem(item)) return;

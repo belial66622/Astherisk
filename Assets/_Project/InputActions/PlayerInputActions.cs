@@ -978,6 +978,96 @@ namespace ThePatient.Player.InputActions
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""InteractionInspect"",
+            ""id"": ""2fac3074-1043-44af-aa50-68e26c7f7f28"",
+            ""actions"": [
+                {
+                    ""name"": ""InspectMouse"",
+                    ""type"": ""Button"",
+                    ""id"": ""983cdb65-190c-4069-b7bd-156e9c42035d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""InspectRotate"",
+                    ""type"": ""Value"",
+                    ""id"": ""7bf8fece-eab8-4d24-a86a-34fdb97e70b9"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""InspectExit"",
+                    ""type"": ""Button"",
+                    ""id"": ""0a1ad1b8-13e3-488f-9db5-dfaf3a865bc1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""b8e2d952-8f7e-4e6c-b6ea-68964dd0082b"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""InspectMouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8ed3210b-fe80-4307-9ecc-f331a8dbf131"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""InspectRotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8cfa218a-51fc-46ef-9b0b-3aec15dd2ab8"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""InspectRotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b576e9e1-211d-45c3-8683-13f21cfe5ddb"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""InspectExit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f141dd83-c180-499d-870d-2b7941b5d0d5"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""InspectExit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1068,6 +1158,11 @@ namespace ThePatient.Player.InputActions
             // Dialogue
             m_Dialogue = asset.FindActionMap("Dialogue", throwIfNotFound: true);
             m_Dialogue_NextDialogue = m_Dialogue.FindAction("NextDialogue", throwIfNotFound: true);
+            // InteractionInspect
+            m_InteractionInspect = asset.FindActionMap("InteractionInspect", throwIfNotFound: true);
+            m_InteractionInspect_InspectMouse = m_InteractionInspect.FindAction("InspectMouse", throwIfNotFound: true);
+            m_InteractionInspect_InspectRotate = m_InteractionInspect.FindAction("InspectRotate", throwIfNotFound: true);
+            m_InteractionInspect_InspectExit = m_InteractionInspect.FindAction("InspectExit", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -1350,6 +1445,55 @@ namespace ThePatient.Player.InputActions
             }
         }
         public DialogueActions @Dialogue => new DialogueActions(this);
+
+        // InteractionInspect
+        private readonly InputActionMap m_InteractionInspect;
+        private IInteractionInspectActions m_InteractionInspectActionsCallbackInterface;
+        private readonly InputAction m_InteractionInspect_InspectMouse;
+        private readonly InputAction m_InteractionInspect_InspectRotate;
+        private readonly InputAction m_InteractionInspect_InspectExit;
+        public struct InteractionInspectActions
+        {
+            private @PlayerInputActions m_Wrapper;
+            public InteractionInspectActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @InspectMouse => m_Wrapper.m_InteractionInspect_InspectMouse;
+            public InputAction @InspectRotate => m_Wrapper.m_InteractionInspect_InspectRotate;
+            public InputAction @InspectExit => m_Wrapper.m_InteractionInspect_InspectExit;
+            public InputActionMap Get() { return m_Wrapper.m_InteractionInspect; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(InteractionInspectActions set) { return set.Get(); }
+            public void SetCallbacks(IInteractionInspectActions instance)
+            {
+                if (m_Wrapper.m_InteractionInspectActionsCallbackInterface != null)
+                {
+                    @InspectMouse.started -= m_Wrapper.m_InteractionInspectActionsCallbackInterface.OnInspectMouse;
+                    @InspectMouse.performed -= m_Wrapper.m_InteractionInspectActionsCallbackInterface.OnInspectMouse;
+                    @InspectMouse.canceled -= m_Wrapper.m_InteractionInspectActionsCallbackInterface.OnInspectMouse;
+                    @InspectRotate.started -= m_Wrapper.m_InteractionInspectActionsCallbackInterface.OnInspectRotate;
+                    @InspectRotate.performed -= m_Wrapper.m_InteractionInspectActionsCallbackInterface.OnInspectRotate;
+                    @InspectRotate.canceled -= m_Wrapper.m_InteractionInspectActionsCallbackInterface.OnInspectRotate;
+                    @InspectExit.started -= m_Wrapper.m_InteractionInspectActionsCallbackInterface.OnInspectExit;
+                    @InspectExit.performed -= m_Wrapper.m_InteractionInspectActionsCallbackInterface.OnInspectExit;
+                    @InspectExit.canceled -= m_Wrapper.m_InteractionInspectActionsCallbackInterface.OnInspectExit;
+                }
+                m_Wrapper.m_InteractionInspectActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @InspectMouse.started += instance.OnInspectMouse;
+                    @InspectMouse.performed += instance.OnInspectMouse;
+                    @InspectMouse.canceled += instance.OnInspectMouse;
+                    @InspectRotate.started += instance.OnInspectRotate;
+                    @InspectRotate.performed += instance.OnInspectRotate;
+                    @InspectRotate.canceled += instance.OnInspectRotate;
+                    @InspectExit.started += instance.OnInspectExit;
+                    @InspectExit.performed += instance.OnInspectExit;
+                    @InspectExit.canceled += instance.OnInspectExit;
+                }
+            }
+        }
+        public InteractionInspectActions @InteractionInspect => new InteractionInspectActions(this);
         private int m_KeyboardMouseSchemeIndex = -1;
         public InputControlScheme KeyboardMouseScheme
         {
@@ -1422,6 +1566,12 @@ namespace ThePatient.Player.InputActions
         public interface IDialogueActions
         {
             void OnNextDialogue(InputAction.CallbackContext context);
+        }
+        public interface IInteractionInspectActions
+        {
+            void OnInspectMouse(InputAction.CallbackContext context);
+            void OnInspectRotate(InputAction.CallbackContext context);
+            void OnInspectExit(InputAction.CallbackContext context);
         }
     }
 }
