@@ -25,15 +25,9 @@ using UnityEngine.AI;
     [SerializeField] NavMeshAgent _ghost;
     [SerializeField] Waypoint _wayPoint;
     int _wayPointIndex=0;
-    [SerializeField] List<Vector3> _wayPointPos => _wayPoint.waypoints;
+    [SerializeField] List<Vector3> _wayPointPos => _wayPoint.Waypoints;
     #endregion
 
-    #region state 
-    GhostBaseState _currentState;        
-    GhostChaseState _chaseState = new GhostChaseState();       
-    GhostPatrolState _patrolState = new GhostPatrolState();  
-    GhostSearchState _seachState = new GhostSearchState();
-    #endregion
 
     #region FOV
     [SerializeField] float _radius;

@@ -5,9 +5,9 @@ public class Waypoint:MonoBehaviour
 {
     [SerializeField]List<Vector3> _waypoint;
 
-    public List<Vector3> waypoints => _waypoint;
+    public List<Vector3> Waypoints => _waypoint;
 
-    private void Start()
+    private void Awake()
     {
         foreach (Transform child in transform) 
         { 

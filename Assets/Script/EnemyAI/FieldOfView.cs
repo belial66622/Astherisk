@@ -19,9 +19,9 @@ using System;
 
     [SerializeField] LayerMask _targetMask;
     [SerializeField] LayerMask _obstructionMask;
-
-    [SerializeField] bool _canSeePlayer;
-
+    [SerializeField] bool _canSeePlayer, _Countdownstat;
+    public bool _playersighted = false, _playerlost = false;
+    [SerializeField]Transform _player;
     #endregion
 
     #region Reference
@@ -31,12 +31,12 @@ using System;
     public GameObject PlayerRef => _playerRef;
     #endregion
 
+
+
     private void Start()
     {
-
         StartCoroutine(FOVRoutine());
         //StartCoroutine(setpos());
-
     }
 
     #region fov
@@ -67,23 +67,32 @@ using System;
                 if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, _obstructionMask))
                 {
                     _canSeePlayer = true;
-                    PlayerPos?.Invoke(target.position,_canSeePlayer);
+                    PlayerPos?.Invoke(target.position, _canSeePlayer);
+
                 }
                 else
+                {
                     _canSeePlayer = false;
-                
-
+                    PlayerPos?.Invoke(target.position, _canSeePlayer);
+                }
             }
             else
+            {
                 _canSeePlayer = false;
+                PlayerPos?.Invoke(target.position, _canSeePlayer);
+            }
         }
 
         else if (_canSeePlayer)
         {
             _canSeePlayer = false;
+            PlayerPos?.Invoke(Vector3.zero, _canSeePlayer);
+
         }
 
     }
 
     #endregion
+
+   
 }
