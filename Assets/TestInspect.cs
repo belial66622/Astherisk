@@ -6,13 +6,23 @@ namespace ThePatient
 {
     public class TestInspect : Interactable
     {
-        void OnEnable()
+        private void OnEnable()
         {
-            _input.InspectExit += StopInspect;
+            OnInspectExit += Pickup;
+            _input.InspectExit += ExitInspect;
         }
+
         private void OnDisable()
         {
-            _input.InspectExit -= StopInspect;
+            OnInspectExit -= Pickup;
+            _input.InspectExit -= ExitInspect;
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+
+            //do some logic here
         }
 
         public override void Interact()

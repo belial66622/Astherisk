@@ -985,6 +985,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "InspectZoom",
+                    "type": "Value",
+                    "id": "83973988-057f-4c76-8990-4c7266f773dc",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -1040,6 +1049,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "InspectExit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f9cfe111-a638-4638-9712-9621bd36fd3a",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InspectZoom",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

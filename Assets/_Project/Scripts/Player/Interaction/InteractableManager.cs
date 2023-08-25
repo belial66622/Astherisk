@@ -7,7 +7,7 @@ namespace ThePatient
     {
         public static InteractableManager Instance { get; private set; }
         [field: SerializeField] public Transform inspectTransform { get; private set; }
-        [field: SerializeField] public InputReader _input { get; private set; }
+        [SerializeField] InputReader _input;
 
         [Header("Reference")]
         [SerializeField] GameObject globalVolume;

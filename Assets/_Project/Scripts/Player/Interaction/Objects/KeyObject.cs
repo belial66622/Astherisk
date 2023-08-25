@@ -5,22 +5,22 @@ namespace ThePatient
 {
     public class KeyObject : Interactable
     {
-        void OnEnable()
+        private void OnEnable()
         {
+            OnInspectDestroy += Pickup;
             _input.InspectExit += DestroyInspect;
         }
+
         private void OnDisable()
         {
+            OnInspectDestroy -= Pickup;
             _input.InspectExit -= DestroyInspect;
         }
 
         public override void Interact()
         {
-            Pickup();
             Inspect();
         }
-
-
 
         public override void OnFinishInteractEvent()
         {

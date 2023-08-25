@@ -29,6 +29,7 @@ namespace ThePatient
         //interaction action inputs
         public event Action InspectClick = delegate { };
         public event Action<Vector2> InspectRotate = delegate { };
+        public event Action<Vector2> InspectZoom = delegate { };
         public event Action InspectExit = delegate { };
 
         // Player interaction inputs
@@ -38,8 +39,9 @@ namespace ThePatient
         public bool IsInteracting => _inputs.Player.Interact.ReadValue<float>() > 0;
 
         //ON Interaction inputs
-        public bool IsInspecting => _inputs.InteractionInspect.InspectMouse.ReadValue<float>() > 0;
+        public bool InputInspecting => _inputs.InteractionInspect.InspectMouse.ReadValue<float>() > 0;
         public Vector2 InspectRotateInput => _inputs.InteractionInspect.InspectRotate.ReadValue<Vector2>();
+        public Vector2 InspectZoomInput => _inputs.InteractionInspect.InspectZoom.ReadValue<Vector2>();
         public bool IsInspectExit => _inputs.InteractionInspect.InspectExit.ReadValue<float>() > 0;
 
         // private variables
@@ -196,6 +198,11 @@ namespace ThePatient
                     InspectExit.Invoke();
                     break;
             }
+        }
+
+        public void OnInspectZoom(InputAction.CallbackContext context)
+        {
+            InspectZoom.Invoke(context.ReadValue<Vector2>());
         }
     }
 }

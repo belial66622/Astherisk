@@ -1009,6 +1009,15 @@ namespace ThePatient.Player.InputActions
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""InspectZoom"",
+                    ""type"": ""Value"",
+                    ""id"": ""83973988-057f-4c76-8990-4c7266f773dc"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -1064,6 +1073,17 @@ namespace ThePatient.Player.InputActions
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""InspectExit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f9cfe111-a638-4638-9712-9621bd36fd3a"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InspectZoom"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1163,6 +1183,7 @@ namespace ThePatient.Player.InputActions
             m_InteractionInspect_InspectMouse = m_InteractionInspect.FindAction("InspectMouse", throwIfNotFound: true);
             m_InteractionInspect_InspectRotate = m_InteractionInspect.FindAction("InspectRotate", throwIfNotFound: true);
             m_InteractionInspect_InspectExit = m_InteractionInspect.FindAction("InspectExit", throwIfNotFound: true);
+            m_InteractionInspect_InspectZoom = m_InteractionInspect.FindAction("InspectZoom", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -1452,6 +1473,7 @@ namespace ThePatient.Player.InputActions
         private readonly InputAction m_InteractionInspect_InspectMouse;
         private readonly InputAction m_InteractionInspect_InspectRotate;
         private readonly InputAction m_InteractionInspect_InspectExit;
+        private readonly InputAction m_InteractionInspect_InspectZoom;
         public struct InteractionInspectActions
         {
             private @PlayerInputActions m_Wrapper;
@@ -1459,6 +1481,7 @@ namespace ThePatient.Player.InputActions
             public InputAction @InspectMouse => m_Wrapper.m_InteractionInspect_InspectMouse;
             public InputAction @InspectRotate => m_Wrapper.m_InteractionInspect_InspectRotate;
             public InputAction @InspectExit => m_Wrapper.m_InteractionInspect_InspectExit;
+            public InputAction @InspectZoom => m_Wrapper.m_InteractionInspect_InspectZoom;
             public InputActionMap Get() { return m_Wrapper.m_InteractionInspect; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1477,6 +1500,9 @@ namespace ThePatient.Player.InputActions
                     @InspectExit.started -= m_Wrapper.m_InteractionInspectActionsCallbackInterface.OnInspectExit;
                     @InspectExit.performed -= m_Wrapper.m_InteractionInspectActionsCallbackInterface.OnInspectExit;
                     @InspectExit.canceled -= m_Wrapper.m_InteractionInspectActionsCallbackInterface.OnInspectExit;
+                    @InspectZoom.started -= m_Wrapper.m_InteractionInspectActionsCallbackInterface.OnInspectZoom;
+                    @InspectZoom.performed -= m_Wrapper.m_InteractionInspectActionsCallbackInterface.OnInspectZoom;
+                    @InspectZoom.canceled -= m_Wrapper.m_InteractionInspectActionsCallbackInterface.OnInspectZoom;
                 }
                 m_Wrapper.m_InteractionInspectActionsCallbackInterface = instance;
                 if (instance != null)
@@ -1490,6 +1516,9 @@ namespace ThePatient.Player.InputActions
                     @InspectExit.started += instance.OnInspectExit;
                     @InspectExit.performed += instance.OnInspectExit;
                     @InspectExit.canceled += instance.OnInspectExit;
+                    @InspectZoom.started += instance.OnInspectZoom;
+                    @InspectZoom.performed += instance.OnInspectZoom;
+                    @InspectZoom.canceled += instance.OnInspectZoom;
                 }
             }
         }
@@ -1572,6 +1601,7 @@ namespace ThePatient.Player.InputActions
             void OnInspectMouse(InputAction.CallbackContext context);
             void OnInspectRotate(InputAction.CallbackContext context);
             void OnInspectExit(InputAction.CallbackContext context);
+            void OnInspectZoom(InputAction.CallbackContext context);
         }
     }
 }
