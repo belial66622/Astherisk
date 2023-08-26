@@ -21,6 +21,7 @@ public class Ghost : MonoBehaviour
     [SerializeField] FieldOfView _playerPrefab;
     private void Awake()
     {
+
         var navMeshAgent = GetComponent<NavMeshAgent>();
         var animator = GetComponent<Animator>();
 
@@ -58,6 +59,7 @@ public class Ghost : MonoBehaviour
     {
         gameObject.GetComponent<FieldOfView>().PlayerPos += SeePlayer;
     }
+
 
     private void Update() => _stateMachine.Tick();
 

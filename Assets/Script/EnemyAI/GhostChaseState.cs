@@ -37,7 +37,6 @@ public class GhostChaseState : IState
 
     public void OnExit()
     {
-        _animator.SetFloat("Speed", 0);
         _navMeshAgent.enabled = false;
     }
 }

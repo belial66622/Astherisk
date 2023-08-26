@@ -27,20 +27,24 @@ public class GhostSearchState : IState
         _patrol= false;
         _chase= false;
         _navMeshAgent.SetDestination(_ghost.LastPosition);
-        _animator.SetTrigger("Nari");
+
     }
 
     public void OnExit()
     {
         _navMeshAgent.enabled = false;
-        _animator.SetFloat("Speed", 0);
+        _animator.SetFloat("Speed", 1);
     }
 
     public void Tick()
     {
-        if (destination()) 
-        { 
-        Debug.Log("Search");
+        if (destination())
+        {
+            if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("rig|Bellydancing"))
+            {
+                _animator.SetTrigger("Nari");
+            }
+            Debug.Log("Search");
         if (_ghost.CanSeePlayer == true)
         {
 
