@@ -87,7 +87,16 @@ namespace ThePatient
                         this.interactable = null;
                     }
                 }
-            }else
+                else
+                {
+                    if (this.interactable != null)
+                    {
+                        this.interactable.OnFinishInteractEvent();
+                        this.interactable.OnHold = false;
+                    }
+                }
+            }
+            else
             {
                 if (interactable != null)
                 {
