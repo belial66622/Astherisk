@@ -356,5 +356,13 @@ namespace ThePatient
                 _crouchCoroutine = StartCoroutine(ToggleCrouchStand(_input.IsCrouching));
             }
         }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.TryGetComponent(out ITrigger triggerobj))
+            {
+                triggerobj.DoSomething();
+            }
+        }
     }
 }
