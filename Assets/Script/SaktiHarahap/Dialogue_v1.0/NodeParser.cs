@@ -6,6 +6,7 @@ using TMPro;
 using XNode;
 using ThePatient;
 
+[SelectionBase]
 public class NodeParser : Interactable
 {
     public DialogueGraph graph;
