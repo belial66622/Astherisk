@@ -19,18 +19,22 @@ MonoBehaviour:
     _isBGM: 1
     _audioMixerGroup: {fileID: 8088790186405464425, guid: e18948c65073f6e49953ef660aedf2de,
       type: 2}
+    _spatialblend: 0
   - _name: Chase
     _audioClip: {fileID: 8300000, guid: 441e7cadf6be3984394ba56dc4bfb78a, type: 3}
     _isBGM: 1
     _audioMixerGroup: {fileID: 8088790186405464425, guid: e18948c65073f6e49953ef660aedf2de,
       type: 2}
+    _spatialblend: 0
   - _name: LevelBGM
     _audioClip: {fileID: 8300000, guid: a320d69a827939a4ca0b4fdc0364d735, type: 3}
     _isBGM: 1
     _audioMixerGroup: {fileID: 8088790186405464425, guid: e18948c65073f6e49953ef660aedf2de,
       type: 2}
+    _spatialblend: 0
   - _name: MainMenuBGM4
     _audioClip: {fileID: 8300000, guid: f7090ca833ed0d1478d7386f5c676668, type: 3}
     _isBGM: 1
     _audioMixerGroup: {fileID: 8088790186405464425, guid: e18948c65073f6e49953ef660aedf2de,
       type: 2}
+    _spatialblend: 0
