@@ -4,10 +4,10 @@
     {
         public bool isActive;
         public string message;
-        public InteractionTextEventArgs(bool isActive, string light)
+        public InteractionTextEventArgs(bool isActive, string message)
         {
             this.isActive = isActive;
-            this.message = light;
+            this.message = message;
         }
     }
 
