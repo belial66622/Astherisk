@@ -23,7 +23,8 @@ namespace ThePatient
 
         public override void OnInteractEvent(string name)
         {
-            EventAggregate<InteractionTextEventArgs>.Instance.TriggerEvent(new InteractionTextEventArgs(true, "Interact With Sink"));
+            EventAggregate<InteractionTextEventArgs>.Instance.TriggerEvent(
+                new InteractionTextEventArgs(true, "[ E ]\nInteract With Sink"));
         }
 
     }

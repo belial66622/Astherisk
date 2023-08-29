@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ThePatient.Player.InputActions;
+using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static ThePatient.Player.InputActions.PlayerInputActions;
@@ -9,7 +11,8 @@ using static ThePatient.Player.InputActions.PlayerInputActions;
 namespace ThePatient
 {
     [CreateAssetMenu(fileName = "PlayerInput", menuName = "InputAction/PlayerInput")]
-    public class InputReader : ScriptableObject, IPlayerActions, IDialogueActions
+    public class InputReader : ScriptableObject, 
+        IPlayerActions, IDialogueActions, IInteractionInspectActions
     {
         //player action inputs
         public event Action<Vector2> Move = delegate { };
@@ -18,18 +21,30 @@ namespace ThePatient
         public event Action Crouch = delegate { };
         public event Action ToggleCrouch = delegate { };
         public event Action Sprint = delegate { };
-        public event Action Fire = delegate { };
         public event Action Interact = delegate { };
        
         //dialogue action inputs
         public event Action NextDialogue = delegate { };
 
+        //interaction action inputs
+        public event Action InspectClick = delegate { };
+        public event Action<Vector2> InspectRotate = delegate { };
+        public event Action<Vector2> InspectZoom = delegate { };
+        public event Action InspectExit = delegate { };
+
+        // Player interaction inputs
         public Vector3 MoveInput => _inputs.Player.Move.ReadValue<Vector2>();
         public bool IsCrouching => crouchInputState;// _inputs.Player.Crouch.ReadValue<float>() > 0;
         public bool IsSprinting => _inputs.Player.Sprint.ReadValue<float>() > 0;
-        public bool IsPunching => _inputs.Player.Fire.ReadValue<float>() > 0;
         public bool IsInteracting => _inputs.Player.Interact.ReadValue<float>() > 0;
 
+        //ON Interaction inputs
+        public bool InputInspecting => _inputs.InteractionInspect.InspectMouse.ReadValue<float>() > 0;
+        public Vector2 InspectRotateInput => _inputs.InteractionInspect.InspectRotate.ReadValue<Vector2>();
+        public Vector2 InspectZoomInput => _inputs.InteractionInspect.InspectZoom.ReadValue<Vector2>();
+        public bool IsInspectExit => _inputs.InteractionInspect.InspectExit.ReadValue<float>() > 0;
+
+        // private variables
         PlayerInputActions _inputs;
         bool crouchInputState;
 
@@ -40,31 +55,27 @@ namespace ThePatient
                 _inputs = new PlayerInputActions();
                 _inputs.Player.SetCallbacks(this);
                 _inputs.Dialogue.SetCallbacks(this);
+                _inputs.InteractionInspect.SetCallbacks(this);
             }
         }
 
         public void EnablePlayerControll()
         {
-            _inputs.Player.Enable();
             ResetInputState();
+            _inputs.Player.Enable();
         }
-        public void DisablePlayerControll()
-        {
-            _inputs.Player.Disable();
-        }
-        public void EnableDialogueControll()
-        {
-            _inputs.Dialogue.Enable();
-        }
-        public void DisableDialogueControll()
-        {
-            _inputs.Dialogue.Disable();
-        }
-
         void ResetInputState()
         {
             crouchInputState = false;
+            DisableDialogueControll();
+            DisableInteractionControl();
         }
+
+        public void DisablePlayerControll() => _inputs.Player.Disable();
+        public void EnableDialogueControll() => _inputs.Dialogue.Enable();
+        public void DisableDialogueControll() => _inputs.Dialogue.Disable();
+        public void EnableInspectControl() => _inputs.InteractionInspect.Enable();
+        public void DisableInteractionControl() => _inputs.InteractionInspect.Disable();
 
         public void OnMove(InputAction.CallbackContext context)
         {
@@ -79,15 +90,7 @@ namespace ThePatient
         
         public void OnFire(InputAction.CallbackContext context)
         {
-            switch(context.phase)
-            {
-                case InputActionPhase.Started:
-                    Fire.Invoke();
-                    break;
-                case InputActionPhase.Canceled:
-                    Fire.Invoke();
-                    break;
-            }
+
         }
         public void OnJump(InputAction.CallbackContext context)
         {
@@ -162,6 +165,44 @@ namespace ThePatient
                     NextDialogue.Invoke();
                     break;
             }
+        }
+
+
+        public void OnInspectMouse(InputAction.CallbackContext context)
+        {
+            switch (context.phase)
+            {
+                case InputActionPhase.Started:
+                    InspectClick.Invoke();
+                    break;
+                case InputActionPhase.Canceled:
+                    InspectClick.Invoke();
+                    break;
+            }
+        }
+
+        public void OnInspectRotate(InputAction.CallbackContext context)
+        {
+            InspectRotate.Invoke(context.ReadValue<Vector2>());
+        }
+
+        public void OnInspectExit(InputAction.CallbackContext context)
+        {
+            switch(context.phase)
+            {
+                case InputActionPhase.Started:
+                    Debug.Log("inspect exit");
+                    InspectExit.Invoke();
+                    break;
+                case InputActionPhase.Canceled:
+                    InspectExit.Invoke();
+                    break;
+            }
+        }
+
+        public void OnInspectZoom(InputAction.CallbackContext context)
+        {
+            InspectZoom.Invoke(context.ReadValue<Vector2>());
         }
     }
 }

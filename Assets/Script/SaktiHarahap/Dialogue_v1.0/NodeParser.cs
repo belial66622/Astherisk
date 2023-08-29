@@ -9,7 +9,6 @@ using ThePatient;
 [SelectionBase]
 public class NodeParser : Interactable
 {
-    [SerializeField] InputReader _input;
     public DialogueGraph graph;
     Coroutine _parser;
     public TextMeshProUGUI speaker;
@@ -20,10 +19,6 @@ public class NodeParser : Interactable
 
     [SerializeField] GameObject dialogueCanva;
 
-    void Start()
-    {
-        //Debug.Log("total node = " + graph.nodes.Count);
-    }
 
     IEnumerator ParseNode()
     {
@@ -33,6 +28,7 @@ public class NodeParser : Interactable
         if (dataParts[0] == "Start")
         {
             dialogueCanva.SetActive(true);
+            gameObject.GetComponent<Collider>().enabled = false;
             _input.DisablePlayerControll();
             _input.EnableDialogueControll();
             NextNode("exit");
@@ -52,6 +48,7 @@ public class NodeParser : Interactable
             }
             else
             {
+                gameObject.GetComponent<Collider>().enabled = true;
                 _input.EnablePlayerControll();
                 _input.DisableDialogueControll();
                 dialogueCanva.SetActive(false);
@@ -98,6 +95,7 @@ public class NodeParser : Interactable
 
     public override void OnInteractEvent(string name)
     {
-        EventAggregate<InteractionTextEventArgs>.Instance.TriggerEvent(new InteractionTextEventArgs(true, "Talk To " + name));
+        EventAggregate<InteractionTextEventArgs>.Instance.TriggerEvent(
+            new InteractionTextEventArgs(true, "[ E ]\nSpeak To " + name));
     }
 }

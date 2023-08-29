@@ -1,17 +1,25 @@
 ﻿using UnityEngine;
+using static UnityEditorInternal.ReorderableList;
 
 namespace ThePatient
 {
     public class KeyObject : Interactable
     {
-        private void Update()
+        private void OnEnable()
         {
+            OnInspectDestroy += Pickup;
+            _input.InspectExit += DestroyInspect;
+        }
+
+        private void OnDisable()
+        {
+            OnInspectDestroy -= Pickup;
+            _input.InspectExit -= DestroyInspect;
         }
 
         public override void Interact()
         {
-            Pickup();
-            gameObject.SetActive(false);
+            Inspect();
         }
 
         public override void OnFinishInteractEvent()
@@ -21,7 +29,8 @@ namespace ThePatient
 
         public override void OnInteractEvent(string name)
         {
-            EventAggregate<InteractionTextEventArgs>.Instance.TriggerEvent(new InteractionTextEventArgs(true, "Pickup Door Key"));
+            EventAggregate<InteractionTextEventArgs>.Instance.TriggerEvent(
+                new InteractionTextEventArgs(true, $"[ E ]\nInspect {name}"));
         }
 
     }
