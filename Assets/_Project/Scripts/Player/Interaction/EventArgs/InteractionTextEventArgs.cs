@@ -10,6 +10,4 @@
             this.message = message;
         }
     }
-
-
 }

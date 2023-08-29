@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.Windows;
 using Utilities;
 
 namespace ThePatient
@@ -12,12 +13,12 @@ namespace ThePatient
     {
 
         [Header("References")]
+        [SerializeField] InputReader _input;
         [SerializeField] Rigidbody _rb;
         [SerializeField] CapsuleCollider _collider;
         [SerializeField] Transform cameraHead;
         [SerializeField] Transform _orientation;
         [SerializeField] Animator _animator;
-        [SerializeField] InputReader _input;
         [SerializeField] GroundChecker _groundChecker;
         [SerializeField] CinemachineVirtualCamera _virtualCamera;
 
@@ -79,6 +80,7 @@ namespace ThePatient
             _pov = _virtualCamera.GetCinemachineComponent<CinemachinePOV>();
             _stepUpperTransform.position = new Vector3(_stepUpperTransform.position.x, _stepHeight, _stepUpperTransform.position.z);
             _rb.freezeRotation = true;
+
 
             SetupTimer();
             SetupStateMachine();
@@ -177,8 +179,8 @@ namespace ThePatient
             var speed = _input.IsCrouching ? _crouchSpeed : _input.IsSprinting ? _sprintSpeed : _baseSpeed;
 
             //  Set the animation parameters
-            _animator.SetFloat("speedX", _moveDir.x);
-            _animator.SetFloat("speedY", _moveDir.z);
+            //_animator.SetFloat("speedX", _moveDir.x);
+            //_animator.SetFloat("speedY", _moveDir.z);
 
             //  Check if the player is moving
             if (adjustedDirection.sqrMagnitude > 0f) 
@@ -352,6 +354,14 @@ namespace ThePatient
                 //_animator.CrossFade(crouchToStand, 0);
                 _onCrouchTimer.Stop();
                 _crouchCoroutine = StartCoroutine(ToggleCrouchStand(_input.IsCrouching));
+            }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.TryGetComponent(out ITrigger triggerobj))
+            {
+                triggerobj.DoSomething();
             }
         }
     }

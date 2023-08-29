@@ -13,7 +13,7 @@ namespace ThePatient
         List<Light> lights = new List<Light>();
 
         bool isOn;
-        private void Start()
+        protected override void Start()
         {
             foreach (var item in objectsToToggle)
             {
@@ -66,7 +66,8 @@ namespace ThePatient
 
         public override void OnInteractEvent(string name)
         {
-            EventAggregate<InteractionTextEventArgs>.Instance.TriggerEvent(new InteractionTextEventArgs(true, "Interact with Switch"));
+            EventAggregate<InteractionTextEventArgs>.Instance.TriggerEvent(
+                new InteractionTextEventArgs(true,isOn ? "[ E ]\nTurn Off" : "[ E ]\nTurn On"));
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using ThePatient;
@@ -11,16 +12,32 @@ public class CanvasUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI interactPopupText;
     [SerializeField] Transform lockUI;
     [SerializeField] Image lockUISlider;
+    [SerializeField] Transform inspectUI;
 
     private void OnEnable()
     {
         EventAggregate<InteractionTextEventArgs>.Instance.StartListening(UpdateInteractionText);
         EventAggregate<InteractionLockUIEventArgs>.Instance.StartListening(UpdateLockSliderUI);
+        EventAggregate<InteractionInspectEventArgs>.Instance.StartListening(UpdateInspectUI);
     }
+
+
     private void OnDisable()
     {
         EventAggregate<InteractionTextEventArgs>.Instance.StopListening(UpdateInteractionText);
         EventAggregate<InteractionLockUIEventArgs>.Instance.StopListening(UpdateLockSliderUI);
+        EventAggregate<InteractionInspectEventArgs>.Instance.StopListening(UpdateInspectUI);
+    }
+    private void UpdateInspectUI(InteractionInspectEventArgs e)
+    {
+        if (e.isActive)
+        {
+            inspectUI.gameObject.SetActive(true);
+        }
+        else
+        {
+            inspectUI.gameObject.SetActive(false);
+        }
     }
 
     void UpdateInteractionText(InteractionTextEventArgs e)

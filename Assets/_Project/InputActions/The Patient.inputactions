@@ -954,6 +954,116 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "InteractionInspect",
+            "id": "2fac3074-1043-44af-aa50-68e26c7f7f28",
+            "actions": [
+                {
+                    "name": "InspectMouse",
+                    "type": "Button",
+                    "id": "983cdb65-190c-4069-b7bd-156e9c42035d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "InspectRotate",
+                    "type": "Value",
+                    "id": "7bf8fece-eab8-4d24-a86a-34fdb97e70b9",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "InspectExit",
+                    "type": "Button",
+                    "id": "0a1ad1b8-13e3-488f-9db5-dfaf3a865bc1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "InspectZoom",
+                    "type": "Value",
+                    "id": "83973988-057f-4c76-8990-4c7266f773dc",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b8e2d952-8f7e-4e6c-b6ea-68964dd0082b",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "InspectMouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8ed3210b-fe80-4307-9ecc-f331a8dbf131",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "InspectRotate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8cfa218a-51fc-46ef-9b0b-3aec15dd2ab8",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "InspectRotate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b576e9e1-211d-45c3-8683-13f21cfe5ddb",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "InspectExit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f141dd83-c180-499d-870d-2b7941b5d0d5",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "InspectExit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f9cfe111-a638-4638-9712-9621bd36fd3a",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InspectZoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

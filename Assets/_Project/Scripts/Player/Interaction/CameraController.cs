@@ -22,7 +22,7 @@ namespace ThePatient
         [SerializeField] LayerMask interactLayer;
  
         Camera cam;
-        Interactable interactable;
+        [SerializeField] Interactable interactable;
         private void OnEnable()
         {
             cam = Camera.main;
@@ -51,6 +51,8 @@ namespace ThePatient
             {
                 interactable.OnHold = false;
                 interactable.Interact();
+                interactable.OnFinishInteractEvent();
+                interactable = null;
             }
         }
         private void CameraController_TickUpdate(int tick)
