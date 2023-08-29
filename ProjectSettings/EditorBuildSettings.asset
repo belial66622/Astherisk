@@ -11,7 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/Main Menu.unity
     guid: dc32fdd838444c443a6033b82297f9a5
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Project/Scenes/MovementScene.unity
     guid: 692b8a8f26ccebe43ab1f63faac44512
+  - enabled: 1
+    path: Assets/_Project/Scenes/the patient.unity
+    guid: 88cd9e17a492452479d15105afba2856
   m_configObjects: {}

@@ -34,10 +34,13 @@ public class DoorObject : Interactable
     CountdownTimer openOrCloseTimer;
     StopwatchTimer lockTimer;
 
+    Quaternion root;
+
     IPickupable key;
 
     protected override void Start()
     {
+        root = transform.rotation;
         doorCooldownTimer = new CountdownTimer(cooldownTime);
         openOrCloseTimer = new CountdownTimer(openOrCloseDuration);
         rattleTimer = new CountdownTimer(rattleDuration);
@@ -129,15 +132,18 @@ public class DoorObject : Interactable
     {
         time.Start();
 
-        Quaternion startRotation = Quaternion.AngleAxis(startRot, Vector3.up);
-        Quaternion targetRotation = Quaternion.AngleAxis(targetRot, Vector3.up);
+        Quaternion startRotation = Quaternion.AngleAxis(startRot, Vector3.forward );
+        Quaternion targetRotation = Quaternion.AngleAxis(targetRot, Vector3.forward );
+
+
 
         while (time.InverseProgress < 1)
         {
             float t = time.InverseProgress * time.InverseProgress * (3 - 2 * time.InverseProgress);
 
             var currentRot = Quaternion.Slerp(startRotation, targetRotation, t);
-            doorPivot.localRotation = currentRot;
+
+            doorPivot.localRotation =root *  currentRot;
             yield return null;
         }
 

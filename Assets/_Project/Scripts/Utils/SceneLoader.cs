@@ -3,14 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Utilities { 
+namespace Utilities {
     public class SceneLoader
     {
+        public string[] SceneName = {"Main Menu","the patient" };
 
-            public void ChangeScene(string scene)
-            {
-                SceneManager.LoadScene(scene);
-                Debug.Log(scene);
-            }
+
+        public void ChangeScene(ESceneName name)
+        {
+            SceneManager.LoadScene(SceneName[((byte)name)]);
+
         }
+
     }
+
+
+    public enum ESceneName
+    { 
+        MainMenu,
+        ThePatient
+    }
+}
+
+

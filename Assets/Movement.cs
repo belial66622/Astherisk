@@ -19,7 +19,7 @@ namespace ThePatient
             _sceneLoader = new SceneLoader();
             _menu.onClick.AddListener(Menu);
             _setting.onClick.AddListener(Setting);
-            _start.onClick.AddListener(delegate { _sceneLoader.ChangeScene("MovementScene"); });
+            _start.onClick.AddListener(delegate { _sceneLoader.ChangeScene(ESceneName.ThePatient); });
         }
 
         // Update is called once per frame
