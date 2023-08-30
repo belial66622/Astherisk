@@ -359,7 +359,12 @@ namespace ThePatient
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out ITrigger triggerobj))
+            ITrigger[] itrigger;
+            itrigger = other.GetComponents<ITrigger>();
+            
+            foreach(ITrigger triggerobj in itrigger)
+            
+            //if (other.TryGetComponent(out ITrigger triggerobj))
             {
                 triggerobj.DoSomething();
             }

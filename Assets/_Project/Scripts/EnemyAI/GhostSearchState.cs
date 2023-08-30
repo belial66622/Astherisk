@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -34,15 +35,17 @@ public class GhostSearchState : IState
     {
         _navMeshAgent.enabled = false;
         _animator.SetFloat("Speed", 1);
+        _animator.SetBool("IsNari", false);
     }
 
     public void Tick()
     {
         if (destination())
         {
-            if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("rig|Bellydancing"))
+            if (!_animator.GetBool("IsNari"))
             {
                 _animator.SetTrigger("Nari");
+                _animator.SetBool("IsNari", true);
             }
             Debug.Log("Search");
         if (_ghost.CanSeePlayer == true)

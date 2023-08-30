@@ -10,22 +10,32 @@ namespace ThePatient
     {
         [SerializeField] PlayableDirector _play;
         [SerializeField]GameObject _entity;
+        [SerializeField] GameObject _enemy;
 
         private void OnEnable()
         {
+            if(_entity != null)
             _entity.SetActive(false);
+
         }
 
         public override void DoSomething()
         {
-            _entity.SetActive(true);
-            _play.Play();
+            if (_enemy != null)
+            { _enemy.SetActive(true); }
+            if (_entity != null && _play != null)
+            {
+                _entity.SetActive(true);
+                _play.Play();
+            }
+            Debug.Log("mampus");
 
         }
 
 
         public void sent()
         {
+            if(name != null)
             TriggerEvent.instance.Enter(name);
         }
     }
