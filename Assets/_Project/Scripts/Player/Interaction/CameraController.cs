@@ -19,10 +19,10 @@ namespace ThePatient
         [Header("Ray Settings")]
         [SerializeField] float interactRayRadius = .4f;
         [SerializeField] float interactRayRange = 1f;
-        [SerializeField] LayerMask interactLayer;
  
         Camera cam;
         [SerializeField] Interactable interactable;
+        float distance;
         private void OnEnable()
         {
             cam = Camera.main;
@@ -50,14 +50,26 @@ namespace ThePatient
             if(interactable != null && !_input.IsInteracting)
             {
                 interactable.OnHold = false;
-                interactable.Interact();
                 interactable.OnFinishInteractEvent();
-                interactable = null;
+                if (!interactable.Interact())
+                {
+                    interactable = null;
+                }
             }
         }
         private void CameraController_TickUpdate(int tick)
         {
-            HandleRaycast();
+            interactable = HandleRaycast();
+            if(interactable != null)
+            {
+                distance = (interactable.transform.position - player.transform.position).sqrMagnitude;
+                if(distance > interactRange * interactRange)
+                {
+                    interactable.OnFinishInteractEvent();
+                    interactable.OnHold = false;
+                    interactable = null;
+                }
+            }
         }
 
         private void Update()
@@ -70,28 +82,24 @@ namespace ThePatient
             transform.position = player.transform.position;
         }
 
-        private void HandleRaycast()
+        private Interactable HandleRaycast()
         {
-            if(Physics.SphereCast(cam.transform.position, interactRayRadius, cam.transform.forward, out RaycastHit hit, interactRayRange, interactLayer))
+            if (interactable != null && interactable.IsInspecting) return interactable;
+
+            if(Physics.SphereCast(cam.transform.position, interactRayRadius, cam.transform.forward, out RaycastHit hit, interactRayRange))
             {
                 if(hit.transform != null && hit.transform.TryGetComponent<Interactable>(out Interactable interactable))
                 {
-                    float distance = (hit.point - player.transform.position).magnitude;
-                    if(distance <= interactRange)
+                    distance = (hit.point - player.transform.position).sqrMagnitude;
+                    if(distance <= interactRange * interactRange)
                     {
-                        this.interactable = interactable;
                         interactable.OnInteractEvent(interactable.ToString());
-                    }
-                    else
-                    {
-                        interactable.OnFinishInteractEvent();
-                        interactable.OnHold = false;
-                        this.interactable = null;
+                        return interactable;
                     }
                 }
                 else
                 {
-                    if (this.interactable != null)
+                    if(this.interactable != null)
                     {
                         this.interactable.OnFinishInteractEvent();
                         this.interactable.OnHold = false;
@@ -100,13 +108,14 @@ namespace ThePatient
             }
             else
             {
-                if (interactable != null)
+                if(interactable != null)
                 {
                     interactable.OnFinishInteractEvent();
                     interactable.OnHold = false;
-                    this.interactable = null;
+                    return null;
                 }
             }
+            return null;
         }
     }
 }

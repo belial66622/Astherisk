@@ -12,9 +12,9 @@ namespace ThePatient
 {
     [CreateAssetMenu(fileName = "PlayerInput", menuName = "InputAction/PlayerInput")]
     public class InputReader : ScriptableObject, 
-        IPlayerActions, IDialogueActions, IInteractionInspectActions
+        IPlayerActions, IDialogueActions, IInteractionInspectActions, ILockPuzzleActions
     {
-        //player action inputs
+        //player action Events
         public event Action<Vector2> Move = delegate { };
         public event Action<Vector2, bool> Look = delegate { };
         public event Action<bool> Jump = delegate { };
@@ -23,22 +23,28 @@ namespace ThePatient
         public event Action Sprint = delegate { };
         public event Action Interact = delegate { };
        
-        //dialogue action inputs
+        //dialogue action Events
         public event Action NextDialogue = delegate { };
 
-        //interaction action inputs
+        //interaction action Events
         public event Action InspectClick = delegate { };
         public event Action<Vector2> InspectRotate = delegate { };
         public event Action<Vector2> InspectZoom = delegate { };
         public event Action InspectExit = delegate { };
 
-        // Player interaction inputs
+        //lock puzzle action Events
+        public event Action SelectUp = delegate { };
+        public event Action SelectDown = delegate { };
+        public event Action NumberLeft = delegate { };
+        public event Action NumberRight = delegate { };
+
+        // Player inputs values
         public Vector3 MoveInput => _inputs.Player.Move.ReadValue<Vector2>();
         public bool IsCrouching => crouchInputState;// _inputs.Player.Crouch.ReadValue<float>() > 0;
         public bool IsSprinting => _inputs.Player.Sprint.ReadValue<float>() > 0;
         public bool IsInteracting => _inputs.Player.Interact.ReadValue<float>() > 0;
 
-        //ON Interaction inputs
+        //ON Interaction inputs values
         public bool InputInspecting => _inputs.InteractionInspect.InspectMouse.ReadValue<float>() > 0;
         public Vector2 InspectRotateInput => _inputs.InteractionInspect.InspectRotate.ReadValue<Vector2>();
         public Vector2 InspectZoomInput => _inputs.InteractionInspect.InspectZoom.ReadValue<Vector2>();
@@ -56,6 +62,7 @@ namespace ThePatient
                 _inputs.Player.SetCallbacks(this);
                 _inputs.Dialogue.SetCallbacks(this);
                 _inputs.InteractionInspect.SetCallbacks(this);
+                _inputs.LockPuzzle.SetCallbacks(this);
             }
         }
 
@@ -69,6 +76,7 @@ namespace ThePatient
             crouchInputState = false;
             DisableDialogueControll();
             DisableInteractionControl();
+            DisableLockPuzzleControl();
         }
 
         public void DisablePlayerControll() => _inputs.Player.Disable();
@@ -76,6 +84,10 @@ namespace ThePatient
         public void DisableDialogueControll() => _inputs.Dialogue.Disable();
         public void EnableInspectControl() => _inputs.InteractionInspect.Enable();
         public void DisableInteractionControl() => _inputs.InteractionInspect.Disable();
+        public void EnableLockPuzzleControl() => _inputs.LockPuzzle.Enable();
+        public void DisableLockPuzzleControl() => _inputs.LockPuzzle.Disable();
+
+        #region Player Input Action
 
         public void OnMove(InputAction.CallbackContext context)
         {
@@ -157,6 +169,10 @@ namespace ThePatient
             }
         }
 
+#endregion
+
+        #region Dialogue Input Actions
+
         public void OnNextDialogue(InputAction.CallbackContext context)
         {
             switch(context.phase)
@@ -167,6 +183,9 @@ namespace ThePatient
             }
         }
 
+        #endregion
+
+        #region InteractionInspect Input Actions
 
         public void OnInspectMouse(InputAction.CallbackContext context)
         {
@@ -204,5 +223,30 @@ namespace ThePatient
         {
             InspectZoom.Invoke(context.ReadValue<Vector2>());
         }
+
+        #endregion
+
+        #region Lock Puzzle Inputs Actions
+
+        public void OnSelectUp(InputAction.CallbackContext context)
+        {
+            context.action.performed += ctx => SelectUp.Invoke();
+        }
+
+        public void OnSelectDown(InputAction.CallbackContext context)
+        {
+            context.action.performed += ctx => SelectDown.Invoke();
+        }
+
+        public void OnNumberRight(InputAction.CallbackContext context)
+        {
+            context.action.performed += ctx => NumberRight.Invoke();
+        }
+
+        public void OnNumberLeft(InputAction.CallbackContext context)
+        {
+            context.action.performed += ctx => NumberLeft.Invoke();
+        }
+        #endregion
     }
 }

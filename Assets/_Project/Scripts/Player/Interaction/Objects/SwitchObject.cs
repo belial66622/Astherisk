@@ -32,7 +32,7 @@ namespace ThePatient
             isOn = lights[0].enabled;
         }
 
-        public override void Interact()
+        public override bool Interact()
         {
             if (isOn)
             {
@@ -57,6 +57,7 @@ namespace ThePatient
                 }
             }
             isOn = !isOn;
+            return false;
         }
 
         public override void OnFinishInteractEvent()

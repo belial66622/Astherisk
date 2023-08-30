@@ -25,9 +25,10 @@ namespace ThePatient
             //do some logic here
         }
 
-        public override void Interact()
+        public override bool Interact()
         {
             Inspect();
+            return false;
         }
 
         public override void OnFinishInteractEvent()

@@ -21,9 +21,10 @@ public class DoorObject : Interactable
     [SerializeField] GameObject requiredKey;
 
     [Header("Door Settings")]
+    [SerializeField] Vector3 defaultRotAxis = Vector3.forward;
     [SerializeField] float closedRotation;
-    [SerializeField] float openRotation;
-    [SerializeField] float rattleRotation;
+    [SerializeField] float openRotation = 120;
+    [SerializeField] float rattleRotation = 1;
     [SerializeField] float openOrCloseDuration = 1f;
     [SerializeField] float rattleDuration = .05f;
     [SerializeField] float cooldownTime = 0f;
@@ -34,13 +35,14 @@ public class DoorObject : Interactable
     CountdownTimer openOrCloseTimer;
     StopwatchTimer lockTimer;
 
-    Quaternion root;
+    Quaternion defaultRotation;
 
     IPickupable key;
+    bool needKey = false;
 
     protected override void Start()
     {
-        root = transform.rotation;
+        defaultRotation = doorPivot.localRotation;
         doorCooldownTimer = new CountdownTimer(cooldownTime);
         openOrCloseTimer = new CountdownTimer(openOrCloseDuration);
         rattleTimer = new CountdownTimer(rattleDuration);
@@ -50,7 +52,10 @@ public class DoorObject : Interactable
         lockTimer.OnTimerStop += () => doorCooldownTimer.Start();
         doorCooldownTimer.OnTimerStart += () => OnFinishInteractEvent();
 
-        key = requiredKey.GetComponent<IPickupable>();
+        needKey = requiredKey != null;
+    
+        if (needKey)
+            key = requiredKey.GetComponent<IPickupable>();
     }
 
     private void OnEnable()
@@ -64,7 +69,7 @@ public class DoorObject : Interactable
         lockTimer.Tick(Time.deltaTime);
         rattleTimer.Tick(Time.deltaTime);
 
-        if(OnHold && !lockTimer.IsRunning && !doorCooldownTimer.IsRunning && Inventory.Instance.HasItem(key))
+        if(OnHold && !lockTimer.IsRunning && !doorCooldownTimer.IsRunning && needKey && Inventory.Instance.HasItem(key))
         {
             lockTimer.Start();
         }
@@ -83,9 +88,10 @@ public class DoorObject : Interactable
         }
     }
 
-    public override void Interact()
+    public override bool Interact()
     {
         HandleDoorState(doorState);
+        return false;
     }
 
     private void HandleDoorState(DoorState state)
@@ -132,8 +138,8 @@ public class DoorObject : Interactable
     {
         time.Start();
 
-        Quaternion startRotation = Quaternion.AngleAxis(startRot, Vector3.forward );
-        Quaternion targetRotation = Quaternion.AngleAxis(targetRot, Vector3.forward );
+        Quaternion startRotation = Quaternion.AngleAxis(startRot, defaultRotAxis );
+        Quaternion targetRotation = Quaternion.AngleAxis(targetRot, defaultRotAxis );
 
 
 
@@ -143,9 +149,11 @@ public class DoorObject : Interactable
 
             var currentRot = Quaternion.Slerp(startRotation, targetRotation, t);
 
-            doorPivot.localRotation =root *  currentRot;
+            doorPivot.localRotation = defaultRotation  * currentRot;
             yield return null;
         }
+
+        doorPivot.localRotation = defaultRotation * targetRotation;
 
         time.Stop();
     }
