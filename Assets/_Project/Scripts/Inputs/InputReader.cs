@@ -40,7 +40,7 @@ namespace ThePatient
 
         // Player inputs values
         public Vector3 MoveInput => _inputs.Player.Move.ReadValue<Vector2>();
-        public bool IsCrouching => crouchInputState;// _inputs.Player.Crouch.ReadValue<float>() > 0;
+        public bool IsCrouching => crouchInputState;
         public bool IsSprinting => _inputs.Player.Sprint.ReadValue<float>() > 0;
         public bool IsInteracting => _inputs.Player.Interact.ReadValue<float>() > 0;
 
