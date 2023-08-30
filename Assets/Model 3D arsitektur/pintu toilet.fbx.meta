@@ -3,12 +3,32 @@ guid: 48900a118ffb00041adc1c3a8ce99851
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tekstur sekrup
+    second: {fileID: 2100000, guid: 3277fea245662c64cac17f6e0bf21bed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tekstur tembaga
+    second: {fileID: 2100000, guid: 8760438d9026b44459839991861697f0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tektur pintu plastik
+    second: {fileID: 2100000, guid: b6a98482ecf46e048a49888432160212, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tektur tembok
+    second: {fileID: 2100000, guid: d31d16149ca9b3a4b8b05eac190957b6, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0

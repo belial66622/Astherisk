@@ -3,12 +3,32 @@ guid: ae8dc155a8852164bbd3d714ae58e424
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tekstur kayu
+    second: {fileID: 2100000, guid: 0dd15cc66942b1a4d97ed26408229832, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tekstur sekrup
+    second: {fileID: 2100000, guid: 3277fea245662c64cac17f6e0bf21bed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tekstur tembaga
+    second: {fileID: 2100000, guid: 8760438d9026b44459839991861697f0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hitam
+    second: {fileID: 2100000, guid: 4861a3a5d1417b14486896403a676cdb, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0

@@ -7,19 +7,23 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: c48e71395882fa44eae4baea4bd5d32a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: '[0129_WhiteSmoke]'
-    second: {fileID: 2100000, guid: 6658ff0b71c59df448c241780b196c82, type: 2}
+    second: {fileID: 2100000, guid: f112e0580d80eef4ead760c9ea4a441a, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: '[0136_Charcoal]'
-    second: {fileID: 3109802454424434118, guid: 98b98d23cac52544291b3a8225f4623a,
-      type: 3}
+    second: {fileID: 2100000, guid: fe95588113599fa4dbdad75424c224c2, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: '[Metal Corrugated Shiny]'
-    second: {fileID: 2100000, guid: f112e0580d80eef4ead760c9ea4a441a, type: 2}
+    second: {fileID: 2100000, guid: fe95588113599fa4dbdad75424c224c2, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
