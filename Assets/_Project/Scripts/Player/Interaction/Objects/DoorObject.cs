@@ -41,6 +41,7 @@ public class DoorObject : Interactable
     IPickupable key;
     bool needKey = false;
     AudioSource _spatialsound;
+    SoundUtils sound;
 
     protected override void Start()
     {
@@ -50,6 +51,7 @@ public class DoorObject : Interactable
         openOrCloseTimer = new CountdownTimer(openOrCloseDuration);
         rattleTimer = new CountdownTimer(rattleDuration);
         lockTimer = new StopwatchTimer();
+        sound = new SoundUtils();
 
         openOrCloseTimer.OnTimerStop += () => doorCooldownTimer.Start();
         lockTimer.OnTimerStop += () => doorCooldownTimer.Start();
@@ -108,20 +110,20 @@ public class DoorObject : Interactable
                 if (lockTimer.GetTime() >= lockDuration)
                 {
                     //locked sound
-                    playsound(AudioManager.Instance.GetSfx("LockDoor"));
+                   sound.PlaySound(AudioManager.Instance.GetSfx("LockDoor"),_spatialsound);
                     doorState = DoorState.Locked;
                 }
                 else
                 {
                     //open sound
-                    playsound(AudioManager.Instance.GetSfx("Door"));
+                    sound.PlaySound(AudioManager.Instance.GetSfx("Door"),_spatialsound);
                     StartCoroutine(ToggleDoor(closedRotation, openRotation, openOrCloseTimer));
                     doorState = DoorState.Opened;
                 }
                 break;
             case DoorState.Opened:
                 //close sound
-                playsound(AudioManager.Instance.GetSfx("Door"));
+                sound.PlaySound(AudioManager.Instance.GetSfx("Door"),_spatialsound);
                 StartCoroutine(ToggleDoor(openRotation, closedRotation, openOrCloseTimer));
                 doorState = DoorState.Closed;
                 break;
@@ -129,30 +131,20 @@ public class DoorObject : Interactable
                 if (lockTimer.GetTime() >= lockDuration)
                 {
                     //unlock sound
-                    playsound(AudioManager.Instance.GetSfx("UnlockDoor"));
+                    sound.PlaySound(AudioManager.Instance.GetSfx("UnlockDoor"),_spatialsound);
                     doorState = DoorState.Closed;
                 }
                 else
                 {
                     //ratlle sound
-                    playsound(AudioManager.Instance.GetSfx("RattleDoor"));
+                    sound.PlaySound(AudioManager.Instance.GetSfx("RattleDoor"), _spatialsound);
                     StartCoroutine(RattleDoorRepeat());
                 }
                 break;
         }
     }
 
-    void playsound(AudioSource spatialsound)
-    {
-        _spatialsound.clip = spatialsound.clip;
-        _spatialsound.volume = 1.0f;
-        _spatialsound.pitch = 1.0f;
-        _spatialsound.loop = spatialsound.loop;
-        _spatialsound.playOnAwake = false;
-        _spatialsound.outputAudioMixerGroup = spatialsound.outputAudioMixerGroup;
-        _spatialsound.spatialBlend = spatialsound.spatialBlend;
-        _spatialsound.Play();
-    }
+
 
     IEnumerator ToggleDoor(float startRot, float targetRot, TimerUtils time)
     {
