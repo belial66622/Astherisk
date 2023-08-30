@@ -676,11 +676,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8567748783599894139, guid: cd90baea4dff96042960db495e64d286,
+        type: 3}
+      propertyPath: inspectLockPuzzleUI
+      value: 
+      objectReference: {fileID: 7604268946613794466}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd90baea4dff96042960db495e64d286, type: 3}
 --- !u!224 &2900387125772584363 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7760628616559935757, guid: cd90baea4dff96042960db495e64d286,
+    type: 3}
+  m_PrefabInstance: {fileID: 4896384912028058790}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &7604268946613794466 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3059279452290757124, guid: cd90baea4dff96042960db495e64d286,
     type: 3}
   m_PrefabInstance: {fileID: 4896384912028058790}
   m_PrefabAsset: {fileID: 0}

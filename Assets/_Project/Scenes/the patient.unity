@@ -25333,11 +25333,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3825163833077562077, guid: d74ca211ee48a714085cf4a5551ad9f7,
-        type: 3}
-      propertyPath: inspectLockPuzzleUI
-      value: 
-      objectReference: {fileID: 1741178042}
     - target: {fileID: 4896384913377274716, guid: d74ca211ee48a714085cf4a5551ad9f7,
         type: 3}
       propertyPath: m_RootOrder
@@ -28799,12 +28794,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!224 &1741178042 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7604268946613794466, guid: d74ca211ee48a714085cf4a5551ad9f7,
-    type: 3}
-  m_PrefabInstance: {fileID: 1503452855}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1742036812
 Mesh:
   m_ObjectHideFlags: 0
