@@ -62,3 +62,9 @@ MonoBehaviour:
     _audioMixerGroup: {fileID: -9015192125907661391, guid: e18948c65073f6e49953ef660aedf2de,
       type: 2}
     _spatialblend: 1
+  - _name: FemaleScream
+    _audioClip: {fileID: 8300000, guid: 31e00b7cf56ce17439e6e32f26950e5e, type: 3}
+    _isBGM: 0
+    _audioMixerGroup: {fileID: -9015192125907661391, guid: e18948c65073f6e49953ef660aedf2de,
+      type: 2}
+    _spatialblend: 1

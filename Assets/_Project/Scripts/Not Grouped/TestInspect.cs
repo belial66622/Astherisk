@@ -8,13 +8,13 @@ namespace ThePatient
     {
         private void OnEnable()
         {
-            OnInspectExit += Pickup;
+            //OnInspectExit += Pickup;
             _input.InspectExit += ExitInspect;
         }
 
         private void OnDisable()
         {
-            OnInspectExit -= Pickup;
+            //OnInspectExit -= Pickup;
             _input.InspectExit -= ExitInspect;
         }
 
