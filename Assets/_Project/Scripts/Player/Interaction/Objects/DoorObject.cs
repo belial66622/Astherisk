@@ -88,9 +88,10 @@ public class DoorObject : Interactable
         }
     }
 
-    public override void Interact()
+    public override bool Interact()
     {
         HandleDoorState(doorState);
+        return false;
     }
 
     private void HandleDoorState(DoorState state)

@@ -10,7 +10,6 @@ namespace ThePatient
         [SerializeField] InputReader _input;
 
         [Header("Reference")]
-        [SerializeField] GameObject globalVolume;
         [SerializeField] GameObject inspectVolume;
 
         private void Awake()
@@ -27,15 +26,19 @@ namespace ThePatient
         {
             _input.DisablePlayerControll();
             _input.EnableInspectControl();
-            globalVolume.SetActive(false);
             inspectVolume.SetActive(true);
         }
 
         public void StopInspecting()
         {
             _input.EnablePlayerControll();
-            globalVolume.SetActive(true);
             inspectVolume.SetActive(false);
         }
+
+        public void OnInteractionInspect<T>(T eventArgs)
+        {
+            EventAggregate<T>.Instance.TriggerEvent(eventArgs);
+        }
+
     }
 }

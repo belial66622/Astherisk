@@ -4,7 +4,8 @@
     {
         void OnInteractEvent(string name);
         void OnFinishInteractEvent();
-        void Interact();
+        bool Interact();
         bool OnHold { get; set; }
+        bool IsInspecting { get; set; }
     }
 }

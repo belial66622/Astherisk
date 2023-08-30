@@ -19,7 +19,6 @@ namespace ThePatient
         [Header("Ray Settings")]
         [SerializeField] float interactRayRadius = .4f;
         [SerializeField] float interactRayRange = 1f;
-        [SerializeField] LayerMask interactLayer;
  
         Camera cam;
         [SerializeField] Interactable interactable;
@@ -51,9 +50,11 @@ namespace ThePatient
             if(interactable != null && !_input.IsInteracting)
             {
                 interactable.OnHold = false;
-                interactable.Interact();
                 interactable.OnFinishInteractEvent();
-                interactable = null;
+                if (!interactable.Interact())
+                {
+                    interactable = null;
+                }
             }
         }
         private void CameraController_TickUpdate(int tick)
@@ -83,6 +84,8 @@ namespace ThePatient
 
         private Interactable HandleRaycast()
         {
+            if (interactable != null && interactable.IsInspecting) return interactable;
+
             if(Physics.SphereCast(cam.transform.position, interactRayRadius, cam.transform.forward, out RaycastHit hit, interactRayRange))
             {
                 if(hit.transform != null && hit.transform.TryGetComponent<Interactable>(out Interactable interactable))
@@ -100,7 +103,6 @@ namespace ThePatient
                     {
                         this.interactable.OnFinishInteractEvent();
                         this.interactable.OnHold = false;
-                        return null;
                     }
                 }
             }
@@ -113,7 +115,6 @@ namespace ThePatient
                     return null;
                 }
             }
-            
             return null;
         }
     }

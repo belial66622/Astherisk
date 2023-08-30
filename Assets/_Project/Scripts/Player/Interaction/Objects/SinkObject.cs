@@ -10,10 +10,11 @@ namespace ThePatient
         [Header("Reference")]
         [SerializeField] ParticleSystem sinkWater;
 
-        public override void Interact()
+        public override bool Interact()
         {
             var emission = sinkWater.emission;
             emission.enabled = !sinkWater.emission.enabled;
+            return false;
         }
 
         public override void OnFinishInteractEvent()

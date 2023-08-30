@@ -1088,6 +1088,138 @@ namespace ThePatient.Player.InputActions
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""LockPuzzle"",
+            ""id"": ""3eea0c4f-551d-45f5-abde-8d85e4d92049"",
+            ""actions"": [
+                {
+                    ""name"": ""SelectUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""b2060ea6-9436-4742-a6ec-32ee02d17766"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""56199303-805c-4c81-bccb-d109cfdd10e5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NumberRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""bd7c2108-ff3a-402d-b026-d68abce2e72d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NumberLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""18cf5cc3-85d4-4f73-b3ad-1a550ccbdf45"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""1ba0483d-a0f4-4258-bcf4-2ef909f8ac2a"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""SelectUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dee9e74f-819f-4635-b95a-4edb2a03be0e"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""SelectUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fb6bb463-f369-4170-a658-76949273ad9e"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""SelectDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a1169e24-965d-49d7-ae8e-26234d88f0ed"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""SelectDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ad359efe-2587-4625-99cc-397b2a90db43"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""NumberRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d8b111c2-dab4-44dc-9614-65ae23d6f4c2"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""NumberRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0b4324ef-77c6-4c6e-97f8-5b96c39c51c3"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""NumberLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bbec8002-61be-4de7-8988-daa5834997bb"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse;Gamepad"",
+                    ""action"": ""NumberLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1184,6 +1316,12 @@ namespace ThePatient.Player.InputActions
             m_InteractionInspect_InspectRotate = m_InteractionInspect.FindAction("InspectRotate", throwIfNotFound: true);
             m_InteractionInspect_InspectExit = m_InteractionInspect.FindAction("InspectExit", throwIfNotFound: true);
             m_InteractionInspect_InspectZoom = m_InteractionInspect.FindAction("InspectZoom", throwIfNotFound: true);
+            // LockPuzzle
+            m_LockPuzzle = asset.FindActionMap("LockPuzzle", throwIfNotFound: true);
+            m_LockPuzzle_SelectUp = m_LockPuzzle.FindAction("SelectUp", throwIfNotFound: true);
+            m_LockPuzzle_SelectDown = m_LockPuzzle.FindAction("SelectDown", throwIfNotFound: true);
+            m_LockPuzzle_NumberRight = m_LockPuzzle.FindAction("NumberRight", throwIfNotFound: true);
+            m_LockPuzzle_NumberLeft = m_LockPuzzle.FindAction("NumberLeft", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -1523,6 +1661,63 @@ namespace ThePatient.Player.InputActions
             }
         }
         public InteractionInspectActions @InteractionInspect => new InteractionInspectActions(this);
+
+        // LockPuzzle
+        private readonly InputActionMap m_LockPuzzle;
+        private ILockPuzzleActions m_LockPuzzleActionsCallbackInterface;
+        private readonly InputAction m_LockPuzzle_SelectUp;
+        private readonly InputAction m_LockPuzzle_SelectDown;
+        private readonly InputAction m_LockPuzzle_NumberRight;
+        private readonly InputAction m_LockPuzzle_NumberLeft;
+        public struct LockPuzzleActions
+        {
+            private @PlayerInputActions m_Wrapper;
+            public LockPuzzleActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @SelectUp => m_Wrapper.m_LockPuzzle_SelectUp;
+            public InputAction @SelectDown => m_Wrapper.m_LockPuzzle_SelectDown;
+            public InputAction @NumberRight => m_Wrapper.m_LockPuzzle_NumberRight;
+            public InputAction @NumberLeft => m_Wrapper.m_LockPuzzle_NumberLeft;
+            public InputActionMap Get() { return m_Wrapper.m_LockPuzzle; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(LockPuzzleActions set) { return set.Get(); }
+            public void SetCallbacks(ILockPuzzleActions instance)
+            {
+                if (m_Wrapper.m_LockPuzzleActionsCallbackInterface != null)
+                {
+                    @SelectUp.started -= m_Wrapper.m_LockPuzzleActionsCallbackInterface.OnSelectUp;
+                    @SelectUp.performed -= m_Wrapper.m_LockPuzzleActionsCallbackInterface.OnSelectUp;
+                    @SelectUp.canceled -= m_Wrapper.m_LockPuzzleActionsCallbackInterface.OnSelectUp;
+                    @SelectDown.started -= m_Wrapper.m_LockPuzzleActionsCallbackInterface.OnSelectDown;
+                    @SelectDown.performed -= m_Wrapper.m_LockPuzzleActionsCallbackInterface.OnSelectDown;
+                    @SelectDown.canceled -= m_Wrapper.m_LockPuzzleActionsCallbackInterface.OnSelectDown;
+                    @NumberRight.started -= m_Wrapper.m_LockPuzzleActionsCallbackInterface.OnNumberRight;
+                    @NumberRight.performed -= m_Wrapper.m_LockPuzzleActionsCallbackInterface.OnNumberRight;
+                    @NumberRight.canceled -= m_Wrapper.m_LockPuzzleActionsCallbackInterface.OnNumberRight;
+                    @NumberLeft.started -= m_Wrapper.m_LockPuzzleActionsCallbackInterface.OnNumberLeft;
+                    @NumberLeft.performed -= m_Wrapper.m_LockPuzzleActionsCallbackInterface.OnNumberLeft;
+                    @NumberLeft.canceled -= m_Wrapper.m_LockPuzzleActionsCallbackInterface.OnNumberLeft;
+                }
+                m_Wrapper.m_LockPuzzleActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @SelectUp.started += instance.OnSelectUp;
+                    @SelectUp.performed += instance.OnSelectUp;
+                    @SelectUp.canceled += instance.OnSelectUp;
+                    @SelectDown.started += instance.OnSelectDown;
+                    @SelectDown.performed += instance.OnSelectDown;
+                    @SelectDown.canceled += instance.OnSelectDown;
+                    @NumberRight.started += instance.OnNumberRight;
+                    @NumberRight.performed += instance.OnNumberRight;
+                    @NumberRight.canceled += instance.OnNumberRight;
+                    @NumberLeft.started += instance.OnNumberLeft;
+                    @NumberLeft.performed += instance.OnNumberLeft;
+                    @NumberLeft.canceled += instance.OnNumberLeft;
+                }
+            }
+        }
+        public LockPuzzleActions @LockPuzzle => new LockPuzzleActions(this);
         private int m_KeyboardMouseSchemeIndex = -1;
         public InputControlScheme KeyboardMouseScheme
         {
@@ -1602,6 +1797,13 @@ namespace ThePatient.Player.InputActions
             void OnInspectRotate(InputAction.CallbackContext context);
             void OnInspectExit(InputAction.CallbackContext context);
             void OnInspectZoom(InputAction.CallbackContext context);
+        }
+        public interface ILockPuzzleActions
+        {
+            void OnSelectUp(InputAction.CallbackContext context);
+            void OnSelectDown(InputAction.CallbackContext context);
+            void OnNumberRight(InputAction.CallbackContext context);
+            void OnNumberLeft(InputAction.CallbackContext context);
         }
     }
 }

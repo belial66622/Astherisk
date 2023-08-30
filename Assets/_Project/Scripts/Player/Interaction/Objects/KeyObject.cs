@@ -17,9 +17,10 @@ namespace ThePatient
             _input.InspectExit -= DestroyInspect;
         }
 
-        public override void Interact()
+        public override bool Interact()
         {
             Inspect();
+            return false;
         }
 
         public override void OnFinishInteractEvent()

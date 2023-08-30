@@ -6,7 +6,6 @@ using TMPro;
 using XNode;
 using ThePatient;
 
-[SelectionBase]
 public class NodeParser : Interactable
 {
     public DialogueGraph graph;
@@ -74,7 +73,7 @@ public class NodeParser : Interactable
         _parser = StartCoroutine(ParseNode());
     }
 
-    public override void Interact()
+    public override bool Interact()
     {
         foreach (BaseNode b in graph.nodes)
         {
@@ -84,8 +83,8 @@ public class NodeParser : Interactable
                 break;
             }
         }
-
         _parser = StartCoroutine(ParseNode());
+        return false;
     }
 
     public override void OnFinishInteractEvent()

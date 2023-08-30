@@ -13,12 +13,14 @@ public class CanvasUI : MonoBehaviour
     [SerializeField] Transform lockUI;
     [SerializeField] Image lockUISlider;
     [SerializeField] Transform inspectUI;
+    [SerializeField] Transform inspectLockPuzzleUI;
 
     private void OnEnable()
     {
         EventAggregate<InteractionTextEventArgs>.Instance.StartListening(UpdateInteractionText);
         EventAggregate<InteractionLockUIEventArgs>.Instance.StartListening(UpdateLockSliderUI);
         EventAggregate<InteractionInspectEventArgs>.Instance.StartListening(UpdateInspectUI);
+        EventAggregate<InteractionLockPuzzleEventArgs>.Instance.StartListening(UpdateInspectLockPuzzleUI);
     }
 
 
@@ -27,6 +29,18 @@ public class CanvasUI : MonoBehaviour
         EventAggregate<InteractionTextEventArgs>.Instance.StopListening(UpdateInteractionText);
         EventAggregate<InteractionLockUIEventArgs>.Instance.StopListening(UpdateLockSliderUI);
         EventAggregate<InteractionInspectEventArgs>.Instance.StopListening(UpdateInspectUI);
+        EventAggregate<InteractionLockPuzzleEventArgs>.Instance.StopListening(UpdateInspectLockPuzzleUI);
+    }
+    private void UpdateInspectLockPuzzleUI(InteractionLockPuzzleEventArgs e)
+    {
+        if (e.isActive)
+        {
+            inspectLockPuzzleUI.gameObject.SetActive(true);
+        }
+        else
+        {
+            inspectLockPuzzleUI.gameObject.SetActive(false);
+        }
     }
     private void UpdateInspectUI(InteractionInspectEventArgs e)
     {
