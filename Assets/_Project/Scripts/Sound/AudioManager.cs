@@ -115,6 +115,26 @@ using System.Linq;
             _searchedSFX.AudioSource.Play();
         }
 
+        public AudioSource GetSfx(string _sfxName)
+        { 
+        Sound _searchedSFX = System.Array.Find(_sounds, sound => sound.Name == _sfxName
+        && !sound.IsBGM && !sound.AudioSource.isPlaying);
+
+        if (_searchedSFX == null)
+        {
+            _searchedSFX = (Sound)System.Array.Find(_savedSounds.GetSounds(), sound =>
+            sound.Name == _sfxName && !sound.IsBGM)?.Clone();
+
+            _searchedSFX.AudioSource = gameObject.AddComponent<AudioSource>();
+            AudioSourceInit(_searchedSFX);
+            _sounds = _sounds.Concat(new Sound[] { _searchedSFX }).ToArray();
+        }
+
+            return _searchedSFX.AudioSource;
+        }
+
+
+        
         public Sound PlayLoopingSFX(string _sfxName)
         {
             Sound _searchedSFX = System.Array.Find(_sounds, sound => sound.Name == _sfxName

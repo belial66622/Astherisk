@@ -11,6 +11,7 @@ namespace Utilities {
 
         public void ChangeScene(ESceneName name)
         {
+            AudioManager.Instance.PlayBGM("LevelBGM");
             SceneManager.LoadScene(SceneName[((byte)name)]);
 
         }

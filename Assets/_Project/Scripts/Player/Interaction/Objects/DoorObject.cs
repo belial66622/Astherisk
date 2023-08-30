@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ThePatient;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using Utilities;
@@ -39,9 +40,11 @@ public class DoorObject : Interactable
 
     IPickupable key;
     bool needKey = false;
+    AudioSource _spatialsound;
 
     protected override void Start()
     {
+        _spatialsound = this.AddComponent<AudioSource>();
         defaultRotation = doorPivot.localRotation;
         doorCooldownTimer = new CountdownTimer(cooldownTime);
         openOrCloseTimer = new CountdownTimer(openOrCloseDuration);
@@ -105,17 +108,20 @@ public class DoorObject : Interactable
                 if (lockTimer.GetTime() >= lockDuration)
                 {
                     //locked sound
+                    playsound(AudioManager.Instance.GetSfx("LockDoor"));
                     doorState = DoorState.Locked;
                 }
                 else
                 {
                     //open sound
+                    playsound(AudioManager.Instance.GetSfx("Door"));
                     StartCoroutine(ToggleDoor(closedRotation, openRotation, openOrCloseTimer));
                     doorState = DoorState.Opened;
                 }
                 break;
             case DoorState.Opened:
                 //close sound
+                playsound(AudioManager.Instance.GetSfx("Door"));
                 StartCoroutine(ToggleDoor(openRotation, closedRotation, openOrCloseTimer));
                 doorState = DoorState.Closed;
                 break;
@@ -123,15 +129,29 @@ public class DoorObject : Interactable
                 if (lockTimer.GetTime() >= lockDuration)
                 {
                     //unlock sound
+                    playsound(AudioManager.Instance.GetSfx("UnlockDoor"));
                     doorState = DoorState.Closed;
                 }
                 else
                 {
                     //ratlle sound
+                    playsound(AudioManager.Instance.GetSfx("RattleDoor"));
                     StartCoroutine(RattleDoorRepeat());
                 }
                 break;
         }
+    }
+
+    void playsound(AudioSource spatialsound)
+    {
+        _spatialsound.clip = spatialsound.clip;
+        _spatialsound.volume = 1.0f;
+        _spatialsound.pitch = 1.0f;
+        _spatialsound.loop = spatialsound.loop;
+        _spatialsound.playOnAwake = false;
+        _spatialsound.outputAudioMixerGroup = spatialsound.outputAudioMixerGroup;
+        _spatialsound.spatialBlend = spatialsound.spatialBlend;
+        _spatialsound.Play();
     }
 
     IEnumerator ToggleDoor(float startRot, float targetRot, TimerUtils time)

@@ -20,6 +20,7 @@ namespace ThePatient
             _menu.onClick.AddListener(Menu);
             _setting.onClick.AddListener(Setting);
             _start.onClick.AddListener(delegate { _sceneLoader.ChangeScene(ESceneName.ThePatient); });
+            AudioManager.Instance.PlayBGM("MainMenuBGM");
         }
 
         // Update is called once per frame

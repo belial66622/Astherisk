@@ -38,3 +38,27 @@ MonoBehaviour:
     _audioMixerGroup: {fileID: 8088790186405464425, guid: e18948c65073f6e49953ef660aedf2de,
       type: 2}
     _spatialblend: 0
+  - _name: Door
+    _audioClip: {fileID: 8300000, guid: 07292cea330a1a04cab4e3439204418b, type: 3}
+    _isBGM: 0
+    _audioMixerGroup: {fileID: -9015192125907661391, guid: e18948c65073f6e49953ef660aedf2de,
+      type: 2}
+    _spatialblend: 1
+  - _name: UnlockDoor
+    _audioClip: {fileID: 8300000, guid: 07292cea330a1a04cab4e3439204418b, type: 3}
+    _isBGM: 0
+    _audioMixerGroup: {fileID: -9015192125907661391, guid: e18948c65073f6e49953ef660aedf2de,
+      type: 2}
+    _spatialblend: 1
+  - _name: LockDoor
+    _audioClip: {fileID: 8300000, guid: 3acf50e27757cc742973e6a54c7aa22b, type: 3}
+    _isBGM: 0
+    _audioMixerGroup: {fileID: -9015192125907661391, guid: e18948c65073f6e49953ef660aedf2de,
+      type: 2}
+    _spatialblend: 1
+  - _name: RattleDoor
+    _audioClip: {fileID: 8300000, guid: 95c4439713022be4e8bc28d96ef9d717, type: 3}
+    _isBGM: 0
+    _audioMixerGroup: {fileID: -9015192125907661391, guid: e18948c65073f6e49953ef660aedf2de,
+      type: 2}
+    _spatialblend: 1
