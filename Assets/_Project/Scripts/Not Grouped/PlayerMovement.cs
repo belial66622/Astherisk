@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 movement = transform.forward * verticalMovement + transform.right * horizontalMovement;
         movement.Normalize();
 
-        characterController.SimpleMove(movement * moveSpeed);
+        characterController.Move(movement * moveSpeed * Time.deltaTime);
 
         // Player Rotation
         float horizontalRotation = Input.GetAxis("Mouse X") * mouseSensitivity;

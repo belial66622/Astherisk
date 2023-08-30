@@ -78,7 +78,7 @@ namespace ThePatient
             // Setup References
             _cam = Camera.main.transform;
             _pov = _virtualCamera.GetCinemachineComponent<CinemachinePOV>();
-            _stepUpperTransform.position = new Vector3(_stepUpperTransform.position.x, _stepHeight, _stepUpperTransform.position.z);
+            _stepUpperTransform.localPosition = new Vector3(0, _stepHeight, 0);
             _rb.freezeRotation = true;
 
 
