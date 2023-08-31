@@ -6,7 +6,7 @@ namespace ThePatient
 {
     public class Trigger : MonoBehaviour , ITrigger
     {
-        [SerializeField] protected string name;
+        [SerializeField] protected new string name;
         public virtual void DoSomething()
         {
 

@@ -12,7 +12,7 @@ namespace ThePatient
 {
     [CreateAssetMenu(fileName = "PlayerInput", menuName = "InputAction/PlayerInput")]
     public class InputReader : ScriptableObject, 
-        IPlayerActions, IDialogueActions, IInteractionInspectActions, ILockPuzzleActions
+        IPlayerActions, IDialogueActions, IInteractionInspectActions, ILockPuzzleActions, IUIActions
     {
         //player action Events
         public event Action<Vector2> Move = delegate { };
@@ -22,7 +22,10 @@ namespace ThePatient
         public event Action ToggleCrouch = delegate { };
         public event Action Sprint = delegate { };
         public event Action Interact = delegate { };
-       
+        public event Action<bool> Pause = delegate { };
+        public event Action UIClick = delegate { };
+        public bool UIClicked => _inputs.UI.Click.ReadValue<float>() > 0;
+
         //dialogue action Events
         public event Action NextDialogue = delegate { };
 
@@ -63,6 +66,7 @@ namespace ThePatient
                 _inputs.Dialogue.SetCallbacks(this);
                 _inputs.InteractionInspect.SetCallbacks(this);
                 _inputs.LockPuzzle.SetCallbacks(this);
+                _inputs.UI.SetCallbacks(this);
             }
         }
 
@@ -77,6 +81,7 @@ namespace ThePatient
             DisableDialogueControll();
             DisableInteractionControl();
             DisableLockPuzzleControl();
+            DisableUIControl();
         }
 
         public void DisablePlayerControll() => _inputs.Player.Disable();
@@ -86,6 +91,8 @@ namespace ThePatient
         public void DisableInteractionControl() => _inputs.InteractionInspect.Disable();
         public void EnableLockPuzzleControl() => _inputs.LockPuzzle.Enable();
         public void DisableLockPuzzleControl() => _inputs.LockPuzzle.Disable();
+        public void EnableUIControl() => _inputs.UI.Enable();
+        public void DisableUIControl() => _inputs.UI.Disable();
 
         #region Player Input Action
 
@@ -169,7 +176,8 @@ namespace ThePatient
             }
         }
 
-#endregion
+
+ #endregion
 
         #region Dialogue Input Actions
 
@@ -247,6 +255,84 @@ namespace ThePatient
         {
             context.action.performed += ctx => NumberLeft.Invoke();
         }
+        #endregion
+
+        #region UI Input Actions
+        public void OnNavigate(InputAction.CallbackContext context)
+        {
+            // no op
+        }
+
+        public void OnSubmit(InputAction.CallbackContext context)
+        {
+            // no op
+        }
+
+        public void OnCancel(InputAction.CallbackContext context)
+        {
+            // no op
+        }
+
+        public void OnPoint(InputAction.CallbackContext context)
+        {
+            // no op
+        }
+
+        public void OnClick(InputAction.CallbackContext context)
+        {
+            switch(context.phase)
+            {
+                case InputActionPhase.Performed:
+                    UIClick.Invoke();
+                    break;
+            }
+        }
+
+        public void OnScrollWheel(InputAction.CallbackContext context)
+        {
+            // no op
+        }
+
+        public void OnMiddleClick(InputAction.CallbackContext context)
+        {
+            // no op
+        }
+
+        public void OnRightClick(InputAction.CallbackContext context)
+        {
+            // no op
+        }
+
+        public void OnTrackedDevicePosition(InputAction.CallbackContext context)
+        {
+            // no op
+        }
+
+        public void OnTrackedDeviceOrientation(InputAction.CallbackContext context)
+        {
+            // no op
+        }
+
+        public void OnPause(InputAction.CallbackContext context)
+        {
+            switch(context.phase)
+            {
+                case InputActionPhase.Performed:
+                    Pause.Invoke(true);
+                    break;
+            }
+        }
+
+        public void OnUnpause(InputAction.CallbackContext context)
+        {
+            switch (context.phase)
+            {
+                case InputActionPhase.Performed:
+                    Pause.Invoke(false);
+                    break;
+            }
+        }
+
         #endregion
     }
 }

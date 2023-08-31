@@ -33,7 +33,7 @@ namespace ThePatient
         {
             if (done)
             {
-                _animator.SetTrigger("Menu");
+                Application.Quit();
             }
         }
 

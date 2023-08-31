@@ -4,8 +4,8 @@ using System.IO;
 
 public static class ReverseAnimation
 {
-
-    [MenuItem("Assets/Create Reversed Clip", false, 14)]
+#if UNITY_EDITOR
+    //[MenuItem("Assets/Create Reversed Clip", false, 14)]
     private static void ReverseClip()
     {
         string directoryPath = Path.GetDirectoryName(AssetDatabase.GetAssetPath(Selection.activeObject));
@@ -55,7 +55,7 @@ public static class ReverseAnimation
         Debug.Log("Animation reversed!");
     }
 
-    [MenuItem("Assets/Create Reversed Clip", true)]
+    //[MenuItem("Assets/Create Reversed Clip", true)]
     static bool ReverseClipValidation()
     {
         return Selection.activeObject.GetType() == typeof(AnimationClip);
@@ -70,5 +70,5 @@ public static class ReverseAnimation
         }
         return null;
     }
-
+#endif
 }

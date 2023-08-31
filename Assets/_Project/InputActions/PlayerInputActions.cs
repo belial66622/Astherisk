@@ -100,6 +100,15 @@ namespace ThePatient.Player.InputActions
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""f397a668-98f5-40ef-bc1e-3dd52001d91a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -421,6 +430,17 @@ namespace ThePatient.Player.InputActions
                     ""action"": ""ToggleCrouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""64e0e086-6f96-4c22-8ac6-d1149e909777"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -514,6 +534,15 @@ namespace ThePatient.Player.InputActions
                     ""type"": ""PassThrough"",
                     ""id"": ""6080561b-6983-449d-a691-f48427221979"",
                     ""expectedControlType"": ""Quaternion"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Unpause"",
+                    ""type"": ""Button"",
+                    ""id"": ""cd73b27f-ee31-4b76-bf75-17662405833c"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -937,6 +966,17 @@ namespace ThePatient.Player.InputActions
                     ""action"": ""TrackedDeviceOrientation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""795f4301-29a1-472e-918a-44c85bd2a8a2"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Unpause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1295,6 +1335,7 @@ namespace ThePatient.Player.InputActions
             m_Player_ToggleCrouch = m_Player.FindAction("ToggleCrouch", throwIfNotFound: true);
             m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
             m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
+            m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1307,6 +1348,7 @@ namespace ThePatient.Player.InputActions
             m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
             m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
             m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+            m_UI_Unpause = m_UI.FindAction("Unpause", throwIfNotFound: true);
             // Dialogue
             m_Dialogue = asset.FindActionMap("Dialogue", throwIfNotFound: true);
             m_Dialogue_NextDialogue = m_Dialogue.FindAction("NextDialogue", throwIfNotFound: true);
@@ -1389,6 +1431,7 @@ namespace ThePatient.Player.InputActions
         private readonly InputAction m_Player_ToggleCrouch;
         private readonly InputAction m_Player_Crouch;
         private readonly InputAction m_Player_Sprint;
+        private readonly InputAction m_Player_Pause;
         public struct PlayerActions
         {
             private @PlayerInputActions m_Wrapper;
@@ -1401,6 +1444,7 @@ namespace ThePatient.Player.InputActions
             public InputAction @ToggleCrouch => m_Wrapper.m_Player_ToggleCrouch;
             public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
             public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
+            public InputAction @Pause => m_Wrapper.m_Player_Pause;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1434,6 +1478,9 @@ namespace ThePatient.Player.InputActions
                     @Sprint.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
                     @Sprint.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
                     @Sprint.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                    @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                    @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                    @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -1462,6 +1509,9 @@ namespace ThePatient.Player.InputActions
                     @Sprint.started += instance.OnSprint;
                     @Sprint.performed += instance.OnSprint;
                     @Sprint.canceled += instance.OnSprint;
+                    @Pause.started += instance.OnPause;
+                    @Pause.performed += instance.OnPause;
+                    @Pause.canceled += instance.OnPause;
                 }
             }
         }
@@ -1480,6 +1530,7 @@ namespace ThePatient.Player.InputActions
         private readonly InputAction m_UI_RightClick;
         private readonly InputAction m_UI_TrackedDevicePosition;
         private readonly InputAction m_UI_TrackedDeviceOrientation;
+        private readonly InputAction m_UI_Unpause;
         public struct UIActions
         {
             private @PlayerInputActions m_Wrapper;
@@ -1494,6 +1545,7 @@ namespace ThePatient.Player.InputActions
             public InputAction @RightClick => m_Wrapper.m_UI_RightClick;
             public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
             public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
+            public InputAction @Unpause => m_Wrapper.m_UI_Unpause;
             public InputActionMap Get() { return m_Wrapper.m_UI; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1533,6 +1585,9 @@ namespace ThePatient.Player.InputActions
                     @TrackedDeviceOrientation.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
                     @TrackedDeviceOrientation.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
                     @TrackedDeviceOrientation.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
+                    @Unpause.started -= m_Wrapper.m_UIActionsCallbackInterface.OnUnpause;
+                    @Unpause.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnUnpause;
+                    @Unpause.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnUnpause;
                 }
                 m_Wrapper.m_UIActionsCallbackInterface = instance;
                 if (instance != null)
@@ -1567,6 +1622,9 @@ namespace ThePatient.Player.InputActions
                     @TrackedDeviceOrientation.started += instance.OnTrackedDeviceOrientation;
                     @TrackedDeviceOrientation.performed += instance.OnTrackedDeviceOrientation;
                     @TrackedDeviceOrientation.canceled += instance.OnTrackedDeviceOrientation;
+                    @Unpause.started += instance.OnUnpause;
+                    @Unpause.performed += instance.OnUnpause;
+                    @Unpause.canceled += instance.OnUnpause;
                 }
             }
         }
@@ -1773,6 +1831,7 @@ namespace ThePatient.Player.InputActions
             void OnToggleCrouch(InputAction.CallbackContext context);
             void OnCrouch(InputAction.CallbackContext context);
             void OnSprint(InputAction.CallbackContext context);
+            void OnPause(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {
@@ -1786,6 +1845,7 @@ namespace ThePatient.Player.InputActions
             void OnRightClick(InputAction.CallbackContext context);
             void OnTrackedDevicePosition(InputAction.CallbackContext context);
             void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+            void OnUnpause(InputAction.CallbackContext context);
         }
         public interface IDialogueActions
         {
