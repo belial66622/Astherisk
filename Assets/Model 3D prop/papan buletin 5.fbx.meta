@@ -3,7 +3,32 @@ guid: 0b876a2f791d1a242b4b82c052bbcd8d
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 04_timetable
+    second: {fileID: 2100000, guid: f9f839a8895f95645a0051d377a3a3f9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Drewno_Wisnia_Oryginalna
+    second: {fileID: 2100000, guid: f2f6829da1ffc024ab10405cebda9c45, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 4b46abc6f6543cd4a92fe3d7bf22fb67, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Screen shot 2013-09-10 at 19.38.02
+    second: {fileID: 2100000, guid: 76c84e81f5273824eb8d776d3f74a429, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cork
+    second: {fileID: 2100000, guid: 3882b5fe66f8f8243a0b822e3d3f48ba, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

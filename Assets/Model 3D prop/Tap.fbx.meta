@@ -3,7 +3,12 @@ guid: f34e2cea5627c3a4087a7e2d54341137
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tap
+    second: {fileID: 2100000, guid: 7afe5bc344acd3241b3e5d7508e685aa, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

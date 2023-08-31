@@ -8,12 +8,17 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material
-    second: {fileID: 2100000, guid: c48e71395882fa44eae4baea4bd5d32a, type: 2}
+    second: {fileID: 2100000, guid: 3882b5fe66f8f8243a0b822e3d3f48ba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood-11-(7)w
+    second: {fileID: 2100000, guid: f2f6829da1ffc024ab10405cebda9c45, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0

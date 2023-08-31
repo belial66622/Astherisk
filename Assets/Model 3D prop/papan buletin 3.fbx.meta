@@ -3,7 +3,32 @@ guid: 083ff763e9aa3884fa3f3b25b13850ce
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 3882b5fe66f8f8243a0b822e3d3f48ba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: '[Color M08]1'
+    second: {fileID: 2100000, guid: f112e0580d80eef4ead760c9ea4a441a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: '[Wood Cherry Original]1'
+    second: {fileID: 2100000, guid: f2f6829da1ffc024ab10405cebda9c45, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: '[Wood_ Floor]'
+    second: {fileID: 2100000, guid: f2f6829da1ffc024ab10405cebda9c45, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _77
+    second: {fileID: 2100000, guid: f112e0580d80eef4ead760c9ea4a441a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
