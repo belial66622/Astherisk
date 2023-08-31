@@ -14,6 +14,11 @@ namespace ThePatient
         {
             var emission = sinkWater.emission;
             emission.enabled = !sinkWater.emission.enabled;
+            if (gameObject.TryGetComponent<QuestObjectiveObject>
+                (out QuestObjectiveObject questObjectiveObject))
+            {
+                questObjectiveObject.CompleteObjective();
+            }
             return false;
         }
 

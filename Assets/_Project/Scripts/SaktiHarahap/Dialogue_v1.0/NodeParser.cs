@@ -30,6 +30,7 @@ public class NodeParser : Interactable
             gameObject.GetComponent<Collider>().enabled = false;
             _input.DisablePlayerControll();
             _input.EnableDialogueControll();
+            currentDialogue = 0;
             NextNode("exit");
         }
         if (dataParts[0] == "DialogueNode")
@@ -50,6 +51,10 @@ public class NodeParser : Interactable
                 gameObject.GetComponent<Collider>().enabled = true;
                 _input.EnablePlayerControll();
                 _input.DisableDialogueControll();
+                if(gameObject.TryGetComponent<QuestGiver>(out QuestGiver questGiver))
+                {
+                    questGiver.GiveQuest();
+                }
                 dialogueCanva.SetActive(false);
             }
         }

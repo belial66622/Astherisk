@@ -19,6 +19,7 @@ namespace ThePatient
 
         protected event Action OnInspectExit = delegate { };
         protected event Action OnInspectDestroy = delegate { };
+
         protected virtual void Start()
         {
             inspectParent = InteractableManager.Instance.inspectTransform;
