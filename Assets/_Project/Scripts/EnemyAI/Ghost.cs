@@ -24,6 +24,7 @@ public class Ghost : MonoBehaviour
 
         var navMeshAgent = GetComponent<NavMeshAgent>();
         var animator = GetComponent<Animator>();
+        var audioSource = GetComponent<AudioSource>();
 
         _stateMachine = new StateMachine();
 
@@ -31,7 +32,7 @@ public class Ghost : MonoBehaviour
         var patrol = new GhostPatrolState(this, _waypoint, animator,navMeshAgent,_searchTime);
         var recognize = new GhostRecognizeState(this, animator,_recognizeTime);
         var search = new GhostSearchState(this, animator,_searchTime, navMeshAgent);
-        var chase = new GhostChaseState(this,animator,navMeshAgent);
+        var chase = new GhostChaseState(this,animator,navMeshAgent,audioSource);
 
 
         At(patrol, recognize, HasTarget());

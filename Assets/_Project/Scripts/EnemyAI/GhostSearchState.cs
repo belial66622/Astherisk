@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
+using Utilities;
 
 public class GhostSearchState : IState
 {
@@ -28,6 +29,7 @@ public class GhostSearchState : IState
         _patrol= false;
         _chase= false;
         _navMeshAgent.SetDestination(_ghost.LastPosition);
+
 
     }
 

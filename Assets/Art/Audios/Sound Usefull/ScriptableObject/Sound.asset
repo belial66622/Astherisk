@@ -38,6 +38,12 @@ MonoBehaviour:
     _audioMixerGroup: {fileID: 8088790186405464425, guid: e18948c65073f6e49953ef660aedf2de,
       type: 2}
     _spatialblend: 0
+  - _name: LevelBGM2
+    _audioClip: {fileID: 8300000, guid: 9b49f9eade7128046a5ab330b6eabe29, type: 3}
+    _isBGM: 1
+    _audioMixerGroup: {fileID: -9015192125907661391, guid: e18948c65073f6e49953ef660aedf2de,
+      type: 2}
+    _spatialblend: 0
   - _name: Door
     _audioClip: {fileID: 8300000, guid: 07292cea330a1a04cab4e3439204418b, type: 3}
     _isBGM: 0
@@ -64,6 +70,12 @@ MonoBehaviour:
     _spatialblend: 1
   - _name: FemaleScream
     _audioClip: {fileID: 8300000, guid: 31e00b7cf56ce17439e6e32f26950e5e, type: 3}
+    _isBGM: 0
+    _audioMixerGroup: {fileID: -9015192125907661391, guid: e18948c65073f6e49953ef660aedf2de,
+      type: 2}
+    _spatialblend: 1
+  - _name: WaterDripping
+    _audioClip: {fileID: 8300000, guid: d5ed87cc806f6704aa9eb23b1e03a43e, type: 3}
     _isBGM: 0
     _audioMixerGroup: {fileID: -9015192125907661391, guid: e18948c65073f6e49953ef660aedf2de,
       type: 2}
