@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using Utilities;
 
 public class GhostChaseState : IState
 {
@@ -7,13 +8,16 @@ public class GhostChaseState : IState
     private readonly Vector3 _playerPos;
     private readonly Animator _animator;
     private readonly NavMeshAgent _navMeshAgent;
+    private readonly AudioSource _audioSource;
+    SoundUtils sound = new SoundUtils();
     float _checkCondition, _checkConditionDefault= 0.3f;
 
-    public GhostChaseState(Ghost ghost, Animator animator, NavMeshAgent navMeshAgent)
+    public GhostChaseState(Ghost ghost, Animator animator, NavMeshAgent navMeshAgent, AudioSource audioSource)
     { 
         _ghost= ghost;
         _animator= animator;
         _navMeshAgent = navMeshAgent;
+        _audioSource = audioSource;
     }
 
     public void Tick()
@@ -30,6 +34,8 @@ public class GhostChaseState : IState
 
     public void OnEnter()
     {
+        AudioManager.Instance.PlayBGM("Chase");
+        sound.CustomBPlaySound(AudioManager.Instance.GetSfx("FemaleScream"), _audioSource);
         _animator.SetFloat("Speed", 1);
         _navMeshAgent.enabled= true;
         _checkCondition= _checkConditionDefault;
@@ -37,6 +43,7 @@ public class GhostChaseState : IState
 
     public void OnExit()
     {
+        AudioManager.Instance.PlayBGM("LevelBGM");
         _navMeshAgent.enabled = false;
     }
 }
