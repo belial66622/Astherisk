@@ -3,7 +3,12 @@ guid: ccfa126616faa224b8d0156f3b6594a9
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Suspension
+    second: {fileID: 2100000, guid: 6e13acc134e21c24b90e221e0e8ab5d9, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
