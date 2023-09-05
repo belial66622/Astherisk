@@ -11,5 +11,10 @@ namespace ThePatient
         {
             QuestManager.Instance.CompleteObjective(quest, objective);
         }
+
+        public Quest GetQuest()
+        {
+            return quest;
+        }
     }
 }

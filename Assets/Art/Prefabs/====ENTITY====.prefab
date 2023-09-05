@@ -5812,7 +5812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _input: {fileID: 0}
-  inspectRotation: {x: 0, y: 0, z: 0}
+  inspectRotation: {x: 0, y: 0, z: 1}
   doorPivot: {fileID: 6038035030440061091}
   doorState: 0
   requiredKey: {fileID: 5597148771783297876}
@@ -8139,10 +8139,10 @@ MonoBehaviour:
   closedRotation: 0
   openRotation: 160
   rattleRotation: 1
-  openOrCloseDuration: 1
+  openOrCloseDuration: 0.7
   rattleDuration: 0.05
-  cooldownTime: 0.3
-  lockDuration: 1
+  cooldownTime: 0.5
+  lockDuration: 0.5
 --- !u!4 &6038035030346810940 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -2645950934974027917, guid: ae8dc155a8852164bbd3d714ae58e424,

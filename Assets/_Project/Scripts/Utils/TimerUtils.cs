@@ -18,11 +18,13 @@ namespace Utilities
         
         public Action OnTimerStart = delegate { };
         public Action OnTimerStop = delegate { };
+        public Action OnTimerPause = delegate { };
         public Action<int> OnTimerTickUpdate = delegate { };
 
         protected TimerUtils(float value)
         {
             initialTime = value;
+            Time = initialTime;
             IsRunning = false;
 
         }
@@ -44,8 +46,11 @@ namespace Utilities
         }
         
         public void Resume() => IsRunning = true;
-        public void Pause() => IsRunning = false;
-        
+        public void Pause()
+        {
+            IsRunning = false;
+            OnTimerPause.Invoke();
+        }
         public abstract void Tick(float deltaTime);
     }
     

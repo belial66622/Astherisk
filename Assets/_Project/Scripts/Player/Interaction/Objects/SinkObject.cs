@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using ThePatient;
@@ -14,10 +15,19 @@ namespace ThePatient
         {
             var emission = sinkWater.emission;
             emission.enabled = !sinkWater.emission.enabled;
+
+
             if (gameObject.TryGetComponent<QuestObjectiveObject>
                 (out QuestObjectiveObject questObjectiveObject))
             {
-                questObjectiveObject.CompleteObjective();
+                if (questObjectiveObject.GetQuest().IsActive)
+                {
+                    if(emission.enabled)
+                        emission.enabled = false;
+
+                    questObjectiveObject.CompleteObjective();
+                    gameObject.GetComponent<Collider>().enabled = false;
+                }
             }
             return false;
         }

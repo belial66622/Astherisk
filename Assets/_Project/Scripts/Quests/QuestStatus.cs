@@ -43,6 +43,7 @@ namespace ThePatient
                     return;
                 }
             }
+
             if(quest.GetQuestObjective(objective) != null)
             {
                 quest.GetQuestObjective(objective).CompleteObjective();

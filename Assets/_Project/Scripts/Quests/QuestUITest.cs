@@ -19,9 +19,12 @@ namespace ThePatient
         {
             text.text = "";
             status = QuestManager.Instance.GetQuestStatus();
-            foreach(QuestObjective objective in status.GetQuest().GetObjectives())
+            if (status != null)
             {
-                text.text += $"{objective.GetObjective()} \t{objective.GetCompletedObjective()} / {status.GetQuest().GetQuestObjectiveCount(objective)}\n";  
+                foreach (QuestObjective objective in status.GetQuest().GetObjectives())
+                {
+                    text.text += $"{objective.GetObjective()} \t{objective.GetCompletedObjective()} / {status.GetQuest().GetQuestObjectiveCount(objective)}\n";
+                }
             }
         }
     }

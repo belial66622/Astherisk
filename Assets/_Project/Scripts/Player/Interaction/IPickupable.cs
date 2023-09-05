@@ -1,4 +1,6 @@
-﻿namespace ThePatient
+﻿using System;
+
+namespace ThePatient
 {
     public interface IPickupable
     {

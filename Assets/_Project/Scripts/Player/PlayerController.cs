@@ -11,6 +11,10 @@ namespace ThePatient
 {
     public class PlayerController : MonoBehaviour
     {
+        // Events
+        public event Action OnPlayerJump;
+        public event Action OnPlayerLand;
+
 
         [Header("References")]
         [SerializeField] InputReader _input;
@@ -143,6 +147,8 @@ namespace ThePatient
             _input.Jump += OnJump;
             _input.ToggleCrouch += OnCrouch;
             _input.Crouch += OnCrouch;
+            OnPlayerJump += () => AudioManager.Instance.PlaySFX("PlayerJump");
+            OnPlayerLand += () => AudioManager.Instance.PlaySFX("PlayerLand");
         }
         private void OnDisable()
         {
@@ -150,6 +156,8 @@ namespace ThePatient
             _input.Jump -= OnJump;
             _input.ToggleCrouch -= OnCrouch;
             _input.Crouch -= OnCrouch;
+            OnPlayerJump -= () => AudioManager.Instance.PlaySFX("PlayerJump");
+            OnPlayerLand -= () => AudioManager.Instance.PlaySFX("PlayerLand");
         }
 
         private void Update()
@@ -236,6 +244,7 @@ namespace ThePatient
             {
                 _jumpVelocity = 0f;
                 _jumpTimer.Stop();
+                OnPlayerLand?.Invoke();
                 return;
             }
 
@@ -329,6 +338,7 @@ namespace ThePatient
             if(performed && !_jumpTimer.IsRunning && !_jumpCooldownTimer.IsRunning && _groundChecker.IsGrounded)
             {
                 _jumpTimer.Start();
+                OnPlayerJump?.Invoke();
             }else if(!performed && _jumpTimer.IsRunning)
             {
                 _jumpTimer.Stop();

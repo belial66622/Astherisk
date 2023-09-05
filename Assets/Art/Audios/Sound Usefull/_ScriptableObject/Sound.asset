@@ -45,25 +45,25 @@ MonoBehaviour:
       type: 2}
     _spatialblend: 0
   - _name: Door
-    _audioClip: {fileID: 8300000, guid: 07292cea330a1a04cab4e3439204418b, type: 3}
+    _audioClip: {fileID: 8300000, guid: 0ac251ddf9831b54db7f948d187ca6ad, type: 3}
     _isBGM: 0
     _audioMixerGroup: {fileID: -9015192125907661391, guid: e18948c65073f6e49953ef660aedf2de,
       type: 2}
     _spatialblend: 1
   - _name: UnlockDoor
-    _audioClip: {fileID: 8300000, guid: 07292cea330a1a04cab4e3439204418b, type: 3}
+    _audioClip: {fileID: 8300000, guid: c6adab635d4d03f489b98f256839504d, type: 3}
     _isBGM: 0
     _audioMixerGroup: {fileID: -9015192125907661391, guid: e18948c65073f6e49953ef660aedf2de,
       type: 2}
     _spatialblend: 1
   - _name: LockDoor
-    _audioClip: {fileID: 8300000, guid: 3acf50e27757cc742973e6a54c7aa22b, type: 3}
+    _audioClip: {fileID: 8300000, guid: c6adab635d4d03f489b98f256839504d, type: 3}
     _isBGM: 0
     _audioMixerGroup: {fileID: -9015192125907661391, guid: e18948c65073f6e49953ef660aedf2de,
       type: 2}
     _spatialblend: 1
   - _name: RattleDoor
-    _audioClip: {fileID: 8300000, guid: 95c4439713022be4e8bc28d96ef9d717, type: 3}
+    _audioClip: {fileID: 8300000, guid: cdc5ffb085eee5b4b90865595d37b431, type: 3}
     _isBGM: 0
     _audioMixerGroup: {fileID: -9015192125907661391, guid: e18948c65073f6e49953ef660aedf2de,
       type: 2}
@@ -76,6 +76,24 @@ MonoBehaviour:
     _spatialblend: 1
   - _name: WaterDripping
     _audioClip: {fileID: 8300000, guid: d5ed87cc806f6704aa9eb23b1e03a43e, type: 3}
+    _isBGM: 0
+    _audioMixerGroup: {fileID: -9015192125907661391, guid: e18948c65073f6e49953ef660aedf2de,
+      type: 2}
+    _spatialblend: 1
+  - _name: KeyPickup
+    _audioClip: {fileID: 8300000, guid: 34bab4a44e271234d8f30298979cd50b, type: 3}
+    _isBGM: 0
+    _audioMixerGroup: {fileID: -9015192125907661391, guid: e18948c65073f6e49953ef660aedf2de,
+      type: 2}
+    _spatialblend: 1
+  - _name: PlayerJump
+    _audioClip: {fileID: 8300000, guid: 3adf200282ba6fc48b2f1f95b1d0943b, type: 3}
+    _isBGM: 0
+    _audioMixerGroup: {fileID: -9015192125907661391, guid: e18948c65073f6e49953ef660aedf2de,
+      type: 2}
+    _spatialblend: 1
+  - _name: PlayerLand
+    _audioClip: {fileID: 8300000, guid: 0370d710f4d3d7242864f4a9e549c0a2, type: 3}
     _isBGM: 0
     _audioMixerGroup: {fileID: -9015192125907661391, guid: e18948c65073f6e49953ef660aedf2de,
       type: 2}

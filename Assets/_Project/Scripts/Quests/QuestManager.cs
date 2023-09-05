@@ -7,7 +7,8 @@ namespace ThePatient
     public class QuestManager : MonoBehaviour
     {
         public static QuestManager Instance { get; private set; }
-        public List<QuestStatus> questStatuses = new List<QuestStatus>();
+        [field: SerializeField]public List<Quest> questList { get; private set; } = new List<Quest>();
+        Queue<QuestStatus> questStatusQ = new Queue<QuestStatus>();
 
         public event Action OnQuestsUpdated;
 
@@ -19,11 +20,16 @@ namespace ThePatient
                 return;
             }
             Instance = this;
+
+            foreach(Quest quest in questList)
+            {
+                quest.DeactivateQuest();
+            }
         }
 
         public void AcceptQuest(Quest quest)
         {
-            foreach (QuestStatus newStatus in questStatuses)
+            foreach (QuestStatus newStatus in questStatusQ)
             {
                 if(newStatus.quest == quest)
                 {
@@ -31,25 +37,33 @@ namespace ThePatient
                 }
             }
             QuestStatus status = new QuestStatus(quest);
-            questStatuses.Add(status);
+            questStatusQ.Enqueue(status);
             OnQuestsUpdated?.Invoke();
         }
 
         public void CompleteObjective(Quest quest, string objective)
         {
-            foreach(QuestStatus status in questStatuses)
+            foreach(QuestStatus status in questStatusQ)
             {
                 if(status.quest == quest)
                 {
                     status.AddOrUpdateCompletedObjective(objective);
                 }
             }
+
+            if(quest.IsCompleted())
+            {
+                questStatusQ.Dequeue();
+            }
             OnQuestsUpdated?.Invoke();
         }
 
         public QuestStatus GetQuestStatus()
         {
-            return questStatuses[0];
+            if(questStatusQ.Count > 0)
+                return questStatusQ.Peek();
+
+            return null;
         }
 
     }

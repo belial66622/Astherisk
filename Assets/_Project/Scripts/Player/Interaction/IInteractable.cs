@@ -1,4 +1,7 @@
-﻿namespace ThePatient
+﻿using System;
+using System.Runtime.InteropServices.WindowsRuntime;
+
+namespace ThePatient
 {
     public interface IInteractable
     {
@@ -7,5 +10,6 @@
         bool Interact();
         bool OnHold { get; set; }
         bool IsInspecting { get; set; }
+
     }
 }

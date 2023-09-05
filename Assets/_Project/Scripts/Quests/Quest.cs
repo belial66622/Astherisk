@@ -6,14 +6,21 @@ namespace ThePatient
     [CreateAssetMenu(fileName = "New Quest", menuName = "Quest")]
     public class Quest : ScriptableObject
     {
+        [field: SerializeField]public bool IsActive { get; private set; } = false;
         public List<QuestObjective> objectives = new List<QuestObjective>();
         
         public void Setup()
         {
+            IsActive = true;
             foreach(QuestObjective objective in objectives)
             {
                 objective.ResetCompletedObjective();
             }
+        }
+
+        public void DeactivateQuest()
+        {
+            IsActive = false;
         }
 
         public int GetObjectivesCount()

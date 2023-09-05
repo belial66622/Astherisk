@@ -16,6 +16,12 @@ namespace ThePatient
             _input.InspectExit -= DestroyInspect;
         }
 
+        public override void Pickup()
+        {
+            base.Pickup();
+            AudioManager.Instance.PlaySFX("KeyPickup");
+        }
+
         public override bool Interact()
         {
             Inspect();

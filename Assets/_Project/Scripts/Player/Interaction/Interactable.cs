@@ -4,7 +4,8 @@ using UnityEngine.Windows;
 
 namespace ThePatient
 {
-    public abstract class Interactable : MonoBehaviour, IInteractable, IPickupable
+    public abstract class Interactable : MonoBehaviour, IInteractable, IPickupable 
+        // Should make child classes for inspectable objects and interactlable objects
     {
         [SerializeField] protected InputReader _input;
         [SerializeField] protected Vector3 inspectRotation = new Vector3(0, 0, 0);
