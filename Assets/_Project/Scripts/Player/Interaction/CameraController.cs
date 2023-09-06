@@ -12,6 +12,12 @@ namespace ThePatient
         [Header("Reference")]
         [SerializeField] InputReader _input;
         [SerializeField] Transform player;
+        [SerializeField] Transform _orientation;
+        [SerializeField] CinemachineVirtualCamera _virtualCamera;
+
+        [Header("Camera Look Settings")]
+        [SerializeField] float _gamepadMultiplier = 10f;
+        [SerializeField, Range(.1f, 10)] float _lookSpeed;
 
         [Header("Interaction Setting")]
         [SerializeField] float interactRange = 5f;
@@ -20,15 +26,18 @@ namespace ThePatient
         [SerializeField] float interactRayRadius = .4f;
         [SerializeField] float interactRayRange = 1f;
  
+        CinemachinePOV _pov;
         Camera cam;
         [SerializeField] IInteractable interactable;
         float distance;
         private void OnEnable()
         {
             cam = Camera.main;
+            _pov = _virtualCamera.GetCinemachineComponent<CinemachinePOV>();
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             _input.Interact += OnInteract;
+            _input.Look += OnLook;
             new TickUpdateSystem(15).TickUpdate += CameraController_TickUpdate;
         }
 
@@ -39,6 +48,29 @@ namespace ThePatient
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             _input.Interact -= OnInteract;
+            _input.Look -= OnLook;
+        }
+        private void OnLook(Vector2 lookInput, bool isDeviceMouse)
+        {
+            //Get the device multiplier
+            float deviceMultiplier = isDeviceMouse ? Time.fixedDeltaTime : Time.deltaTime * _gamepadMultiplier;
+
+            //input based on device currently active
+            float mouseX = lookInput.x * deviceMultiplier;
+            float mouseY = lookInput.y * deviceMultiplier;
+
+            //Find current look rotation
+            Vector3 rot = transform.localRotation.eulerAngles;
+            float desiredX = mouseX + rot.y;
+
+            //Adjust the camera speed
+            _pov.m_VerticalAxis.m_MaxSpeed = _lookSpeed;
+            _pov.m_HorizontalAxis.m_MaxSpeed = _lookSpeed;
+
+            //Perform the rotations
+            _pov.m_VerticalAxis.m_InputAxisValue = mouseY;
+            _pov.m_HorizontalAxis.m_InputAxisValue = mouseX;
+            _orientation.transform.localRotation = Quaternion.Euler(0, desiredX, 0);
         }
 
         private void OnInteract()

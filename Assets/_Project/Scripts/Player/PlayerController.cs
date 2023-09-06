@@ -48,17 +48,12 @@ namespace ThePatient
         [SerializeField] float _stepSmooth = .1f;
 
         [Header("Camera Look Settings")]
-        [SerializeField] float _gamepadMultiplier = 10f;
-        [SerializeField, Range(.1f, 5000f)] float _lookSpeed;
-
-        [Header("Camera Look Settings")]
         [SerializeField] float _jumpForce = 10f;
         [SerializeField] float _jumpDuration = .5f;
         [SerializeField] float _jumpCooldown = 0f;
         [SerializeField] float _gravityMultiplier = 3f;
 
         // Private Variables
-        CinemachinePOV _pov;
 
         Transform _cam;
 
@@ -81,7 +76,6 @@ namespace ThePatient
         {
             // Setup References
             _cam = Camera.main.transform;
-            _pov = _virtualCamera.GetCinemachineComponent<CinemachinePOV>();
             _stepUpperTransform.localPosition = new Vector3(0, _stepHeight, 0);
             _rb.freezeRotation = true;
 
@@ -143,7 +137,6 @@ namespace ThePatient
 
         private void OnEnable()
         {
-            _input.Look += OnLook;
             _input.Jump += OnJump;
             _input.ToggleCrouch += OnCrouch;
             _input.Crouch += OnCrouch;
@@ -152,7 +145,6 @@ namespace ThePatient
         }
         private void OnDisable()
         {
-            _input.Look -= OnLook;
             _input.Jump -= OnJump;
             _input.ToggleCrouch -= OnCrouch;
             _input.Crouch -= OnCrouch;
@@ -311,28 +303,6 @@ namespace ThePatient
             _crouchTimer.Stop();
         }
 
-        private void OnLook(Vector2 lookInput, bool isDeviceMouse)
-        {
-            //Get the device multiplier
-            float deviceMultiplier = isDeviceMouse ? Time.fixedDeltaTime : Time.deltaTime * _gamepadMultiplier;
-
-            //input based on device currently active
-            float mouseX = lookInput.x * deviceMultiplier;
-            float mouseY = lookInput.y * deviceMultiplier;
-
-            //Find current look rotation
-            Vector3 rot = _cam.transform.localRotation.eulerAngles;
-            float desiredX = mouseX + rot.y;
-
-            //Adjust the camera speed
-            _pov.m_VerticalAxis.m_MaxSpeed = _lookSpeed;
-            _pov.m_HorizontalAxis.m_MaxSpeed = _lookSpeed;
-
-            //Perform the rotations
-            _pov.m_VerticalAxis.m_InputAxisValue = mouseY;
-            _pov.m_HorizontalAxis.m_InputAxisValue = mouseX;
-            _orientation.transform.localRotation = Quaternion.Euler(0, desiredX, 0);
-        }
         private void OnJump(bool performed)
         {
             if(performed && !_jumpTimer.IsRunning && !_jumpCooldownTimer.IsRunning && _groundChecker.IsGrounded)
