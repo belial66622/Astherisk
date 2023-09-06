@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using XNode;
 using ThePatient;
+using UnityEngine.Events;
 
 public class NodeParser : InspectInteractable
 {
@@ -18,7 +19,7 @@ public class NodeParser : InspectInteractable
 
     [SerializeField] GameObject dialogueCanva;
 
-
+    [SerializeField] UnityEvent OnDialogueEnd;
     IEnumerator ParseNode()
     {
         BaseNode baseNode = graph.current;
@@ -51,11 +52,9 @@ public class NodeParser : InspectInteractable
                 gameObject.GetComponent<Collider>().enabled = true;
                 _input.EnablePlayerControll();
                 _input.DisableDialogueControll();
-                if(gameObject.TryGetComponent<QuestGiver>(out QuestGiver questGiver))
-                {
-                    questGiver.GiveQuest();
-                }
                 dialogueCanva.SetActive(false);
+
+                OnDialogueEnd?.Invoke();
             }
         }
     }

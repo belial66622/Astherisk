@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using ThePatient;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 namespace ThePatient
 {
@@ -10,26 +11,30 @@ namespace ThePatient
     {
         [Header("Reference")]
         [SerializeField] ParticleSystem sinkWater;
-
+        EmissionModule emission;
         public override bool Interact()
         {
-            var emission = sinkWater.emission;
+            emission = sinkWater.emission;
             emission.enabled = !sinkWater.emission.enabled;
 
+            CompleteObjective();
+            return false;
+        }
 
+        private void CompleteObjective()
+        {
             if (gameObject.TryGetComponent<QuestObjectiveObject>
-                (out QuestObjectiveObject questObjectiveObject))
+                            (out QuestObjectiveObject questObjectiveObject))
             {
                 if (questObjectiveObject.GetQuest().IsActive)
                 {
-                    if(emission.enabled)
+                    if (emission.enabled)
                         emission.enabled = false;
 
                     questObjectiveObject.CompleteObjective();
                     gameObject.GetComponent<Collider>().enabled = false;
                 }
             }
-            return false;
         }
 
         public override void OnFinishInteractEvent()
