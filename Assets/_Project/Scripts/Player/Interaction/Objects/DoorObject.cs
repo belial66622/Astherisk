@@ -196,35 +196,35 @@ public class DoorObject : Interactable
 
     public override void OnFinishInteractEvent()
     {
-        EventAggregate<InteractionTextEventArgs>.Instance.TriggerEvent(new InteractionTextEventArgs(false, ""));
-        EventAggregate<InteractionLockUIEventArgs>.Instance.TriggerEvent(new InteractionLockUIEventArgs(false, 0));
+        EventAggregate<InteractionIconEventArgs>.Instance.TriggerEvent(new InteractionIconEventArgs(false, InteractionType.Default));
+        EventAggregate<InteractionLockUIEventArgs>.Instance.TriggerEvent(new InteractionLockUIEventArgs(false, 1));
     }
 
     
 
-    public override void OnInteractEvent(string objectName)
+    public override void OnInteractEvent()
     {
-        EventAggregate<InteractionTextEventArgs>.Instance.TriggerEvent(new InteractionTextEventArgs(true,
-            GetText(doorState, objectName)));
+        EventAggregate<InteractionIconEventArgs>.Instance.TriggerEvent(new InteractionIconEventArgs(true,
+            GetIcon(doorState)));
 
         if (lockTimer.IsRunning && lockTimer.InverseProgress >= .2f && lockTimer.Progress > 0 && doorState != DoorState.Opened)
         {
-            EventAggregate<InteractionLockUIEventArgs>.Instance.TriggerEvent(new InteractionLockUIEventArgs(true, lockTimer.InverseProgress));
+            EventAggregate<InteractionLockUIEventArgs>.Instance.TriggerEvent(new InteractionLockUIEventArgs(true, lockTimer.Progress));
         }
     }
-    string GetText(DoorState state, string name)
+    InteractionType GetIcon(DoorState state)
     {
         if (state == DoorState.Locked)
         {
             if (Inventory.Instance.HasItem(key))
             {
-                return $"[ HOLD E ]\nUnlock {name}";
+                return InteractionType.Locked;
             }
             else
             {
-                return "Required Key";
+                return InteractionType.NoKey;
             }
         }
-        return $"[ E ]\nInteract With {name}";
+        return InteractionType.Door;
     }
 }

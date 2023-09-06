@@ -33,13 +33,13 @@ namespace ThePatient
 
         public override void OnFinishInteractEvent()
         {
-            EventAggregate<InteractionTextEventArgs>.Instance.TriggerEvent(new InteractionTextEventArgs(false, ""));
+            EventAggregate<InteractionIconEventArgs>.Instance.TriggerEvent(new InteractionIconEventArgs(false, InteractionType.Default));
         }
 
-        public override void OnInteractEvent(string name)
+        public override void OnInteractEvent()
         {
-            EventAggregate<InteractionTextEventArgs>.Instance.TriggerEvent(
-                new InteractionTextEventArgs(true, $"[ E ]\nInspect {name}"));
+            EventAggregate<InteractionIconEventArgs>.Instance.TriggerEvent(
+                new InteractionIconEventArgs(true, InteractionType.Inspect));
         }
 
     }

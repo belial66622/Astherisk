@@ -123,7 +123,7 @@ namespace ThePatient
                     distance = (hit.point - player.transform.position).sqrMagnitude;
                     if(distance <= interactRange * interactRange)
                     {
-                        interactable.OnInteractEvent(interactable.ToString());
+                        interactable.OnInteractEvent();
                         return interactable;
                     }
                 }

@@ -8,7 +8,19 @@ using UnityEngine.UI;
 
 public class CanvasUI : MonoBehaviour
 {
+    [System.Serializable]
+    class InteractionIconUI
+    {
+        public InteractionType interactionType;
+        public Sprite icon;
+    }
+
+    [SerializeField] InteractionIconUI[] interactionIconsUI;
+
     [Header("Reference")]
+    [SerializeField] Transform buttonEIcon;
+    [SerializeField] Image interactionIconBG;
+    [SerializeField] Image interactionIcon;
     [SerializeField] TextMeshProUGUI interactPopupText;
     [SerializeField] Transform lockUI;
     [SerializeField] Image lockUISlider;
@@ -52,7 +64,7 @@ public class CanvasUI : MonoBehaviour
 
     private void OnEnable()
     {
-        EventAggregate<InteractionTextEventArgs>.Instance.StartListening(UpdateInteractionText);
+        EventAggregate<InteractionIconEventArgs>.Instance.StartListening(UpdateInteractionIcon);
         EventAggregate<InteractionLockUIEventArgs>.Instance.StartListening(UpdateLockSliderUI);
         EventAggregate<InteractionInspectEventArgs>.Instance.StartListening(UpdateInspectUI);
         EventAggregate<InteractionLockPuzzleEventArgs>.Instance.StartListening(UpdateInspectLockPuzzleUI);
@@ -81,12 +93,13 @@ public class CanvasUI : MonoBehaviour
 
     private void OnDisable()
     {
-        EventAggregate<InteractionTextEventArgs>.Instance.StopListening(UpdateInteractionText);
+        EventAggregate<InteractionIconEventArgs>.Instance.StopListening(UpdateInteractionIcon);
         EventAggregate<InteractionLockUIEventArgs>.Instance.StopListening(UpdateLockSliderUI);
         EventAggregate<InteractionInspectEventArgs>.Instance.StopListening(UpdateInspectUI);
         EventAggregate<InteractionLockPuzzleEventArgs>.Instance.StopListening(UpdateInspectLockPuzzleUI);
         input.Pause -= Input_Pause;
     }
+
     private void UpdateInspectLockPuzzleUI(InteractionLockPuzzleEventArgs e)
     {
         if (e.isActive)
@@ -98,6 +111,7 @@ public class CanvasUI : MonoBehaviour
             inspectLockPuzzleUI.gameObject.SetActive(false);
         }
     }
+
     private void UpdateInspectUI(InteractionInspectEventArgs e)
     {
         if (e.isActive)
@@ -110,29 +124,50 @@ public class CanvasUI : MonoBehaviour
         }
     }
 
-    void UpdateInteractionText(InteractionTextEventArgs e)
+    void UpdateInteractionIcon(InteractionIconEventArgs e)
     {
+        interactionIcon.sprite = GetIcon(e.interactionType);
         if (e.isActive)
         {
-            interactPopupText.gameObject.SetActive(true);
+            interactionIconBG.gameObject.SetActive(true);
+            if(e.interactionType == InteractionType.NoKey || e.interactionType == InteractionType.Locked)
+            {
+                buttonEIcon.gameObject.SetActive(false);
+            }
+            else
+            {
+                buttonEIcon.gameObject.SetActive(true);
+            }
         }
         else
         {
-            interactPopupText.gameObject.SetActive(false);
+            buttonEIcon.gameObject.SetActive(false);
+            interactionIconBG.gameObject.SetActive(false);
         }
-        interactPopupText.text = e.message;
+    }
+
+    Sprite GetIcon(InteractionType interactionType)
+    {
+        foreach (var icon in interactionIconsUI)
+        {
+            if (icon.interactionType == interactionType)
+            {
+                return icon.icon;
+            }
+        }
+        return GetIcon(InteractionType.Default);
     }
 
     void UpdateLockSliderUI(InteractionLockUIEventArgs e)
     {
-        if(e.isActive)
-        {
-            lockUI.gameObject.SetActive(true);
-        }
-        else
-        {
-            lockUI.gameObject.SetActive(false);
-        }
-        lockUISlider.fillAmount = e.valueFraction;
+        //if(e.isActive)
+        //{
+        //    lockUI.gameObject.SetActive(true);
+        //}
+        //else
+        //{
+        //    lockUI.gameObject.SetActive(false);
+        //}
+        interactionIconBG.fillAmount = e.valueFraction;
     }
 }

@@ -33,7 +33,7 @@ namespace ThePatient
 
         public abstract void OnFinishInteractEvent();
 
-        public abstract void OnInteractEvent(string name);
+        public abstract void OnInteractEvent();
 
         public virtual void Pickup()
         {
