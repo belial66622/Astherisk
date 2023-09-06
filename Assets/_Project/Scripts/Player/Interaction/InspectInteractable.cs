@@ -8,6 +8,7 @@ namespace ThePatient
 
         [SerializeField] protected InputReader _input;
         [SerializeField] protected Vector3 inspectRotation = new Vector3(0, 0, 0);
+        [SerializeField][Range(.15f, .5f)] protected float zoomInspect = .5f;
 
         protected Transform defaultParent;
         protected Vector3 defaultPos;
@@ -17,7 +18,6 @@ namespace ThePatient
         protected Quaternion defaultInspectRot;
 
         protected event Action OnInspectExit = delegate { };
-        protected event Action OnInspectDestroy = delegate { };
 
         protected override void Start()
         {
@@ -52,6 +52,7 @@ namespace ThePatient
             isInspecting = true;
             InteractableManager.Instance.StartInspecting();
             gameObject.GetComponent<Collider>().enabled = false;
+            inspectParent.transform.localPosition = new Vector3(0, 0, zoomInspect);
             transform.parent = inspectParent;
             transform.localPosition = Vector3.zero;
             transform.localRotation = Quaternion.Euler(inspectRotation);
@@ -91,7 +92,7 @@ namespace ThePatient
 
                 OnInspectEventExit();
 
-                OnInspectDestroy?.Invoke();
+                OnInspectExit?.Invoke();
             }
         }
 

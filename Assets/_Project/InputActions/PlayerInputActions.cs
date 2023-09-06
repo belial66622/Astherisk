@@ -109,6 +109,15 @@ namespace ThePatient.Player.InputActions
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleFlashlight"",
+                    ""type"": ""Button"",
+                    ""id"": ""9747dbe3-9bac-445f-a940-1fc72fb3274c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -437,8 +446,41 @@ namespace ThePatient.Player.InputActions
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f1027d76-d429-4f1e-bc20-ae20585c0a69"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""404356a3-0893-4592-a908-abc4ff131c81"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""ToggleFlashlight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""87016ef0-e118-4359-b5b5-680f41134293"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ToggleFlashlight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1074,6 +1116,17 @@ namespace ThePatient.Player.InputActions
                 },
                 {
                     ""name"": """",
+                    ""id"": ""69662c00-a7fc-4066-8c46-5f2738624c8b"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InspectMouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""8ed3210b-fe80-4307-9ecc-f331a8dbf131"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
@@ -1336,6 +1389,7 @@ namespace ThePatient.Player.InputActions
             m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
             m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
             m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+            m_Player_ToggleFlashlight = m_Player.FindAction("ToggleFlashlight", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1432,6 +1486,7 @@ namespace ThePatient.Player.InputActions
         private readonly InputAction m_Player_Crouch;
         private readonly InputAction m_Player_Sprint;
         private readonly InputAction m_Player_Pause;
+        private readonly InputAction m_Player_ToggleFlashlight;
         public struct PlayerActions
         {
             private @PlayerInputActions m_Wrapper;
@@ -1445,6 +1500,7 @@ namespace ThePatient.Player.InputActions
             public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
             public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
             public InputAction @Pause => m_Wrapper.m_Player_Pause;
+            public InputAction @ToggleFlashlight => m_Wrapper.m_Player_ToggleFlashlight;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1481,6 +1537,9 @@ namespace ThePatient.Player.InputActions
                     @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                     @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                     @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                    @ToggleFlashlight.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleFlashlight;
+                    @ToggleFlashlight.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleFlashlight;
+                    @ToggleFlashlight.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleFlashlight;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -1512,6 +1571,9 @@ namespace ThePatient.Player.InputActions
                     @Pause.started += instance.OnPause;
                     @Pause.performed += instance.OnPause;
                     @Pause.canceled += instance.OnPause;
+                    @ToggleFlashlight.started += instance.OnToggleFlashlight;
+                    @ToggleFlashlight.performed += instance.OnToggleFlashlight;
+                    @ToggleFlashlight.canceled += instance.OnToggleFlashlight;
                 }
             }
         }
@@ -1832,6 +1894,7 @@ namespace ThePatient.Player.InputActions
             void OnCrouch(InputAction.CallbackContext context);
             void OnSprint(InputAction.CallbackContext context);
             void OnPause(InputAction.CallbackContext context);
+            void OnToggleFlashlight(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

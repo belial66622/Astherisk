@@ -89,9 +89,6 @@ public class DoorObject : Interactable
         {
             lockTimer.Stop();
         }
-        Debug.Log("Progress: " + lockTimer.Progress);
-        Debug.Log("Inverse : " + lockTimer.InverseProgress);
-        
     }
 
     public override bool Interact()

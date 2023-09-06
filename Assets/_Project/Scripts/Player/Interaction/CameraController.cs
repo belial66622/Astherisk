@@ -16,7 +16,7 @@ namespace ThePatient
         [SerializeField] CinemachineVirtualCamera _virtualCamera;
 
         [Header("Camera Look Settings")]
-        [SerializeField] float _gamepadMultiplier = 10f;
+        [SerializeField] float _gamepadMultiplier = 20f;
         [SerializeField, Range(.1f, 10)] float _lookSpeed;
 
         [Header("Interaction Setting")]

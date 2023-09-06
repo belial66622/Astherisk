@@ -23,7 +23,9 @@ namespace ThePatient
         public event Action Sprint = delegate { };
         public event Action Interact = delegate { };
         public event Action<bool> Pause = delegate { };
+        public event Action Flashlight = delegate { };
         public event Action UIClick = delegate { };
+
         public bool UIClicked => _inputs.UI.Click.ReadValue<float>() > 0;
 
         //dialogue action Events
@@ -105,7 +107,7 @@ namespace ThePatient
             Look.Invoke(context.ReadValue<Vector2>(), IsDeviceMouse(context));
         }
 
-        private bool IsDeviceMouse(InputAction.CallbackContext context) => context.control.device.name == "Mouse";
+        public bool IsDeviceMouse(InputAction.CallbackContext context) => context.control.device.name == "Mouse";
         
         public void OnFire(InputAction.CallbackContext context)
         {
@@ -177,7 +179,17 @@ namespace ThePatient
         }
 
 
- #endregion
+        public void OnToggleFlashlight(InputAction.CallbackContext context)
+        {
+            switch (context.phase)
+            {
+                case InputActionPhase.Performed:
+                    Flashlight.Invoke();
+                    break;
+            }
+        }
+
+        #endregion
 
         #region Dialogue Input Actions
 
@@ -332,6 +344,7 @@ namespace ThePatient
                     break;
             }
         }
+
 
         #endregion
     }

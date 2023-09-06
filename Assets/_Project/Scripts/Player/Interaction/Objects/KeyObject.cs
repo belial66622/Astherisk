@@ -6,13 +6,13 @@ namespace ThePatient
     {
         private void OnEnable()
         {
-            OnInspectDestroy += Pickup;
+            OnInspectExit += Pickup;
             _input.InspectExit += DestroyInspect;
         }
 
         private void OnDisable()
         {
-            OnInspectDestroy -= Pickup;
+            OnInspectExit -= Pickup;
             _input.InspectExit -= DestroyInspect;
         }
 
@@ -40,6 +40,5 @@ namespace ThePatient
         }
 
     }
-
 
 }
