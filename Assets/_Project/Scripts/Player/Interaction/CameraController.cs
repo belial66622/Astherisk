@@ -37,7 +37,6 @@ namespace ThePatient
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             _input.Interact += OnInteract;
-            _input.Look += CameraLook;
             new TickUpdateSystem(15).TickUpdate += CameraController_TickUpdate;
         }
 
@@ -48,7 +47,6 @@ namespace ThePatient
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             _input.Interact -= OnInteract;
-            _input.Look -= CameraLook;
         }
         public void CameraLook(Vector2 lookInput, bool isDeviceMouse)
         {
