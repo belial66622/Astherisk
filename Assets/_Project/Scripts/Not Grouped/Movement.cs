@@ -52,7 +52,7 @@ namespace ThePatient
 
         public void NotDone()
         {
-            _done = false;
+           _done = false;
         }
 
     }
