@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ThePatient
 {
-    public class LockObject : Interactable
+    public class LockObject : InspectInteractable
     {
         [SerializeField] int password;
 

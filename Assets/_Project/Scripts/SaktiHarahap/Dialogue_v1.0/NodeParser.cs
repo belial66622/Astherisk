@@ -6,7 +6,7 @@ using TMPro;
 using XNode;
 using ThePatient;
 
-public class NodeParser : Interactable
+public class NodeParser : InspectInteractable
 {
     public DialogueGraph graph;
     Coroutine _parser;

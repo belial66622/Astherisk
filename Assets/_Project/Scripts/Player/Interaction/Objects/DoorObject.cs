@@ -129,21 +129,21 @@ public class DoorObject : Interactable
                 if (doorCooldownTimer.IsRunning) return;
                 if (lockTimer.Progress <= 0 && needKey)
                 {
-                        if (gameObject.TryGetComponent<QuestObjectiveObject>
-                    (out QuestObjectiveObject questObjectiveObject))
-                        {
-                            if (questObjectiveObject.GetQuest().IsActive)
-                            {
-                                if(doorState == DoorState.Closed || doorState == DoorState.Opened)
-                                {
-                                    questObjectiveObject.CompleteObjective();
-                                    gameObject.GetComponent<Collider>().enabled = false;
-                                }
-                            }
-                        }
-
                     sound.PlaySound(AudioManager.Instance.GetSfx("UnlockDoor"),_spatialsound);
                     doorState = DoorState.Closed;
+
+                    if (gameObject.TryGetComponent<QuestObjectiveObject>
+                        (out QuestObjectiveObject questObjectiveObject))
+                    {
+                        if (questObjectiveObject.GetQuest().IsActive)
+                        {
+                            if (doorState == DoorState.Closed || doorState == DoorState.Opened)
+                            {
+                                questObjectiveObject.CompleteObjective();
+                                gameObject.GetComponent<Collider>().enabled = false;
+                            }
+                        }
+                    }
                 }
                 else
                 {

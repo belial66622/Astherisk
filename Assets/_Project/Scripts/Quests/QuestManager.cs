@@ -23,7 +23,7 @@ namespace ThePatient
 
             foreach(Quest quest in questList)
             {
-                quest.DeactivateQuest();
+                quest.ResetQuest();
             }
         }
 
@@ -31,34 +31,41 @@ namespace ThePatient
         {
             foreach (QuestStatus newStatus in questStatusQ)
             {
-                if(newStatus.quest == quest)
+                if (newStatus.quest == quest)
                 {
                     return;
                 }
             }
+
+            if(quest.IsCompleted()) return;
+
             QuestStatus status = new QuestStatus(quest);
             questStatusQ.Enqueue(status);
+            GetCurrentQuest().ActivateQuest();
             OnQuestsUpdated?.Invoke();
         }
 
         public void CompleteObjective(Quest quest, string objective)
         {
-            foreach(QuestStatus status in questStatusQ)
+            if(GetCurrentQuest().quest == quest)
             {
-                if(status.quest == quest)
-                {
-                    status.AddOrUpdateCompletedObjective(objective);
-                }
+                GetCurrentQuest().AddOrUpdateCompletedObjective(objective);
             }
+            OnQuestsUpdated?.Invoke();
 
             if(quest.IsCompleted())
             {
+                GetCurrentQuest().DeactivateQuest();
                 questStatusQ.Dequeue();
+
+                if(questStatusQ.Count > 0)
+                    GetCurrentQuest().ActivateQuest();
             }
+
             OnQuestsUpdated?.Invoke();
         }
 
-        public QuestStatus GetQuestStatus()
+        public QuestStatus GetCurrentQuest()
         {
             if(questStatusQ.Count > 0)
                 return questStatusQ.Peek();

@@ -5,7 +5,6 @@ namespace ThePatient
 {
     public class QuestGiver : MonoBehaviour
     {
-        [SerializeField] List<Quest> quests = new List<Quest>();
         [SerializeField] Quest quest;
 
         public void GiveQuest()

@@ -10,13 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 89eb10737c7063c42a8cc73a11a0dc31, type: 3}
-  m_Name: Quest 1
+  m_Name: Quest 4
   m_EditorClassIdentifier: 
-  <IsActive>k__BackingField: 1
+  <IsActive>k__BackingField: 0
   objectives:
   - objective: Turn Off Sink
     completedObjective: 0
-    objectiveCount: 1
-  - objective: Unlock Door
-    completedObjective: 1
     objectiveCount: 1

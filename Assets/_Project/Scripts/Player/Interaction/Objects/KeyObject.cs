@@ -2,7 +2,7 @@
 
 namespace ThePatient
 {
-    public class KeyObject : Interactable
+    public class KeyObject : InspectInteractable
     {
         private void OnEnable()
         {

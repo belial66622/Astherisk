@@ -8,7 +8,7 @@
         public int objectiveCount;
         public bool IsCompleted()
         {
-            return completedObjective >= objectiveCount;
+            return completedObjective == objectiveCount;
         }
         public void ResetCompletedObjective()
         {
@@ -21,7 +21,8 @@
 
         public void CompleteObjective()
         {
-            completedObjective++;
+            if(!IsCompleted())
+                completedObjective++;
         }
     }
 }

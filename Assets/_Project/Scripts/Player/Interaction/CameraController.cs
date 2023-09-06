@@ -21,7 +21,7 @@ namespace ThePatient
         [SerializeField] float interactRayRange = 1f;
  
         Camera cam;
-        [SerializeField] Interactable interactable;
+        [SerializeField] IInteractable interactable;
         float distance;
         private void OnEnable()
         {
@@ -62,7 +62,7 @@ namespace ThePatient
             interactable = HandleRaycast();
             if(interactable != null)
             {
-                distance = (interactable.transform.position - player.transform.position).sqrMagnitude;
+                distance = (interactable.GetTransform().position - player.transform.position).sqrMagnitude;
                 if(distance > interactRange * interactRange)
                 {
                     interactable.OnFinishInteractEvent();
@@ -82,13 +82,13 @@ namespace ThePatient
             transform.position = player.transform.position;
         }
 
-        private Interactable HandleRaycast()
+        private IInteractable HandleRaycast()
         {
             if (interactable != null && interactable.IsInspecting) return interactable;
 
             if(Physics.SphereCast(cam.transform.position, interactRayRadius, cam.transform.forward, out RaycastHit hit, interactRayRange))
             {
-                if(hit.transform != null && hit.transform.TryGetComponent<Interactable>(out Interactable interactable))
+                if(hit.transform != null && hit.transform.TryGetComponent<IInteractable>(out IInteractable interactable))
                 {
                     distance = (hit.point - player.transform.position).sqrMagnitude;
                     if(distance <= interactRange * interactRange)

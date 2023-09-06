@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UnityEngine;
 
 namespace ThePatient
 {
@@ -10,6 +11,6 @@ namespace ThePatient
         bool Interact();
         bool OnHold { get; set; }
         bool IsInspecting { get; set; }
-
+        Transform GetTransform();
     }
 }

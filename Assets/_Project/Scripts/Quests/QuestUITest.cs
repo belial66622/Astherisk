@@ -18,7 +18,7 @@ namespace ThePatient
         private void Instance_OnQuestsUpdated()
         {
             text.text = "";
-            status = QuestManager.Instance.GetQuestStatus();
+            status = QuestManager.Instance.GetCurrentQuest();
             if (status != null)
             {
                 foreach (QuestObjective objective in status.GetQuest().GetObjectives())

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace ThePatient
 {
@@ -11,7 +12,24 @@ namespace ThePatient
         public QuestStatus(Quest quest)
         {
             this.quest = quest;
-            quest.Setup();
+        }
+
+        public void ActivateQuest()
+        {
+            quest.ActivateQuest();
+            Debug.Log("active " + quest.name);
+        }
+
+        public void DeactivateQuest()
+        {
+            quest.DeactivateQuest();
+            Debug.Log("deactive " + quest.name);
+        }
+
+        public void ResetQuest()
+        {
+            quest.ResetQuest();
+            Debug.Log("reset " + quest.name);
         }
 
         public Quest GetQuest()

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ThePatient
 {
-    public class TestInspect : Interactable
+    public class TestInspect : InspectInteractable
     {
         private void OnEnable()
         {

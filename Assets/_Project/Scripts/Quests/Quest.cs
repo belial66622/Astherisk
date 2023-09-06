@@ -9,18 +9,22 @@ namespace ThePatient
         [field: SerializeField]public bool IsActive { get; private set; } = false;
         public List<QuestObjective> objectives = new List<QuestObjective>();
         
-        public void Setup()
+        public void ActivateQuest()
         {
             IsActive = true;
-            foreach(QuestObjective objective in objectives)
-            {
-                objective.ResetCompletedObjective();
-            }
         }
-
         public void DeactivateQuest()
         {
             IsActive = false;
+        }
+
+        public void ResetQuest()
+        {
+            DeactivateQuest();
+            foreach (QuestObjective objective in objectives)
+            {
+                objective.ResetCompletedObjective();
+            }
         }
 
         public int GetObjectivesCount()
