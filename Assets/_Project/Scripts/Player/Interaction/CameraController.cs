@@ -37,7 +37,7 @@ namespace ThePatient
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             _input.Interact += OnInteract;
-            _input.Look += OnLook;
+            _input.Look += CameraLook;
             new TickUpdateSystem(15).TickUpdate += CameraController_TickUpdate;
         }
 
@@ -48,9 +48,9 @@ namespace ThePatient
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             _input.Interact -= OnInteract;
-            _input.Look -= OnLook;
+            _input.Look -= CameraLook;
         }
-        private void OnLook(Vector2 lookInput, bool isDeviceMouse)
+        public void CameraLook(Vector2 lookInput, bool isDeviceMouse)
         {
             //Get the device multiplier
             float deviceMultiplier = isDeviceMouse ? Time.fixedDeltaTime : Time.deltaTime * _gamepadMultiplier;

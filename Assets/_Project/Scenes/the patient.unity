@@ -3326,9 +3326,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48923e1fd953a854d8045e5049c195ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flashlightObject: {fileID: 1227504345}
   _input: {fileID: 11400000, guid: 70dccaa611a3c2045b57dfb21865e234, type: 2}
+  cameraController: {fileID: 201344618}
   flashlightTransform: {fileID: 1824369388}
-  rotateSmooth: 10
+  maxRotX: 20
+  maxRotY: 10
+  rotateSmooth: 5
+--- !u!114 &201344618 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9039822864075918521, guid: 090692470398f004db28e4caf3b85fba,
+    type: 3}
+  m_PrefabInstance: {fileID: 616106367149396731}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201344613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 760cfb9a926005448b040a09395eb661, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &205914600
 Mesh:
   m_ObjectHideFlags: 0
@@ -23897,7 +23913,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1227504345}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24fcfde0d3f552b47a7769d4ad6da31c, type: 3}
+  m_Script: {fileID: 11500000, guid: 3d7306832075e2a4091b378ba60c7324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _input: {fileID: 11400000, guid: 70dccaa611a3c2045b57dfb21865e234, type: 2}
@@ -35234,7 +35250,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1824369388
 Transform:
   m_ObjectHideFlags: 0
@@ -35795,7 +35811,7 @@ Light:
       e32: 0
       e33: 1
     m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 2800000, guid: b66976fe27dd03b49b02412f777eb8b7, type: 3}
+  m_Cookie: {fileID: 2800000, guid: b3582cf4fa4a68d43bc54ae622608d12, type: 3}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
   m_RenderMode: 0
@@ -41485,6 +41501,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ====ENTITY====
+      objectReference: {fileID: 0}
+    - target: {fileID: 3892278749092833539, guid: 090692470398f004db28e4caf3b85fba,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8196172475459513566, guid: 090692470398f004db28e4caf3b85fba,
         type: 3}
