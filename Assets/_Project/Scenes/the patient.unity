@@ -39165,11 +39165,6 @@ PrefabInstance:
       propertyPath: <inspectTransform>k__BackingField
       value: 
       objectReference: {fileID: 247895374}
-    - target: {fileID: 3138049500380459796, guid: 4694a58eb891eb2479b1f20ad1bc2e4a,
-        type: 3}
-      propertyPath: <InspectRotateSpeed>k__BackingField
-      value: 0.1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4694a58eb891eb2479b1f20ad1bc2e4a, type: 3}
 --- !u!1001 &2062011564

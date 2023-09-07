@@ -13,6 +13,7 @@ namespace ThePatient
         [SerializeField] InputReader _input;
         [SerializeField] Transform player;
         [SerializeField] Transform _orientation;
+        [SerializeField] Transform flashlightTransform;
         [SerializeField] CinemachineVirtualCamera _virtualCamera;
 
         [Header("Camera Look Settings")]
@@ -116,7 +117,9 @@ namespace ThePatient
         {
             if (interactable != null && interactable.IsInspecting) return interactable;
 
-            if(Physics.SphereCast(cam.transform.position, interactRayRadius, cam.transform.forward, out RaycastHit hit, interactRayRange))
+            Transform origin = flashlightTransform.gameObject.activeSelf ? flashlightTransform : cam.transform;
+
+            if(Physics.SphereCast(origin.position, interactRayRadius, origin.forward, out RaycastHit hit, interactRayRange))
             {
                 if(hit.transform != null && hit.transform.TryGetComponent<IInteractable>(out IInteractable interactable))
                 {

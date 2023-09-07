@@ -205,7 +205,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1824369387}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.21500015, y: -0.065999985, z: 0.11400032}
+  m_LocalPosition: {x: 0.21500015, y: 0, z: 0.11400032}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7688,13 +7688,18 @@ PrefabInstance:
     - target: {fileID: 8502584465407112533, guid: d0b9cf862179659458ef727a9e9d2d4b,
         type: 3}
       propertyPath: interactRayRadius
-      value: 0.15
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8502584465407112533, guid: d0b9cf862179659458ef727a9e9d2d4b,
         type: 3}
       propertyPath: _gamepadMultiplier
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 8502584465407112533, guid: d0b9cf862179659458ef727a9e9d2d4b,
+        type: 3}
+      propertyPath: flashlightTransform
+      value: 
+      objectReference: {fileID: 1824369388}
     - target: {fileID: 8502584466122023897, guid: d0b9cf862179659458ef727a9e9d2d4b,
         type: 3}
       propertyPath: m_Layer
@@ -8806,7 +8811,7 @@ MonoBehaviour:
   requiredKey: {fileID: 5597148771783297876}
   defaultRotAxis: {x: 0, y: 0, z: 1}
   closedRotation: 0
-  openRotation: 120
+  openRotation: 110
   rattleRotation: 1
   openOrCloseDuration: 1
   rattleDuration: 0.05

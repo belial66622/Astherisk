@@ -201,6 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <inspectTransform>k__BackingField: {fileID: 0}
   _input: {fileID: 11400000, guid: 70dccaa611a3c2045b57dfb21865e234, type: 2}
+  <InspectRotateSpeed>k__BackingField: 0.2
   inspectVolume: {fileID: 0}
 --- !u!1 &8872935683464097950
 GameObject:
