@@ -8,6 +8,7 @@ namespace ThePatient
         public static InteractableManager Instance { get; private set; }
         [field: SerializeField] public Transform inspectTransform { get; private set; }
         [SerializeField] InputReader _input;
+        [field: SerializeField] public float InspectRotateSpeed { get; private set; } = .5f;
 
         [Header("Reference")]
         [SerializeField] GameObject inspectVolume;

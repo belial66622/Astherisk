@@ -19,6 +19,9 @@ namespace ThePatient
 
         protected event Action OnInspectExit = delegate { };
 
+        float mouseX;
+        float mouseY;
+
         protected override void Start()
         {
             inspectParent = InteractableManager.Instance.inspectTransform;
@@ -35,8 +38,17 @@ namespace ThePatient
             {
                 if (_input.InputInspecting)
                 {
-                    inspectParent.transform.Rotate(new Vector3(_input.InspectRotateInput.y, 0, 0) * .5f, Space.Self);
-                    gameObject.transform.Rotate(new Vector3(0, -_input.InspectRotateInput.x, 0) * .5f, Space.Self);
+                    mouseX -= _input.InspectRotateInput.x * InteractableManager.Instance.InspectRotateSpeed;
+                    mouseY += _input.InspectRotateInput.y * InteractableManager.Instance.InspectRotateSpeed;
+
+                    mouseX = Mathf.Clamp(mouseX, -90, 90);
+                    mouseY = Mathf.Clamp(mouseY, -90, 90);
+
+                    var targetRotationX = Quaternion.Euler(Vector3.up * mouseX);
+                    var targetRotationY = Quaternion.Euler(Vector3.right * mouseY);
+
+                    inspectParent.transform.localRotation = Quaternion.Lerp(inspectParent.transform.localRotation, targetRotationY, 10 * Time.deltaTime);
+                    gameObject.transform.localRotation = Quaternion.Lerp(gameObject.transform.localRotation, targetRotationX, 10 * Time.deltaTime);
                 }
                 if (_input.InspectZoomInput.y != 0)
                 {
