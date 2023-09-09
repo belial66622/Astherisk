@@ -3,25 +3,14 @@ using UnityEngine.Rendering;
 
 namespace ThePatient
 {
-    public class InteractableManager : MonoBehaviour
+    public class InteractableManager : SingletonMonoBehaviour<InteractableManager>
     {
-        public static InteractableManager Instance { get; private set; }
         [field: SerializeField] public Transform inspectTransform { get; private set; }
         [SerializeField] InputReader _input;
         [field: SerializeField] public float InspectRotateSpeed { get; private set; } = .5f;
 
         [Header("Reference")]
         [SerializeField] GameObject inspectVolume;
-
-        private void Awake()
-        {
-            if (Instance != null && Instance != this)
-            {
-                Destroy(gameObject);
-                return;
-            }
-            Instance = this;
-        }
 
         public void StartInspecting()
         {

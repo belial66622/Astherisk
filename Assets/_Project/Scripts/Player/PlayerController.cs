@@ -50,7 +50,7 @@ namespace ThePatient
         [Header("Camera Look Settings")]
         [SerializeField] float _jumpForce = 10f;
         [SerializeField] float _jumpDuration = .5f;
-        [SerializeField] float _jumpCooldown = 0f;
+        [SerializeField] float _jumpCooldown = .1f;
         [SerializeField] float _gravityMultiplier = 3f;
 
         // Private Variables
@@ -126,7 +126,7 @@ namespace ThePatient
 
             // Setup Timer Events
             _jumpTimer.OnTimerStart += () => _jumpVelocity = _jumpForce;
-            _jumpTimer.OnTimerStop += () => _jumpCooldownTimer.Start();
+            _jumpTimer.OnTimerStop += () => { _jumpCooldownTimer.Start(); OnPlayerLand?.Invoke(); };
             //_crouchTimer.OnTimerTickUpdate += (int tick) => { if (tick == 5) Debug.Log("Tick Number : " + tick); };
         }
 
@@ -141,7 +141,7 @@ namespace ThePatient
             _input.ToggleCrouch += OnCrouch;
             _input.Crouch += OnCrouch;
             OnPlayerJump += () => AudioManager.Instance.PlaySFX("PlayerJump");
-            OnPlayerLand += () => AudioManager.Instance.PlaySFX("PlayerLand");
+            OnPlayerLand += () => { AudioManager.Instance.PlaySFX("PlayerLand"); Debug.Log("land"); };
         }
         private void OnDisable()
         {
@@ -236,7 +236,6 @@ namespace ThePatient
             {
                 _jumpVelocity = 0f;
                 _jumpTimer.Stop();
-                OnPlayerLand?.Invoke();
                 return;
             }
 
@@ -246,8 +245,7 @@ namespace ThePatient
                 _jumpVelocity += Physics.gravity.y * _gravityMultiplier * Time.fixedDeltaTime;
             }
 
-            // Apply Jump Velocity
-            _rb.velocity = new Vector3(_rb.velocity.x, _jumpVelocity, _rb.velocity.z);
+            // OPTIONAL :: Apply Jump Velocity Here
         }
 
         IEnumerator ToggleCrouchStand(bool isCrouch)
@@ -308,10 +306,9 @@ namespace ThePatient
             if(performed && !_jumpTimer.IsRunning && !_jumpCooldownTimer.IsRunning && _groundChecker.IsGrounded)
             {
                 _jumpTimer.Start();
+                _rb.velocity = new Vector3(_rb.velocity.x, _jumpVelocity, _rb.velocity.z);
+                performed = false;
                 OnPlayerJump?.Invoke();
-            }else if(!performed && _jumpTimer.IsRunning)
-            {
-                _jumpTimer.Stop();
             }
         }
         private void OnCrouch()

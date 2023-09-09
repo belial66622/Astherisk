@@ -560,6 +560,7 @@ MonoBehaviour:
   _input: {fileID: 11400000, guid: 70dccaa611a3c2045b57dfb21865e234, type: 2}
   player: {fileID: 8502584465056476514}
   _orientation: {fileID: 0}
+  flashlightTransform: {fileID: 0}
   _virtualCamera: {fileID: 0}
   _gamepadMultiplier: 10
   _lookSpeed: 0
@@ -794,7 +795,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9190176541747097694}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0

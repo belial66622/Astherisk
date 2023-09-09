@@ -1,5 +1,4 @@
-using UnityEngine;
-public class Singleton<T> : MonoBehaviour where T : class, new()
+public class Singleton<T> where T : class, new()
 {
     private static T _instance;
     private static readonly object _padlock = new object();
