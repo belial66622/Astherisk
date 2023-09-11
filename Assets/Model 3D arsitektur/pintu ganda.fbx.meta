@@ -3,22 +3,7 @@ guid: b3edb90deb4fbd4439eeb04a1d3ee32f
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Tekstur besi
-    second: {fileID: 2100000, guid: 1a5882dab9498d945acb355ede71a9d9, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Tekstur kayu
-    second: {fileID: 2100000, guid: 0dd15cc66942b1a4d97ed26408229832, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Tekstur tembaga
-    second: {fileID: 2100000, guid: 8760438d9026b44459839991861697f0, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -62,7 +47,7 @@ ModelImporter:
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
