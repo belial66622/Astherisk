@@ -73,7 +73,7 @@ MonoBehaviour:
     _isBGM: 0
     _audioMixerGroup: {fileID: -9015192125907661391, guid: e18948c65073f6e49953ef660aedf2de,
       type: 2}
-    _spatialblend: 1
+    _spatialblend: 0
   - _name: WaterDripping
     _audioClip: {fileID: 8300000, guid: d5ed87cc806f6704aa9eb23b1e03a43e, type: 3}
     _isBGM: 0
@@ -94,6 +94,12 @@ MonoBehaviour:
     _spatialblend: 1
   - _name: PlayerLand
     _audioClip: {fileID: 8300000, guid: 0370d710f4d3d7242864f4a9e549c0a2, type: 3}
+    _isBGM: 0
+    _audioMixerGroup: {fileID: -9015192125907661391, guid: e18948c65073f6e49953ef660aedf2de,
+      type: 2}
+    _spatialblend: 1
+  - _name: CryingWoman
+    _audioClip: {fileID: 8300000, guid: 539e54c3a324c7341a61c6edde66d718, type: 3}
     _isBGM: 0
     _audioMixerGroup: {fileID: -9015192125907661391, guid: e18948c65073f6e49953ef660aedf2de,
       type: 2}

@@ -6,11 +6,28 @@ namespace ThePatient
 {
     public class Trigger : MonoBehaviour , ITrigger
     {
-        [SerializeField] protected new string name;
-        public virtual void DoSomething()
+        [SerializeField] protected EEventData _eventName;
+        protected bool _active => TriggerManager.instance.CheckActive(_eventName);
+
+
+        protected virtual void OnEnable()
         {
 
-            TriggerEvent.instance.Enter(name);
+        }
+
+        protected virtual void OnDisable()
+        {
+
+        }
+
+
+        public virtual void DoSomething()
+        {
+            if (_active);
+            {
+                TriggerManager.instance.OnEnter(_eventName);
+
+            }
         }
 
         // Start is called before the first frame update
@@ -25,7 +42,5 @@ namespace ThePatient
         
         }
 
-
-        
     }
 }

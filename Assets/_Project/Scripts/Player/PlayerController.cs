@@ -345,6 +345,19 @@ namespace ThePatient
             {
                 triggerobj.DoSomething();
             }
+
+            if (other.TryGetComponent(out Icheck check))
+            {
+                check.OnEnter();
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.TryGetComponent(out Icheck check))
+            {
+                check.OnExit();
+            }
         }
     }
 }

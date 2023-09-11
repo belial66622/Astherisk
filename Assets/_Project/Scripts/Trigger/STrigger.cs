@@ -5,10 +5,21 @@ using UnityEngine;
 namespace ThePatient
 {
     [System.Serializable]
-    public struct STrigger
+    public class STrigger
     {
-       public string Name;
-       public GameObject Trigger;
-       public STriggerDo TriggerDo;        
+        public EEventData _name;
+        public bool _isActive;
+        public EEventData[] _activate,_deactivate;
+
+        public void SetActive(bool isActive)
+        {
+            _isActive= isActive;
+        }
+
+        public STrigger Clone()
+        {
+            var _trigger = (STrigger)MemberwiseClone();
+            return _trigger;
+        }
     }
 }

@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.Audio;
 using System.Linq;
+using UnityEngine.Rendering;
 
-
-    public class AudioManager : MonoBehaviour
+public class AudioManager : MonoBehaviour
     {
         [SerializeField] private ScriptableSounds _savedSounds;
         [SerializeField] private AudioMixerGroup _masterAudio;
@@ -115,7 +115,27 @@ using System.Linq;
             _searchedSFX.AudioSource.Play();
         }
 
-        public AudioSource GetSfx(string _sfxName)
+
+         public Sound PlaySFXChecked(string _sfxName)
+         {
+             Sound _searchedSFX = System.Array.Find(_sounds, sound => sound.Name == _sfxName
+             && !sound.IsBGM && !sound.AudioSource.isPlaying);
+
+             if (_searchedSFX == null)
+             {
+                 _searchedSFX = (Sound)System.Array.Find(_savedSounds.GetSounds(), sound =>
+                 sound.Name == _sfxName && !sound.IsBGM)?.Clone();
+
+                 _searchedSFX.AudioSource = gameObject.AddComponent<AudioSource>();
+                 AudioSourceInit(_searchedSFX);
+                 _sounds = _sounds.Concat(new Sound[] { _searchedSFX }).ToArray();
+             }
+
+             _searchedSFX.AudioSource.Play();
+        return _searchedSFX;
+         }
+
+    public AudioSource GetSfx(string _sfxName)
         { 
         Sound _searchedSFX = System.Array.Find(_sounds, sound => sound.Name == _sfxName
         && !sound.IsBGM && !sound.AudioSource.isPlaying);
@@ -134,32 +154,39 @@ using System.Linq;
         }
 
 
-        
-        public Sound PlayLoopingSFX(string _sfxName)
+    public Sound PlayLoopingSFX(string _sfxName)
+    {
+        Sound _searchedSFX = System.Array.Find(_sounds, sound => sound.Name == _sfxName
+        && !sound.AudioSource.isPlaying);
+
+        if (_searchedSFX == null)
         {
-            Sound _searchedSFX = System.Array.Find(_sounds, sound => sound.Name == _sfxName
-            && !sound.AudioSource.isPlaying);
+            _searchedSFX = (Sound)System.Array.Find(_savedSounds.GetSounds(), sound =>
+            sound.Name == _sfxName && !sound.IsBGM)?.Clone();
 
-            if (_searchedSFX == null)
-            {
-                _searchedSFX = (Sound)System.Array.Find(_savedSounds.GetSounds(), sound =>
-                sound.Name == _sfxName && !sound.IsBGM)?.Clone();
-
-                _searchedSFX.AudioSource = gameObject.AddComponent<AudioSource>();
-                AudioSourceInit(_searchedSFX);
-                _sounds = _sounds.Concat(new Sound[] { _searchedSFX }).ToArray();
-            }
-
-            _searchedSFX.AudioSource.loop = true;
-            _searchedSFX.AudioSource.Play();
-            return _searchedSFX;
+            _searchedSFX.AudioSource = gameObject.AddComponent<AudioSource>();
+            AudioSourceInit(_searchedSFX);
+            _sounds = _sounds.Concat(new Sound[] { _searchedSFX }).ToArray();
         }
-        public void StopLoopingSFX(Sound _loopingSFX)
-        {
-            _loopingSFX.AudioSource.Stop();
-            _loopingSFX.AudioSource.loop = _loopingSFX.IsBGM;
-        }
-        public void StopAllSFX()
+
+        _searchedSFX.AudioSource.loop = true;
+        _searchedSFX.AudioSource.Play();
+        return _searchedSFX;
+    }
+    public void StopLoopingSFX(Sound _loopingSFX)
+    {
+        _loopingSFX.AudioSource.Stop();
+        _loopingSFX.AudioSource.loop = _loopingSFX.IsBGM;
+    }
+
+    public void SetVolume(Sound _sound, float _volume, float distance)
+    {
+        _sound.AudioSource.volume = _volume;
+        Debug.Log("Manager volume" + _volume);
+        _sound.AudioSource.maxDistance= distance;
+        _sound.AudioSource.minDistance = distance;
+    }
+    public void StopAllSFX()
         {
             foreach(Sound s in _sounds)
             {
