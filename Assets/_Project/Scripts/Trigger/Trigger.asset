@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _trigger:
   - _name: 0
-    _isActive: 0
+    _isActive: 1
     _activate: 
     _deactivate: 
   - _name: 1
