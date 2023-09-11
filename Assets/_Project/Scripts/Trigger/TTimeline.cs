@@ -35,8 +35,8 @@ namespace ThePatient
 
         public void sent()
         {
-            if(name != null)
-            TriggerEvent.instance.Enter(name);
+            if(_eventName != null)
+            TriggerManager.instance.OnEnter(_eventName);
         }
     }
 }

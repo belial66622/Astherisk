@@ -12,7 +12,7 @@ public class FieldOfViewEditorGhost : Editor
     {
         FieldOfView fov = (FieldOfView)target;
         Handles.color = Color.white;
-        Handles.DrawWireArc(fov.transform.position, Vector3.up, Vector3.forward, 360, fov.Radius);
+        Handles.DrawWireArc(fov.sightLocation.transform.position, Vector3.up, Vector3.forward, 360, fov.Radius);
 
         Vector3 viewAngle01 = DirectionFromAngle(fov.transform.eulerAngles.y, -fov.Angle / 2);
         Vector3 viewAngle02 = DirectionFromAngle(fov.transform.eulerAngles.y, fov.Angle / 2);
@@ -25,7 +25,7 @@ public class FieldOfViewEditorGhost : Editor
         if (fov.CanSeePlayer)
         { 
             Handles.color+= Color.green;
-            Handles.DrawLine(fov.transform.position, fov.PlayerRef.transform.position);
+            Handles.DrawLine(fov.sightLocation.transform.position, fov.PlayerRef.transform.position);
 
         }
 

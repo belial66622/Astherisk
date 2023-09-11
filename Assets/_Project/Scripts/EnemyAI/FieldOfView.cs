@@ -4,24 +4,27 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using System;
+using UnityEngine.UIElements;
 
 [SelectionBase]
     public class FieldOfView : MonoBehaviour
     {
     public Action<Vector3,bool> PlayerPos;
+    [SerializeField] protected Transform _sightLocation;
 
+    public Transform sightLocation => _sightLocation;
     #region FOV
-    [SerializeField] float _radius;
+    [SerializeField] protected float _radius;
     [Range(0, 360)]
-    [SerializeField] float _angle;
-    [SerializeField] Vector3 _playerPos;
-    [SerializeField] GameObject _playerRef;
+    [SerializeField] protected float _angle;
+    [SerializeField] protected Vector3 _playerPos;
+    [SerializeField] protected GameObject _playerRef;
 
-    [SerializeField] LayerMask _targetMask;
-    [SerializeField] LayerMask _obstructionMask;
-    [SerializeField] bool _canSeePlayer, _Countdownstat;
+    [SerializeField] protected LayerMask _targetMask;
+    [SerializeField] protected LayerMask _obstructionMask;
+    [SerializeField] protected bool _canSeePlayer, _Countdownstat;
     public bool _playersighted = false, _playerlost = false;
-    [SerializeField]Transform _player;
+    [SerializeField]protected Transform _player;
     #endregion
 
     #region Reference
@@ -32,15 +35,23 @@ using System;
     #endregion
 
 
+    protected virtual void OnEnable()
+    {
+        
+    }
 
-    private void Start()
+    protected virtual void OnDisable()
+    {
+        
+    }
+    protected virtual void Start()
     {
         StartCoroutine(FOVRoutine());
         //StartCoroutine(setpos());
     }
 
     #region fov
-    IEnumerator FOVRoutine()
+    public IEnumerator FOVRoutine()
     {
         float delay = .2f;
 
@@ -52,19 +63,22 @@ using System;
         }
     }
 
-    private void FieldOfViewCheck()
+
+
+
+    protected virtual void FieldOfViewCheck()
     {
-        Collider[] rangeChecks = Physics.OverlapSphere(transform.position, _radius, _targetMask);
+        Collider[] rangeChecks = Physics.OverlapSphere(_sightLocation.position, _radius, _targetMask);
 
         if (rangeChecks.Length != 0)
         {
             Transform target = rangeChecks[0].transform;
-            Vector3 directionToTarget = (target.position - transform.position).normalized;
+            Vector3 directionToTarget = (target.position - _sightLocation.position).normalized;
 
             if (Vector3.Angle(transform.forward, directionToTarget) < _angle / 2)
             {
-                float distanceToTarget = Vector3.Distance(transform.position, target.position);
-                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, _obstructionMask))
+                float distanceToTarget = Vector3.Distance(_sightLocation.position, target.position);
+                if (!Physics.Raycast(_sightLocation.position, directionToTarget, distanceToTarget, _obstructionMask))
                 {
                     _canSeePlayer = true;
                     PlayerPos?.Invoke(target.position, _canSeePlayer);
@@ -94,5 +108,5 @@ using System;
 
     #endregion
 
-   
+
 }
