@@ -12,7 +12,7 @@ namespace ThePatient
         {
             //set animation crossfade
             animator.speed = 1.2f;
-            animator.CrossFade(jumpHash, 0);
+            animator.CrossFade(jumpHash, crossFadeDuration);
         }
         public override void OnExit()
         {

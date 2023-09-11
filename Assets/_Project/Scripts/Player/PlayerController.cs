@@ -11,6 +11,10 @@ namespace ThePatient
 {
     public class PlayerController : MonoBehaviour
     {
+        // Events
+        public event Action OnPlayerJump;
+        public event Action OnPlayerLand;
+
 
         [Header("References")]
         [SerializeField] InputReader _input;
@@ -44,17 +48,12 @@ namespace ThePatient
         [SerializeField] float _stepSmooth = .1f;
 
         [Header("Camera Look Settings")]
-        [SerializeField] float _gamepadMultiplier = 10f;
-        [SerializeField, Range(.1f, 5000f)] float _lookSpeed;
-
-        [Header("Camera Look Settings")]
         [SerializeField] float _jumpForce = 10f;
         [SerializeField] float _jumpDuration = .5f;
-        [SerializeField] float _jumpCooldown = 0f;
+        [SerializeField] float _jumpCooldown = .1f;
         [SerializeField] float _gravityMultiplier = 3f;
 
         // Private Variables
-        CinemachinePOV _pov;
 
         Transform _cam;
 
@@ -77,8 +76,7 @@ namespace ThePatient
         {
             // Setup References
             _cam = Camera.main.transform;
-            _pov = _virtualCamera.GetCinemachineComponent<CinemachinePOV>();
-            _stepUpperTransform.position = new Vector3(_stepUpperTransform.position.x, _stepHeight, _stepUpperTransform.position.z);
+            _stepUpperTransform.localPosition = new Vector3(0, _stepHeight, 0);
             _rb.freezeRotation = true;
 
 
@@ -128,7 +126,7 @@ namespace ThePatient
 
             // Setup Timer Events
             _jumpTimer.OnTimerStart += () => _jumpVelocity = _jumpForce;
-            _jumpTimer.OnTimerStop += () => _jumpCooldownTimer.Start();
+            _jumpTimer.OnTimerStop += () => { _jumpCooldownTimer.Start(); OnPlayerLand?.Invoke(); };
             //_crouchTimer.OnTimerTickUpdate += (int tick) => { if (tick == 5) Debug.Log("Tick Number : " + tick); };
         }
 
@@ -139,17 +137,19 @@ namespace ThePatient
 
         private void OnEnable()
         {
-            _input.Look += OnLook;
             _input.Jump += OnJump;
             _input.ToggleCrouch += OnCrouch;
             _input.Crouch += OnCrouch;
+            OnPlayerJump += () => AudioManager.Instance.PlaySFX("PlayerJump");
+            OnPlayerLand += () => { AudioManager.Instance.PlaySFX("PlayerLand"); Debug.Log("land"); };
         }
         private void OnDisable()
         {
-            _input.Look -= OnLook;
             _input.Jump -= OnJump;
             _input.ToggleCrouch -= OnCrouch;
             _input.Crouch -= OnCrouch;
+            OnPlayerJump -= () => AudioManager.Instance.PlaySFX("PlayerJump");
+            OnPlayerLand -= () => AudioManager.Instance.PlaySFX("PlayerLand");
         }
 
         private void Update()
@@ -245,8 +245,7 @@ namespace ThePatient
                 _jumpVelocity += Physics.gravity.y * _gravityMultiplier * Time.fixedDeltaTime;
             }
 
-            // Apply Jump Velocity
-            _rb.velocity = new Vector3(_rb.velocity.x, _jumpVelocity, _rb.velocity.z);
+            // OPTIONAL :: Apply Jump Velocity Here
         }
 
         IEnumerator ToggleCrouchStand(bool isCrouch)
@@ -302,36 +301,14 @@ namespace ThePatient
             _crouchTimer.Stop();
         }
 
-        private void OnLook(Vector2 lookInput, bool isDeviceMouse)
-        {
-            //Get the device multiplier
-            float deviceMultiplier = isDeviceMouse ? Time.fixedDeltaTime : Time.deltaTime * _gamepadMultiplier;
-
-            //input based on device currently active
-            float mouseX = lookInput.x * deviceMultiplier;
-            float mouseY = lookInput.y * deviceMultiplier;
-
-            //Find current look rotation
-            Vector3 rot = _cam.transform.localRotation.eulerAngles;
-            float desiredX = mouseX + rot.y;
-
-            //Adjust the camera speed
-            _pov.m_VerticalAxis.m_MaxSpeed = _lookSpeed;
-            _pov.m_HorizontalAxis.m_MaxSpeed = _lookSpeed;
-
-            //Perform the rotations
-            _pov.m_VerticalAxis.m_InputAxisValue = mouseY;
-            _pov.m_HorizontalAxis.m_InputAxisValue = mouseX;
-            _orientation.transform.localRotation = Quaternion.Euler(0, desiredX, 0);
-        }
         private void OnJump(bool performed)
         {
             if(performed && !_jumpTimer.IsRunning && !_jumpCooldownTimer.IsRunning && _groundChecker.IsGrounded)
             {
                 _jumpTimer.Start();
-            }else if(!performed && _jumpTimer.IsRunning)
-            {
-                _jumpTimer.Stop();
+                _rb.velocity = new Vector3(_rb.velocity.x, _jumpVelocity, _rb.velocity.z);
+                performed = false;
+                OnPlayerJump?.Invoke();
             }
         }
         private void OnCrouch()
@@ -359,7 +336,12 @@ namespace ThePatient
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out ITrigger triggerobj))
+            ITrigger[] itrigger;
+            itrigger = other.GetComponents<ITrigger>();
+            
+            foreach(ITrigger triggerobj in itrigger)
+            
+            //if (other.TryGetComponent(out ITrigger triggerobj))
             {
                 triggerobj.DoSomething();
             }

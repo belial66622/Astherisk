@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using ThePatient;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 namespace ThePatient
 {
@@ -9,22 +11,41 @@ namespace ThePatient
     {
         [Header("Reference")]
         [SerializeField] ParticleSystem sinkWater;
-
-        public override void Interact()
+        EmissionModule emission;
+        public override bool Interact()
         {
-            var emission = sinkWater.emission;
+            emission = sinkWater.emission;
             emission.enabled = !sinkWater.emission.enabled;
+
+            CompleteObjective();
+            return false;
+        }
+
+        private void CompleteObjective()
+        {
+            if (gameObject.TryGetComponent<QuestObjectiveObject>
+                            (out QuestObjectiveObject questObjectiveObject))
+            {
+                if (questObjectiveObject.GetQuest().IsActive)
+                {
+                    if (emission.enabled)
+                        emission.enabled = false;
+
+                    questObjectiveObject.CompleteObjective();
+                    gameObject.GetComponent<Collider>().enabled = false;
+                }
+            }
         }
 
         public override void OnFinishInteractEvent()
         {
-            EventAggregate<InteractionTextEventArgs>.Instance.TriggerEvent(new InteractionTextEventArgs(false, ""));
+            EventAggregate<InteractionIconEventArgs>.Instance.TriggerEvent(new InteractionIconEventArgs(false, InteractionType.Default));
         }
 
-        public override void OnInteractEvent(string name)
+        public override void OnInteractEvent()
         {
-            EventAggregate<InteractionTextEventArgs>.Instance.TriggerEvent(
-                new InteractionTextEventArgs(true, "[ E ]\nInteract With Sink"));
+            EventAggregate<InteractionIconEventArgs>.Instance.TriggerEvent(
+                new InteractionIconEventArgs(true, InteractionType.Interact));
         }
 
     }

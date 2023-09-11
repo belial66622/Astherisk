@@ -32,7 +32,7 @@ namespace ThePatient
             isOn = lights[0].enabled;
         }
 
-        public override void Interact()
+        public override bool Interact()
         {
             if (isOn)
             {
@@ -57,17 +57,18 @@ namespace ThePatient
                 }
             }
             isOn = !isOn;
+            return false;
         }
 
         public override void OnFinishInteractEvent()
         {
-            EventAggregate<InteractionTextEventArgs>.Instance.TriggerEvent(new InteractionTextEventArgs(false, ""));
+            EventAggregate<InteractionIconEventArgs>.Instance.TriggerEvent(new InteractionIconEventArgs(false, InteractionType.Default));
         }
 
-        public override void OnInteractEvent(string name)
+        public override void OnInteractEvent()
         {
-            EventAggregate<InteractionTextEventArgs>.Instance.TriggerEvent(
-                new InteractionTextEventArgs(true,isOn ? "[ E ]\nTurn Off" : "[ E ]\nTurn On"));
+            EventAggregate<InteractionIconEventArgs>.Instance.TriggerEvent(
+                new InteractionIconEventArgs(true, InteractionType.Interact));
         }
     }
 }

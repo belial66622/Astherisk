@@ -1,10 +1,15 @@
-﻿namespace ThePatient
+﻿using System;
+using UnityEngine;
+
+namespace ThePatient
 {
     public interface IInteractable
     {
-        void OnInteractEvent(string name);
+        void OnInteractEvent();
         void OnFinishInteractEvent();
-        void Interact();
+        bool Interact();
         bool OnHold { get; set; }
+        bool IsInspecting { get; set; }
+        Transform GetTransform();
     }
 }

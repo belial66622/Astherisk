@@ -1,39 +1,44 @@
 ﻿using UnityEngine;
-using static UnityEditorInternal.ReorderableList;
 
 namespace ThePatient
 {
-    public class KeyObject : Interactable
+    public class KeyObject : InspectInteractable
     {
         private void OnEnable()
         {
-            OnInspectDestroy += Pickup;
+            OnInspectExit += Pickup;
             _input.InspectExit += DestroyInspect;
         }
 
         private void OnDisable()
         {
-            OnInspectDestroy -= Pickup;
+            OnInspectExit -= Pickup;
             _input.InspectExit -= DestroyInspect;
         }
 
-        public override void Interact()
+        public override void Pickup()
+        {
+            base.Pickup();
+            AudioManager.Instance.PlaySFX("KeyPickup");
+        }
+
+        public override bool Interact()
         {
             Inspect();
+            return false;
         }
 
         public override void OnFinishInteractEvent()
         {
-            EventAggregate<InteractionTextEventArgs>.Instance.TriggerEvent(new InteractionTextEventArgs(false, ""));
+            EventAggregate<InteractionIconEventArgs>.Instance.TriggerEvent(new InteractionIconEventArgs(false, InteractionType.Default));
         }
 
-        public override void OnInteractEvent(string name)
+        public override void OnInteractEvent()
         {
-            EventAggregate<InteractionTextEventArgs>.Instance.TriggerEvent(
-                new InteractionTextEventArgs(true, $"[ E ]\nInspect {name}"));
+            EventAggregate<InteractionIconEventArgs>.Instance.TriggerEvent(
+                new InteractionIconEventArgs(true, InteractionType.Pickup));
         }
 
     }
-
 
 }

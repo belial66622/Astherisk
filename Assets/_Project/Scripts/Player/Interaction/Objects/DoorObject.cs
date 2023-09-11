@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ThePatient;
-using UnityEditor;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Android;
 using Utilities;
 
 public class DoorObject : Interactable
@@ -21,37 +22,52 @@ public class DoorObject : Interactable
     [SerializeField] GameObject requiredKey;
 
     [Header("Door Settings")]
+    [SerializeField] Vector3 defaultRotAxis = Vector3.forward;
     [SerializeField] float closedRotation;
-    [SerializeField] float openRotation;
-    [SerializeField] float rattleRotation;
-    [SerializeField] float openOrCloseDuration = 1f;
+    [SerializeField] float openRotation = 120;
+    [SerializeField] float rattleRotation = 1;
+    [SerializeField] float openOrCloseDuration = .7f;
     [SerializeField] float rattleDuration = .05f;
-    [SerializeField] float cooldownTime = 0f;
-    [SerializeField] float lockDuration = 1f;
+    [SerializeField] float cooldownTime = .5f;
+    [SerializeField] float lockDuration = .5f;
 
     CountdownTimer doorCooldownTimer;
     CountdownTimer rattleTimer;
     CountdownTimer openOrCloseTimer;
-    StopwatchTimer lockTimer;
+    CountdownTimer lockTimer;
+
+    Quaternion defaultRotation;
 
     IPickupable key;
+    bool needKey = false;
+    AudioSource _spatialsound;
+    SoundUtils sound;
 
     protected override void Start()
     {
+        _spatialsound = this.AddComponent<AudioSource>();
+        defaultRotation = doorPivot.localRotation;
         doorCooldownTimer = new CountdownTimer(cooldownTime);
         openOrCloseTimer = new CountdownTimer(openOrCloseDuration);
         rattleTimer = new CountdownTimer(rattleDuration);
-        lockTimer = new StopwatchTimer();
+        lockTimer = new CountdownTimer(lockDuration);
+        sound = new SoundUtils();
 
-        openOrCloseTimer.OnTimerStop += () => doorCooldownTimer.Start();
-        lockTimer.OnTimerStop += () => doorCooldownTimer.Start();
+        lockTimer.OnTimerStop += () => {
+            if (needKey)
+            {
+                Interact();
+                OnFinishInteractEvent();
+                doorCooldownTimer.Start();  
+            }
+        };
+        lockTimer.OnTimerPause += () => OnFinishInteractEvent();
         doorCooldownTimer.OnTimerStart += () => OnFinishInteractEvent();
 
-        key = requiredKey.GetComponent<IPickupable>();
-    }
-
-    private void OnEnable()
-    {
+        needKey = requiredKey != null;
+    
+        if (needKey)
+            key = requiredKey.GetComponent<IPickupable>();
     }
 
     protected override void Update()
@@ -61,85 +77,103 @@ public class DoorObject : Interactable
         lockTimer.Tick(Time.deltaTime);
         rattleTimer.Tick(Time.deltaTime);
 
-        if(OnHold && !lockTimer.IsRunning && !doorCooldownTimer.IsRunning && Inventory.Instance.HasItem(key))
+        if(OnHold && !lockTimer.IsRunning && !doorCooldownTimer.IsRunning && needKey && Inventory.Instance.HasItem(key))
         {
             lockTimer.Start();
         }
-        else if(!OnHold && lockTimer.IsRunning && lockTimer.GetTime() < lockDuration)
+        else if(!OnHold && lockTimer.IsRunning && lockTimer.Progress > 0)
         {
-            OnFinishInteractEvent();
-            lockTimer.Reset();
-            lockTimer.Stop();
+            lockTimer.Pause();
         }
-        else if(OnHold && lockTimer.GetTime() >= lockDuration)
+        else if(OnHold && lockTimer.IsRunning && lockTimer.Progress <= 0)
         {
-            Interact();
-            OnFinishInteractEvent();
-            lockTimer.Reset();
             lockTimer.Stop();
         }
     }
 
-    public override void Interact()
+    public override bool Interact()
     {
         HandleDoorState(doorState);
+        return false;
     }
 
     private void HandleDoorState(DoorState state)
     {
-        if(doorCooldownTimer.IsRunning) return;
         if(openOrCloseTimer.IsRunning) return;
 
         switch (state)
         {
             case DoorState.Closed:
-                if (lockTimer.GetTime() >= lockDuration)
+                if (lockTimer.Progress <= 0 && needKey)
                 {
-                    //locked sound
+                    if (doorCooldownTimer.IsRunning) return;
+                    sound.PlaySound(AudioManager.Instance.GetSfx("LockDoor"),_spatialsound);
                     doorState = DoorState.Locked;
                 }
                 else
                 {
-                    //open sound
+                    sound.PlaySound(AudioManager.Instance.GetSfx("Door"),_spatialsound);
                     StartCoroutine(ToggleDoor(closedRotation, openRotation, openOrCloseTimer));
                     doorState = DoorState.Opened;
                 }
                 break;
             case DoorState.Opened:
-                //close sound
+                sound.PlaySound(AudioManager.Instance.GetSfx("Door"),_spatialsound);
                 StartCoroutine(ToggleDoor(openRotation, closedRotation, openOrCloseTimer));
                 doorState = DoorState.Closed;
                 break;
             case DoorState.Locked:
-                if (lockTimer.GetTime() >= lockDuration)
+                if (doorCooldownTimer.IsRunning) return;
+                if (lockTimer.Progress <= 0 && needKey)
                 {
-                    //unlock sound
+                    sound.PlaySound(AudioManager.Instance.GetSfx("UnlockDoor"),_spatialsound);
                     doorState = DoorState.Closed;
+
+                    if (gameObject.TryGetComponent<QuestObjectiveObject>
+                        (out QuestObjectiveObject questObjectiveObject))
+                    {
+                        if (questObjectiveObject.GetQuest().IsActive)
+                        {
+                            if (doorState == DoorState.Closed || doorState == DoorState.Opened)
+                            {
+                                questObjectiveObject.CompleteObjective();
+                                gameObject.GetComponent<Collider>().enabled = false;
+                            }
+                        }
+                    }
                 }
                 else
                 {
-                    //ratlle sound
+                    sound.PlaySound(AudioManager.Instance.GetSfx("RattleDoor"), _spatialsound);
                     StartCoroutine(RattleDoorRepeat());
+                    doorCooldownTimer.Start();
                 }
                 break;
         }
     }
 
+
+
     IEnumerator ToggleDoor(float startRot, float targetRot, TimerUtils time)
     {
         time.Start();
 
-        Quaternion startRotation = Quaternion.AngleAxis(startRot, Vector3.up);
-        Quaternion targetRotation = Quaternion.AngleAxis(targetRot, Vector3.up);
+        Quaternion startRotation = Quaternion.AngleAxis(startRot, defaultRotAxis );
+        Quaternion targetRotation = Quaternion.AngleAxis(targetRot, defaultRotAxis );
+
+
 
         while (time.InverseProgress < 1)
         {
             float t = time.InverseProgress * time.InverseProgress * (3 - 2 * time.InverseProgress);
 
             var currentRot = Quaternion.Slerp(startRotation, targetRotation, t);
-            doorPivot.localRotation = currentRot;
+
+            doorPivot.localRotation = defaultRotation  * currentRot;
             yield return null;
         }
+
+        doorPivot.localRotation = defaultRotation * targetRotation;
 
         time.Stop();
     }
@@ -162,35 +196,35 @@ public class DoorObject : Interactable
 
     public override void OnFinishInteractEvent()
     {
-        EventAggregate<InteractionTextEventArgs>.Instance.TriggerEvent(new InteractionTextEventArgs(false, ""));
-        EventAggregate<InteractionLockUIEventArgs>.Instance.TriggerEvent(new InteractionLockUIEventArgs(false, 0));
+        EventAggregate<InteractionIconEventArgs>.Instance.TriggerEvent(new InteractionIconEventArgs(false, InteractionType.Default));
+        EventAggregate<InteractionLockUIEventArgs>.Instance.TriggerEvent(new InteractionLockUIEventArgs(false, 1));
     }
 
     
 
-    public override void OnInteractEvent(string objectName)
+    public override void OnInteractEvent()
     {
-        EventAggregate<InteractionTextEventArgs>.Instance.TriggerEvent(new InteractionTextEventArgs(true,
-            GetText(doorState, objectName)));
+        EventAggregate<InteractionIconEventArgs>.Instance.TriggerEvent(new InteractionIconEventArgs(true,
+            GetIcon(doorState)));
 
-        if (lockTimer.GetTime() >= .2f && lockTimer.GetTime() < lockDuration && doorState != DoorState.Opened)
+        if (lockTimer.IsRunning && lockTimer.InverseProgress >= .2f && lockTimer.Progress > 0 && doorState != DoorState.Opened)
         {
-            EventAggregate<InteractionLockUIEventArgs>.Instance.TriggerEvent(new InteractionLockUIEventArgs(true, lockTimer.GetTime()));
+            EventAggregate<InteractionLockUIEventArgs>.Instance.TriggerEvent(new InteractionLockUIEventArgs(true, lockTimer.Progress));
         }
     }
-    string GetText(DoorState state, string name)
+    InteractionType GetIcon(DoorState state)
     {
         if (state == DoorState.Locked)
         {
             if (Inventory.Instance.HasItem(key))
             {
-                return $"[ HOLD E ]\nUnlock";
+                return InteractionType.Locked;
             }
             else
             {
-                return "Required Key";
+                return InteractionType.NoKey;
             }
         }
-        return $"[ E ]\nInteract With {name}";
+        return InteractionType.Door;
     }
 }

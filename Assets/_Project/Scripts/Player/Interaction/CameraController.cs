@@ -12,6 +12,13 @@ namespace ThePatient
         [Header("Reference")]
         [SerializeField] InputReader _input;
         [SerializeField] Transform player;
+        [SerializeField] Transform _orientation;
+        [SerializeField] Transform flashlightTransform;
+        [SerializeField] CinemachineVirtualCamera _virtualCamera;
+
+        [Header("Camera Look Settings")]
+        [SerializeField] float _gamepadMultiplier = 20f;
+        [SerializeField, Range(.1f, 10)] float _lookSpeed;
 
         [Header("Interaction Setting")]
         [SerializeField] float interactRange = 5f;
@@ -19,13 +26,15 @@ namespace ThePatient
         [Header("Ray Settings")]
         [SerializeField] float interactRayRadius = .4f;
         [SerializeField] float interactRayRange = 1f;
-        [SerializeField] LayerMask interactLayer;
  
+        CinemachinePOV _pov;
         Camera cam;
-        [SerializeField] Interactable interactable;
+        [SerializeField] IInteractable interactable;
+        float distance;
         private void OnEnable()
         {
             cam = Camera.main;
+            _pov = _virtualCamera.GetCinemachineComponent<CinemachinePOV>();
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             _input.Interact += OnInteract;
@@ -40,6 +49,28 @@ namespace ThePatient
             Cursor.visible = true;
             _input.Interact -= OnInteract;
         }
+        public void CameraLook(Vector2 lookInput, bool isDeviceMouse)
+        {
+            //Get the device multiplier
+            float deviceMultiplier = isDeviceMouse ? Time.fixedDeltaTime : Time.deltaTime * _gamepadMultiplier;
+
+            //input based on device currently active
+            float mouseX = lookInput.x * deviceMultiplier;
+            float mouseY = lookInput.y * deviceMultiplier;
+
+            //Find current look rotation
+            Vector3 rot = transform.localRotation.eulerAngles;
+            float desiredX = mouseX + rot.y;
+
+            //Adjust the camera speed
+            _pov.m_VerticalAxis.m_MaxSpeed = _lookSpeed;
+            _pov.m_HorizontalAxis.m_MaxSpeed = _lookSpeed;
+
+            //Perform the rotations
+            _pov.m_VerticalAxis.m_InputAxisValue = mouseY;
+            _pov.m_HorizontalAxis.m_InputAxisValue = mouseX;
+            _orientation.transform.localRotation = Quaternion.Euler(0, desiredX, 0);
+        }
 
         private void OnInteract()
         {
@@ -50,14 +81,26 @@ namespace ThePatient
             if(interactable != null && !_input.IsInteracting)
             {
                 interactable.OnHold = false;
-                interactable.Interact();
                 interactable.OnFinishInteractEvent();
-                interactable = null;
+                if (!interactable.Interact())
+                {
+                    interactable = null;
+                }
             }
         }
         private void CameraController_TickUpdate(int tick)
         {
-            HandleRaycast();
+            interactable = HandleRaycast();
+            if(interactable != null)
+            {
+                distance = (interactable.GetTransform().position - player.transform.position).sqrMagnitude;
+                if(distance > interactRange * interactRange)
+                {
+                    interactable.OnFinishInteractEvent();
+                    interactable.OnHold = false;
+                    interactable = null;
+                }
+            }
         }
 
         private void Update()
@@ -70,28 +113,26 @@ namespace ThePatient
             transform.position = player.transform.position;
         }
 
-        private void HandleRaycast()
+        private IInteractable HandleRaycast()
         {
-            if(Physics.SphereCast(cam.transform.position, interactRayRadius, cam.transform.forward, out RaycastHit hit, interactRayRange, interactLayer))
+            if (interactable != null && interactable.IsInspecting) return interactable;
+
+            Transform origin = flashlightTransform.gameObject.activeSelf ? flashlightTransform : cam.transform;
+
+            if(Physics.SphereCast(origin.position, interactRayRadius, origin.forward, out RaycastHit hit, interactRayRange))
             {
-                if(hit.transform != null && hit.transform.TryGetComponent<Interactable>(out Interactable interactable))
+                if(hit.transform != null && hit.transform.TryGetComponent<IInteractable>(out IInteractable interactable))
                 {
-                    float distance = (hit.point - player.transform.position).magnitude;
-                    if(distance <= interactRange)
+                    distance = (hit.point - player.transform.position).sqrMagnitude;
+                    if(distance <= interactRange * interactRange)
                     {
-                        this.interactable = interactable;
-                        interactable.OnInteractEvent(interactable.ToString());
-                    }
-                    else
-                    {
-                        interactable.OnFinishInteractEvent();
-                        interactable.OnHold = false;
-                        this.interactable = null;
+                        interactable.OnInteractEvent();
+                        return interactable;
                     }
                 }
                 else
                 {
-                    if (this.interactable != null)
+                    if(this.interactable != null)
                     {
                         this.interactable.OnFinishInteractEvent();
                         this.interactable.OnHold = false;
@@ -100,13 +141,14 @@ namespace ThePatient
             }
             else
             {
-                if (interactable != null)
+                if(interactable != null)
                 {
                     interactable.OnFinishInteractEvent();
                     interactable.OnHold = false;
-                    this.interactable = null;
+                    return null;
                 }
             }
+            return null;
         }
     }
 }
