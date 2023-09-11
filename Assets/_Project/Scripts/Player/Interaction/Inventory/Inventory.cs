@@ -41,20 +41,21 @@ namespace ThePatient
 
         public object CaptureState()
         {
-            var inventoryRecords = new InventoryRecord[itemList.Count];
+            //var inventoryRecords = new InventoryRecord[itemList.Count];
 
-            for (int i = 0; i < itemList.Count; i++)
-            {
-                inventoryRecords[i].interactableID = itemList[i].GetInteractableID();
-            }
+            //for (int i = 0; i < itemList.Count; i++)
+            //{
+            //    inventoryRecords[i].interactableID = itemList[i].GetInteractableID();
+            //}
 
-            return inventoryRecords;
+            //return inventoryRecords;
+            return null;
         }
 
         public void RestoreState(object state)
         {
-            var stateObject = state as List<InspectInteractable>;
-            itemList = stateObject;
+            //var stateObject = state as List<InspectInteractable>;
+            //itemList = stateObject;
         }
     }
 }
