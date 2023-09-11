@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace ThePatient
 {
+
     [CreateAssetMenu(fileName = "New Quest", menuName = "Quest")]
     public class Quest : ScriptableObject
     {
@@ -44,7 +45,7 @@ namespace ThePatient
         {
             return objectives;
         }
-        public QuestObjective GetQuestObjective(string objective)
+        public QuestObjective GetQuestObjective(QuestObjectiveType objective)
         {
             foreach(QuestObjective obj in objectives)
             {
@@ -66,6 +67,15 @@ namespace ThePatient
                 }
             }
             return true;
+        }
+
+        public void InitCompleteQuest()
+        {
+            IsActive = false;
+            foreach(QuestObjective objective in objectives)
+            {
+                objective.ForceCompleteObjective();
+            }
         }
     }
 }

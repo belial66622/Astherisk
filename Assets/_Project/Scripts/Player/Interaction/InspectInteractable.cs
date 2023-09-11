@@ -1,12 +1,14 @@
 ﻿using System;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 namespace ThePatient
 {
-    public abstract class InspectInteractable : Interactable
+    public abstract class InspectInteractable : Interactable, ISerializationCallbackReceiver
     {
 
         [SerializeField] protected InputReader _input;
+        [SerializeField] protected string interactableID;
         [SerializeField] protected Vector3 inspectRotation = new Vector3(0, 0, 0);
         [SerializeField][Range(.15f, .5f)] protected float zoomInspect = .5f;
 
@@ -112,5 +114,33 @@ namespace ThePatient
             InteractableManager.Instance.OnInteractionInspect(new InteractionInspectEventArgs(true));
         protected virtual void OnInspectEventExit() =>
             InteractableManager.Instance.OnInteractionInspect(new InteractionInspectEventArgs(false));
+
+        public string GetInteractableID()
+        {
+            return interactableID;
+        }
+
+        public override object CaptureState()
+        {
+            return null;
+        }
+
+        public override void RestoreState(object state)
+        {
+
+        }
+
+        public void OnBeforeSerialize()
+        {
+            if (string.IsNullOrWhiteSpace(interactableID))
+            {
+                interactableID = System.Guid.NewGuid().ToString();
+            }
+        }
+
+        public void OnAfterDeserialize()
+        {
+
+        }
     }
 }

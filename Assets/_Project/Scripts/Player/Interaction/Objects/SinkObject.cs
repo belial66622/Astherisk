@@ -12,27 +12,62 @@ namespace ThePatient
         [Header("Reference")]
         [SerializeField] ParticleSystem sinkWater;
         EmissionModule emission;
+
+        protected override void Start()
+        {
+            gameObject.GetComponent<Collider>().enabled = false;
+            QuestManager.Instance.OnQuestsStarted += Instance_OnQuestsStarted;
+        }
+
+        private void OnDisable()
+        {
+            QuestManager.Instance.OnQuestsStarted -= Instance_OnQuestsStarted;
+        }
+
+        private void Instance_OnQuestsStarted(QuestStatus status)
+        {
+            EnableInteraction(status);
+        }
+
         public override bool Interact()
         {
             emission = sinkWater.emission;
             emission.enabled = !sinkWater.emission.enabled;
 
-            CompleteObjective();
+            CompleteObjective(QuestManager.Instance.GetCurrentQuest());
             return false;
         }
 
-        private void CompleteObjective()
+        private void CompleteObjective(QuestStatus status)
         {
             if (gameObject.TryGetComponent<QuestObjectiveObject>
                             (out QuestObjectiveObject questObjectiveObject))
             {
-                if (questObjectiveObject.GetQuest().IsActive)
+                if (status == null) return;
+
+                if (questObjectiveObject.GetQuest() == status.GetQuest()
+                && questObjectiveObject.GetQuest().IsActive)
                 {
                     if (emission.enabled)
                         emission.enabled = false;
 
                     questObjectiveObject.CompleteObjective();
                     gameObject.GetComponent<Collider>().enabled = false;
+                }
+            }
+        }
+
+        void EnableInteraction(QuestStatus status)
+        {
+            if (gameObject.TryGetComponent<QuestObjectiveObject>
+                            (out QuestObjectiveObject questObjectiveObject))
+            {
+                if (status == null) return;
+
+                if(questObjectiveObject.GetQuest() == status.GetQuest()
+                && questObjectiveObject.GetQuest().IsActive)
+                {
+                    gameObject.GetComponent<Collider>().enabled = true;
                 }
             }
         }
@@ -48,5 +83,14 @@ namespace ThePatient
                 new InteractionIconEventArgs(true, InteractionType.Interact));
         }
 
+        public override object CaptureState()
+        {
+            return null;
+        }
+
+        public override void RestoreState(object state)
+        {
+
+        }
     }
 }

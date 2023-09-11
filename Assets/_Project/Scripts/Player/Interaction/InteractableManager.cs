@@ -3,7 +3,7 @@ using UnityEngine.Rendering;
 
 namespace ThePatient
 {
-    public class InteractableManager : SingletonMonoBehaviour<InteractableManager>
+    public class InteractableManager : SingletonBehaviour<InteractableManager>
     {
         [field: SerializeField] public Transform inspectTransform { get; private set; }
         [SerializeField] InputReader _input;

@@ -42,5 +42,14 @@ namespace ThePatient
                 new InteractionIconEventArgs(true, InteractionType.Inspect));
         }
 
+        public override object CaptureState()
+        {
+            return null;
+        }
+
+        public override void RestoreState(object state)
+        {
+
+        }
     }
 }

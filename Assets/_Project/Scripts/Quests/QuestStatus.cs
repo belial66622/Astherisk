@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ThePatient
@@ -6,12 +7,19 @@ namespace ThePatient
     [System.Serializable]
     public class QuestStatus
     {
-        public Quest quest;
-        public List<QuestObjective> completedObjectives = new List<QuestObjective>();
+        [SerializeField] Quest quest;
+        [SerializeField] List<QuestObjective> completedObjectives = new List<QuestObjective>();
 
         public QuestStatus(Quest quest)
         {
             this.quest = quest;
+        }
+
+        public QuestStatus(object objectState)
+        {
+            QuestStatusRecord state = objectState as QuestStatusRecord;
+            quest = QuestManager.Instance.GetQuestName(state.questName);
+            completedObjectives = state.questObjective;
         }
 
         public void ActivateQuest()
@@ -51,7 +59,7 @@ namespace ThePatient
             return 0;
         }
 
-        public void AddOrUpdateCompletedObjective(string objective)
+        public void AddOrUpdateCompletedObjective(QuestObjectiveType objective)
         {
             foreach(QuestObjective obj in completedObjectives)
             {
@@ -67,7 +75,24 @@ namespace ThePatient
                 quest.GetQuestObjective(objective).CompleteObjective();
                 completedObjectives.Add(quest.GetQuestObjective(objective));
             }
+        }
 
+        [System.Serializable]
+        class QuestStatusRecord
+        {
+            public string questName;
+            public List<QuestObjective> questObjective = new List<QuestObjective>();
+        }
+
+        public object CaptureState()
+        {
+            QuestStatusRecord record = new QuestStatusRecord();
+            record.questName = quest.name;
+            foreach(QuestObjective objective in completedObjectives)
+            {
+                record.questObjective.Add(objective);
+            }
+            return record;
         }
 
     }

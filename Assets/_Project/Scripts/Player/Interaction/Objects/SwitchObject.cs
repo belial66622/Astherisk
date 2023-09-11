@@ -70,5 +70,15 @@ namespace ThePatient
             EventAggregate<InteractionIconEventArgs>.Instance.TriggerEvent(
                 new InteractionIconEventArgs(true, InteractionType.Interact));
         }
+
+        public override object CaptureState()
+        {
+            return null;
+        }
+
+        public override void RestoreState(object state)
+        {
+
+        }
     }
 }

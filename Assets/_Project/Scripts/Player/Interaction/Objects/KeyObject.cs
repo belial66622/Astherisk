@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting.Antlr3.Runtime;
+using UnityEngine;
 
 namespace ThePatient
 {
@@ -39,6 +40,19 @@ namespace ThePatient
                 new InteractionIconEventArgs(true, InteractionType.Pickup));
         }
 
+        public override object CaptureState()
+        {
+            if (Inventory.Instance.HasItem(this))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public override void RestoreState(object state)
+        {
+
+        }
     }
 
 }

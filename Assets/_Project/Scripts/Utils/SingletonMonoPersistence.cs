@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class SingletonMonoPersistence<T> : SingletonMonoBehaviour<SingletonMonoPersistence<T>> where T : MonoBehaviour
+public class SingletonMonoPersistence<T> : SingletonBehaviour<SingletonMonoPersistence<T>> where T : MonoBehaviour
 {
     protected override void Awake()
     {

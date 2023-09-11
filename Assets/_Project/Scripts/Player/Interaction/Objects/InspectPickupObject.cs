@@ -31,5 +31,15 @@
             EventAggregate<InteractionIconEventArgs>.Instance.TriggerEvent(
                 new InteractionIconEventArgs(true, InteractionType.Pickup));
         }
+
+        public override object CaptureState()
+        {
+            return null;
+        }
+
+        public override void RestoreState(object state)
+        {
+
+        }
     }
 }

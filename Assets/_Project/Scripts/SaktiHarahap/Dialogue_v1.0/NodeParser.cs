@@ -101,4 +101,14 @@ public class NodeParser : InspectInteractable
         EventAggregate<InteractionIconEventArgs>.Instance.TriggerEvent(
             new InteractionIconEventArgs(true, InteractionType.Talk));
     }
+
+    public override object CaptureState()
+    {
+        return null;
+    }
+
+    public override void RestoreState(object state)
+    {
+
+    }
 }

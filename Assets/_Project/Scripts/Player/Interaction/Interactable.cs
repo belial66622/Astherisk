@@ -5,7 +5,9 @@ using UnityEngine.Windows;
 
 namespace ThePatient
 {
-    public abstract class Interactable : MonoBehaviour, IInteractable, IPickupable
+    [RequireComponent(typeof(SaveableEntity))]
+    [SelectionBase]
+    public abstract class Interactable : MonoBehaviour, IInteractable, IPickupable, ISaveable
     // Should make child classes for inspectable objects and interactlable objects
     {
         protected bool isInspecting;
@@ -46,5 +48,9 @@ namespace ThePatient
         {
             return transform;
         }
+
+        public abstract object CaptureState();
+
+        public abstract void RestoreState(object state);
     }
 }

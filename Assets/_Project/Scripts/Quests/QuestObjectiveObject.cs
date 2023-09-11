@@ -5,16 +5,20 @@ namespace ThePatient
     public class QuestObjectiveObject : MonoBehaviour
     {
         [SerializeField] Quest quest;
-        [SerializeField] string objective;
+        [SerializeField] QuestObjectiveType objective;
 
-        public void CompleteObjective()
+        public QuestObjectiveType GetObjectiveType()
         {
-            QuestManager.Instance.CompleteObjective(quest, objective);
+            return objective;
         }
 
         public Quest GetQuest()
         {
             return quest;
+        }
+        public void CompleteObjective()
+        {
+            QuestManager.Instance.CompleteObjective(quest, objective);
         }
     }
 }

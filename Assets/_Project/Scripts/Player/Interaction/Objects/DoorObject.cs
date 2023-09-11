@@ -19,7 +19,7 @@ public class DoorObject : Interactable
     [Header("Reference")]
     [SerializeField] Transform doorPivot;
     [SerializeField] DoorState doorState = DoorState.Closed;
-    [SerializeField] GameObject requiredKey;
+    [SerializeField] InspectInteractable requiredKey;
 
     [Header("Door Settings")]
     [SerializeField] Vector3 defaultRotAxis = Vector3.forward;
@@ -137,7 +137,7 @@ public class DoorObject : Interactable
                             if (doorState == DoorState.Closed || doorState == DoorState.Opened)
                             {
                                 questObjectiveObject.CompleteObjective();
-                                gameObject.GetComponent<Collider>().enabled = false;
+                                //gameObject.GetComponent<Collider>().enabled = false;
                             }
                         }
                     }
@@ -226,5 +226,23 @@ public class DoorObject : Interactable
             }
         }
         return InteractionType.Door;
+    }
+
+    public override object CaptureState()
+    {
+        int state = (int)doorState;
+        Debug.Log(state + " " + ToString());
+        return state;
+    }
+
+    public override void RestoreState(object state)
+    {
+        var tempState = (int)state;
+        doorState = (DoorState)tempState;
+
+        if (doorState == DoorState.Opened)
+        {
+            HandleDoorState(DoorState.Closed);
+        }
     }
 }
