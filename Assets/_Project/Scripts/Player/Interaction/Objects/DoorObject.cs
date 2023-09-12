@@ -106,6 +106,7 @@ public class DoorObject : Interactable
         {
             dialogue.Interact();
         }
+
         return false;
     }
 
