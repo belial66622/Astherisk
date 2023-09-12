@@ -5,6 +5,7 @@ using UnityEngine.Windows;
 
 namespace ThePatient
 {
+    [SelectionBase]
     public abstract class Interactable : MonoBehaviour, IInteractable, IPickupable
     // Should make child classes for inspectable objects and interactlable objects
     {
