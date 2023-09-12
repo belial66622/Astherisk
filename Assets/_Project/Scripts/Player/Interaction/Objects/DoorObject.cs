@@ -5,6 +5,7 @@ using ThePatient;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Android;
+using UnityEngine.EventSystems;
 using Utilities;
 
 public class DoorObject : Interactable
@@ -15,6 +16,11 @@ public class DoorObject : Interactable
         Opened,
         Locked
     }
+
+    [Header ("Text")]
+    [SerializeField] EEventData eventname;
+    NodeParser dialogue;
+
 
     [Header("Reference")]
     [SerializeField] Transform doorPivot;
@@ -45,6 +51,7 @@ public class DoorObject : Interactable
 
     protected override void Start()
     {
+        dialogue = GetComponent<NodeParser>();
         _spatialsound = this.AddComponent<AudioSource>();
         defaultRotation = doorPivot.localRotation;
         doorCooldownTimer = new CountdownTimer(cooldownTime);
@@ -93,7 +100,12 @@ public class DoorObject : Interactable
 
     public override bool Interact()
     {
-        HandleDoorState(doorState);
+        if (!TriggerManager.instance.CheckActive(eventname) || eventname == EEventData.DoNothing)
+        { HandleDoorState(doorState); }
+        else if (TriggerManager.instance.CheckActive(eventname))
+        {
+            dialogue.Interact();
+        }
         return false;
     }
 

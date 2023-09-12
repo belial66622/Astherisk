@@ -13,15 +13,23 @@ MonoBehaviour:
   m_Name: Trigger
   m_EditorClassIdentifier: 
   _trigger:
+  - _name: 2
+    _isActive: 1
+    _activate: 
+    _deactivate: 
   - _name: 0
-    _isActive: 0
+    _isActive: 1
     _activate: 
     _deactivate: 
   - _name: 1
     _isActive: 1
     _activate: 00000000
     _deactivate: 01000000
-  - _name: 2
+  - _name: 3
     _isActive: 1
     _activate: 
-    _deactivate: 
+    _deactivate: 03000000
+  - _name: 4
+    _isActive: 0
+    _activate: 00000000
+    _deactivate: 01000000

@@ -4,11 +4,12 @@ using UnityEngine;
 
 namespace ThePatient
 {
-    public class Trigger : MonoBehaviour , ITrigger
+    public class Trigger : MonoBehaviour , ITrigger, INoCollision
     {
         [SerializeField] protected EEventData _eventName;
         protected bool _active => TriggerManager.instance.CheckActive(_eventName);
-
+        [SerializeField] bool _needCollision;
+        public bool CheckCollision() => _needCollision;
 
         protected virtual void OnEnable()
         {

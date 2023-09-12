@@ -337,13 +337,23 @@ namespace ThePatient
         private void OnTriggerEnter(Collider other)
         {
             ITrigger[] itrigger;
+            INoCollision icheckcollider;
+
             itrigger = other.GetComponents<ITrigger>();
-            
-            foreach(ITrigger triggerobj in itrigger)
-            
-            //if (other.TryGetComponent(out ITrigger triggerobj))
-            {
-                triggerobj.DoSomething();
+
+            icheckcollider = other.GetComponent<INoCollision>();
+
+            if(icheckcollider != null)
+            { 
+                if (icheckcollider.CheckCollision())
+                {
+                    foreach (ITrigger triggerobj in itrigger)
+
+                    //if (other.TryGetComponent(out ITrigger triggerobj))
+                    {
+                        triggerobj.DoSomething();
+                    }
+                }
             }
         }
     }

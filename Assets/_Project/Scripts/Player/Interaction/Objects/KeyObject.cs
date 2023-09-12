@@ -4,6 +4,7 @@ namespace ThePatient
 {
     public class KeyObject : InspectInteractable
     {
+        [SerializeField] EEventData tutorial;
         private void OnEnable()
         {
             OnInspectExit += Pickup;
@@ -20,6 +21,7 @@ namespace ThePatient
         {
             base.Pickup();
             AudioManager.Instance.PlaySFX("KeyPickup");
+            TriggerManager.instance.OnEnter(tutorial);
         }
 
         public override bool Interact()

@@ -8,6 +8,8 @@ namespace ThePatient
     {
         WomanCry,
         WomanScream,
-        DoNothing
+        DoNothing,
+        Tutorial,
+        Block
     }
 }
