@@ -15,13 +15,14 @@ namespace ThePatient
         bool isOn;
         protected override void Start()
         {
+            InitLight();
+        }
+
+        private void InitLight()
+        {
             foreach (var item in objectsToToggle)
             {
-                var emissionObj = item.GetComponentsInChildren<Renderer>();
-                foreach (var emission in emissionObj)
-                {
-                    emissions.Add(emission);
-                }
+                emissions.Add(item.GetComponent<Renderer>());
                 var lightsObj = item.GetComponentsInChildren<Light>();
                 foreach (var light in lightsObj)
                 {
@@ -33,6 +34,12 @@ namespace ThePatient
         }
 
         public override bool Interact()
+        {
+            ToggleLight(isOn);
+            return false;
+        }
+
+        private void ToggleLight(bool isOn)
         {
             if (isOn)
             {
@@ -57,7 +64,7 @@ namespace ThePatient
                 }
             }
             isOn = !isOn;
-            return false;
+            this.isOn = isOn;
         }
 
         public override void OnFinishInteractEvent()
