@@ -8,7 +8,7 @@ using UnityEngine.Android;
 using UnityEngine.EventSystems;
 using Utilities;
 
-public class DoorObject : Interactable
+public class DoorObject : BaseInteractable
 {
     enum DoorState
     {
@@ -17,7 +17,7 @@ public class DoorObject : Interactable
         Locked
     }
 
-    [Header ("Text")]
+    [Header ("Trigger Parameter")]
     [SerializeField] EEventData eventname;
     NodeParser dialogue;
 
@@ -100,9 +100,9 @@ public class DoorObject : Interactable
 
     public override bool Interact()
     {
-        if (!TriggerManager.instance.CheckActive(eventname) || eventname == EEventData.DoNothing)
+        if (!TriggerManager.Instance.CheckActive(eventname) || eventname == EEventData.DoNothing)
         { HandleDoorState(doorState); }
-        else if (TriggerManager.instance.CheckActive(eventname))
+        else if (TriggerManager.Instance.CheckActive(eventname))
         {
             dialogue.Interact();
         }
@@ -239,5 +239,23 @@ public class DoorObject : Interactable
             }
         }
         return InteractionType.Door;
+    }
+
+    public override object CaptureState()
+    {
+        int state = (int)doorState;
+        Debug.Log(state + " " + ToString());
+        return state;
+    }
+
+    public override void RestoreState(object state)
+    {
+        var tempState = (int)state;
+        doorState = (DoorState)tempState;
+
+        if (doorState == DoorState.Opened)
+        {
+            HandleDoorState(DoorState.Closed);
+        }
     }
 }

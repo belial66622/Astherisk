@@ -39,7 +39,7 @@ namespace ThePatient
         public void Distance(float distance)
         {
 
-            if (TriggerManager.instance.CheckActive(_eventName))
+            if (TriggerManager.Instance.CheckActive(_eventName))
             {
                 _volume = -1 * ((Mathf.Clamp(Mathf.Min(distance, _maxDistance) / _maxDistance, 0f, .9f)) - 1f);
                 Debug.Log("volume" + _volume);

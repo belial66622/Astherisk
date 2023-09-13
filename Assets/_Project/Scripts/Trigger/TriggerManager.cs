@@ -5,18 +5,17 @@ using UnityEngine;
 
 namespace ThePatient
 {
-    public class TriggerManager : MonoBehaviour
+    public class TriggerManager : SingletonBehaviour<TriggerManager>
     {
-        public static TriggerManager instance;
         [SerializeField] ScriptableTrigger _savedTrigger;
         [SerializeField] STrigger[] _triggerList;
         STrigger _tempTrigger;
         public Action<EEventData> _activateblocker;
 
 
-        private void Awake()
+        protected override void Awake()
         {
-            instance = this;
+            base.Awake();
 
             _triggerList = new STrigger[_savedTrigger.GetTrigger().Length];
             for (int i = 0; i < _triggerList.Length; i++)

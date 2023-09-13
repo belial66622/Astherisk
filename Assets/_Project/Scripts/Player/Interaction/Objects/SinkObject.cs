@@ -7,7 +7,7 @@ using static UnityEngine.ParticleSystem;
 
 namespace ThePatient
 {
-    public class SinkObject : Interactable
+    public class SinkObject : BaseInteractable
     {
         [Header("Reference")]
         [SerializeField] ParticleSystem sinkWater;
@@ -48,5 +48,14 @@ namespace ThePatient
                 new InteractionIconEventArgs(true, InteractionType.Interact));
         }
 
+        public override object CaptureState()
+        {
+            return null;
+        }
+
+        public override void RestoreState(object state)
+        {
+
+        }
     }
 }

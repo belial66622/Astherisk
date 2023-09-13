@@ -1,28 +1,28 @@
 ﻿using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace ThePatient
 {
-    public class BakeLightmapSwapper : SingletonMonoBehaviour<BakeLightmapSwapper>
+    public class BakeLightmapSwapper : SingletonBehaviour<BakeLightmapSwapper>, ISaveable
     {
         [SerializeField] LightmapData[] brightLMData;
         [SerializeField] LightmapData[] darkLMData;
 
-        [SerializeField] BakeLightmapSwapperSO brightLMSO;
-        [SerializeField] BakeLightmapSwapperSO darkLMSO;
+        [SerializeField] List<BakeLightmapSwapperSO> lightmapSO;
 
-
+        bool isDarkness;
         private void Start()
         {
             List<LightmapData> brightLMlist = new List<LightmapData>();
 
-            for (int i = 0; i < brightLMSO.lightMapDir.Length; i++)
+            for (int i = 0; i < lightmapSO[0].lightMapDir.Length; i++)
             {
                 LightmapData lmData = new LightmapData();
 
-                lmData.lightmapDir = brightLMSO.lightMapDir[i];
-                lmData.lightmapColor = brightLMSO.lightMapColor[i];
+                lmData.lightmapDir = lightmapSO[0].lightMapDir[i];
+                lmData.lightmapColor = lightmapSO[0].lightMapColor[i];
 
                 brightLMlist.Add(lmData);
             }
@@ -31,12 +31,12 @@ namespace ThePatient
 
             List<LightmapData> darkLMlist = new List<LightmapData>();
 
-            for (int i = 0; i < darkLMSO.lightMapDir.Length; i++)
+            for (int i = 0; i < lightmapSO[1].lightMapDir.Length; i++)
             {
                 LightmapData lmData = new LightmapData();
 
-                lmData.lightmapDir = darkLMSO.lightMapDir[i];
-                lmData.lightmapColor = darkLMSO.lightMapColor[i];
+                lmData.lightmapDir = lightmapSO[1].lightMapDir[i];
+                lmData.lightmapColor = lightmapSO[1].lightMapColor[i];
 
                 darkLMlist.Add(lmData);
             }
@@ -46,27 +46,46 @@ namespace ThePatient
 
         private void Update()
         {
-            if(Input.GetKeyDown(KeyCode.B))
+            if (Input.GetKeyDown(KeyCode.B))
             {
-                SetBrightLM();
+                isDarkness = SetBrightLM();
             }
             if (Input.GetKeyDown(KeyCode.V))
             {
-                SetDarkLM();
-            }   
+                isDarkness = SetDarkLM();
+            }
         }
 
-        void SetBrightLM()
+        bool SetBrightLM()
         {
             LightmapSettings.lightmaps = brightLMData;
-            LightmapSettings.lightProbes.bakedProbes = brightLMSO.lightProbesData;
+            LightmapSettings.lightProbes.bakedProbes = lightmapSO[0].lightProbesData;
+            return false;
         }
-        void SetDarkLM()
+        bool SetDarkLM()
         {
             LightmapSettings.lightmaps = darkLMData;
-            LightmapSettings.lightProbes.bakedProbes = darkLMSO.lightProbesData;
+            LightmapSettings.lightProbes.bakedProbes = lightmapSO[1].lightProbesData;
+            return true;
         }
 
 
+        public object CaptureState()
+        {
+            return isDarkness;
+        }
+
+        public void RestoreState(object state)
+        {
+            bool isDark = (bool)state;
+            if (isDark)
+            {
+                SetDarkLM();
+            }
+            else
+            {
+                SetBrightLM();
+            }
+        }
     }
 }

@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1227504345}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.693, y: 3.2598002, z: -1.2860003}
+  m_LocalPosition: {x: 11.997999, y: 3.4318001, z: -2.7500002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -62,6 +62,7 @@ MonoBehaviour:
   _input: {fileID: 11400000, guid: 70dccaa611a3c2045b57dfb21865e234, type: 2}
   inspectRotation: {x: 0, y: 25, z: 0}
   zoomInspect: 0.2
+  pickupAudio: KeyPickup
 --- !u!1 &790629897955257984
 GameObject:
   m_ObjectHideFlags: 0
@@ -71,7 +72,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 790629897955257985}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: meja
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +194,7 @@ GameObject:
   - component: {fileID: 790629898192417818}
   - component: {fileID: 790629898192417817}
   - component: {fileID: 790629898192417816}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,7 +291,7 @@ GameObject:
   - component: {fileID: 790629898616158187}
   - component: {fileID: 790629898616158186}
   - component: {fileID: 790629898616158185}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -387,7 +388,7 @@ GameObject:
   - component: {fileID: 790629898754603647}
   - component: {fileID: 790629898754603646}
   - component: {fileID: 790629898754603645}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -588,13 +589,13 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
+  m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+    topLeft: {r: 0.9716981, g: 0.1787558, b: 0.1787558, a: 1}
+    topRight: {r: 1, g: 0.72904086, b: 0.3820755, a: 1}
+    bottomLeft: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 1}
+    bottomRight: {r: 0.53883344, g: 1, b: 0.2971698, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
@@ -676,7 +677,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 790629899456030545}
   m_LocalRotation: {x: -0, y: -0.19332172, z: -0, w: 0.9811354}
-  m_LocalPosition: {x: 12.107, y: 3.239, z: -1.119}
+  m_LocalPosition: {x: 11.412, y: 3.411, z: -2.583}
   m_LocalScale: {x: 0.5, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -694,7 +695,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 790629899456030545}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd4dd53ec6351ef46a7b9b6933b019a0, type: 3}
+  m_Script: {fileID: 11500000, guid: bc1f52e4886bc494fbe20c079fe565e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _input: {fileID: 11400000, guid: 70dccaa611a3c2045b57dfb21865e234, type: 2}
@@ -738,7 +739,7 @@ GameObject:
   - component: {fileID: 790629899795350988}
   - component: {fileID: 790629899795350979}
   - component: {fileID: 790629899795350978}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -835,7 +836,7 @@ GameObject:
   - component: {fileID: 790629899880020266}
   - component: {fileID: 790629899880020265}
   - component: {fileID: 790629899880020264}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

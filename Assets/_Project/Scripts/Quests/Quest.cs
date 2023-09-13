@@ -3,12 +3,13 @@ using UnityEngine;
 
 namespace ThePatient
 {
+
     [CreateAssetMenu(fileName = "New Quest", menuName = "Quest")]
     public class Quest : ScriptableObject
     {
-        [field: SerializeField]public bool IsActive { get; private set; } = false;
+        [field: SerializeField] public bool IsActive { get; private set; } = false;
         public List<QuestObjective> objectives = new List<QuestObjective>();
-        
+
         public void ActivateQuest()
         {
             IsActive = true;
@@ -34,7 +35,7 @@ namespace ThePatient
 
         public int GetQuestObjectiveCount(QuestObjective objective)
         {
-            if(objectives.Contains(objective))
+            if (objectives.Contains(objective))
             {
                 return objective.GetObjectiveCount();
             }
@@ -44,16 +45,16 @@ namespace ThePatient
         {
             return objectives;
         }
-        public QuestObjective GetQuestObjective(string objective)
+        public QuestObjective GetQuestObjective(QuestObjectiveType objective)
         {
-            foreach(QuestObjective obj in objectives)
+            foreach (QuestObjective obj in objectives)
             {
-                if(obj.GetObjective() == objective)
+                if (obj.GetObjective() == objective)
                 {
                     return obj;
                 }
             }
-            
+
             return null;
         }
         public bool IsCompleted()
@@ -66,6 +67,15 @@ namespace ThePatient
                 }
             }
             return true;
+        }
+
+        public void InitCompleteQuest()
+        {
+            IsActive = false;
+            foreach (QuestObjective objective in objectives)
+            {
+                objective.ForceCompleteObjective();
+            }
         }
     }
 }

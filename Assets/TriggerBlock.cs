@@ -10,12 +10,12 @@ namespace ThePatient
 
         protected override void Start()
         {
-            TriggerManager.instance._activateblocker += EnableCollider; 
+            TriggerManager.Instance._activateblocker += EnableCollider; 
         }
 
         public override void DoSomething()
         {
-            if (!TriggerManager.instance.CheckActive(_eventName))
+            if (!TriggerManager.Instance.CheckActive(_eventName))
             {
                 _blocker.enabled = false;
             }

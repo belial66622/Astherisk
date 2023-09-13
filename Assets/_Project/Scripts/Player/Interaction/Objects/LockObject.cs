@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ThePatient
 {
-    public class LockObject : InspectInteractable
+    public class LockObject : InspectPickup
     {
         [SerializeField] int password;
 
@@ -33,7 +33,7 @@ namespace ThePatient
             }
         }
 
-        private void OnEnable()
+        protected override void OnEnable()
         {
             OnInspectExit += CheckPasswordMatching;
             _input.InspectExit += ExitInspect;
@@ -45,7 +45,7 @@ namespace ThePatient
             SetupLockPuzzle();
         }
 
-        private void OnDisable()
+        protected override void OnDisable()
         {
             OnInspectExit -= CheckPasswordMatching;
             _input.InspectExit -= ExitInspect;
@@ -64,13 +64,14 @@ namespace ThePatient
             selectedRoll.UpdateMaterial(1, .5f);
         }
 
-        void CheckPasswordMatching()
+        void CheckPasswordMatching(string audio)
         {
             if(AppendRollNumber() == password)
             {
                 Debug.Log("Password Correct");
                 // Play Unlock Sound
-                Pickup();
+                audio = "KeyPickup";
+                Pickup(audio);
             }
             else
             {

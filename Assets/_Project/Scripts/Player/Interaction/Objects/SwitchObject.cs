@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ThePatient
 {
-    public class SwitchObject : Interactable
+    public class SwitchObject : BaseInteractable
     {
         [SerializeField] List<GameObject> objectsToToggle = new List<GameObject>();
 
@@ -69,6 +69,16 @@ namespace ThePatient
         {
             EventAggregate<InteractionIconEventArgs>.Instance.TriggerEvent(
                 new InteractionIconEventArgs(true, InteractionType.Interact));
+        }
+
+        public override object CaptureState()
+        {
+            return null;
+        }
+
+        public override void RestoreState(object state)
+        {
+
         }
     }
 }

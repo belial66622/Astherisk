@@ -2,32 +2,15 @@
 
 namespace ThePatient
 {
-    public class KeyObject : InspectInteractable
+    public class KeyObject : InspectPickup
     {
+        [Header("Trigger Parameter")]
         [SerializeField] EEventData tutorial;
-        private void OnEnable()
-        {
-            OnInspectExit += Pickup;
-            _input.InspectExit += DestroyInspect;
-        }
 
-        private void OnDisable()
+        public override void Pickup(string pickupAudio)
         {
-            OnInspectExit -= Pickup;
-            _input.InspectExit -= DestroyInspect;
-        }
-
-        public override void Pickup()
-        {
-            base.Pickup();
-            AudioManager.Instance.PlaySFX("KeyPickup");
-            TriggerManager.instance.OnEnter(tutorial);
-        }
-
-        public override bool Interact()
-        {
-            Inspect();
-            return false;
+            base.Pickup("KeyPickup");
+            TriggerManager.Instance.OnEnter(tutorial);
         }
 
         public override void OnFinishInteractEvent()

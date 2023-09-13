@@ -7,7 +7,7 @@ using XNode;
 using ThePatient;
 using UnityEngine.Events;
 
-public class NodeParser : InspectInteractable
+public class NodeParser : InspectOnly
 {
     public DialogueGraph graph;
     Coroutine _parser;
@@ -100,5 +100,15 @@ public class NodeParser : InspectInteractable
     {
         EventAggregate<InteractionIconEventArgs>.Instance.TriggerEvent(
             new InteractionIconEventArgs(true, InteractionType.Talk));
+    }
+
+    public override object CaptureState()
+    {
+        return null;
+    }
+
+    public override void RestoreState(object state)
+    {
+
     }
 }

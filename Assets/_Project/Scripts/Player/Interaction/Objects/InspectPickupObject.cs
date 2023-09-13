@@ -1,35 +1,16 @@
-﻿namespace ThePatient
+﻿using UnityEngine;
+
+namespace ThePatient
 {
-    public class InspectPickupObject : InspectInteractable
+    public class InspectPickupObject : InspectPickup
     {
-        private void OnEnable()
+        [SerializeField] private string pickupAudio;
+
+        public override void Pickup(string audio)
         {
-            OnInspectExit += Pickup;
-            _input.InspectExit += DestroyInspect;
+            audio = pickupAudio;
+            base.Pickup(audio);
         }
 
-        private void OnDisable()
-        {
-            OnInspectExit -= Pickup;
-            _input.InspectExit -= DestroyInspect;
-        }
-
-        public override bool Interact()
-        {
-            Inspect();
-            return false;
-        }
-
-        public override void OnFinishInteractEvent()
-        {
-            EventAggregate<InteractionIconEventArgs>.Instance.TriggerEvent(
-                new InteractionIconEventArgs(false, InteractionType.Default));
-        }
-
-        public override void OnInteractEvent()
-        {
-            EventAggregate<InteractionIconEventArgs>.Instance.TriggerEvent(
-                new InteractionIconEventArgs(true, InteractionType.Pickup));
-        }
     }
 }
