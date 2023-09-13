@@ -5,10 +5,12 @@ namespace ThePatient
 {
     public class InspectPickup : InspectInteractable, IPickupable
     {
+        [SerializeField] private InventoryItem itemSO;
         protected virtual void OnEnable()
         {
             OnInspectExit += Pickup;
             _input.InspectExit += DestroyInspect;
+            itemSO.SetItem(this);
         }
 
         protected virtual void OnDisable()
@@ -51,5 +53,12 @@ namespace ThePatient
         {
 
         }
+
+        public InventoryItem GetItem()
+        {
+            if(itemSO == null) { return null; }
+
+            return itemSO;
+        } 
     }
 }
