@@ -11,11 +11,15 @@ namespace ThePatient
     {
         [Header("Reference")]
         [SerializeField] ParticleSystem sinkWater;
+
         EmissionModule emission;
+
+        bool isOn = true;
         public override bool Interact()
         {
             emission = sinkWater.emission;
-            emission.enabled = !sinkWater.emission.enabled;
+            isOn = !sinkWater.emission.enabled;
+            emission.enabled = isOn;
 
             CompleteObjective();
             return false;
@@ -28,8 +32,11 @@ namespace ThePatient
             {
                 if (questObjectiveObject.GetQuest().IsActive)
                 {
-                    if (emission.enabled)
-                        emission.enabled = false;
+                    if (isOn)
+                    {
+                        isOn = false;
+                        emission.enabled = isOn;
+                    }
 
                     questObjectiveObject.CompleteObjective();
                     gameObject.GetComponent<Collider>().enabled = false;
@@ -50,12 +57,14 @@ namespace ThePatient
 
         public override object CaptureState()
         {
-            return null;
+            return isOn;
         }
 
         public override void RestoreState(object state)
         {
-
+            isOn = (bool)state;
+            emission = sinkWater.emission;
+            emission.enabled = isOn;
         }
     }
 }

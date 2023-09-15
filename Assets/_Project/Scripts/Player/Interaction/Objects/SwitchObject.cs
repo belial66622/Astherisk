@@ -12,7 +12,7 @@ namespace ThePatient
         List<Renderer> emissions = new List<Renderer>();
         List<Light> lights = new List<Light>();
 
-        bool isOn;
+        bool isOn = true;
         protected override void Start()
         {
             InitLight();
@@ -80,12 +80,13 @@ namespace ThePatient
 
         public override object CaptureState()
         {
-            return null;
+            return isOn;
         }
 
         public override void RestoreState(object state)
         {
-
+            isOn = (bool)state;
+            ToggleLight(!isOn);
         }
     }
 }

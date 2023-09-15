@@ -35,6 +35,7 @@ namespace ThePatient
         private void OnEnable()
         {
             _input.Flashlight += ToggleFlashlight;
+            _input.WalkieTalkie += ToggleWalkieTalkie;
             _input.Look += FlashlightLook;
         }
 
@@ -42,6 +43,7 @@ namespace ThePatient
         private void OnDisable()
         {
             _input.Flashlight -= ToggleFlashlight;
+            _input.WalkieTalkie -= ToggleWalkieTalkie;
             _input.Look -= FlashlightLook;
         }
 
@@ -50,7 +52,6 @@ namespace ThePatient
             if (Inventory.Instance.HasItem(flashlight))
             {
                 flashlightTransform.gameObject.SetActive(!flashlightTransform.gameObject.activeSelf);
-                ToggleWalkieTalkie();
             }
         }
         private void ToggleWalkieTalkie()

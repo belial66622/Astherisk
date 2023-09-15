@@ -1,9 +1,0 @@
-<a href="https://www.flaticon.com/free-icons/door" title="door icons">Door icons created by Freepik - Flaticon</a>
-<a href="https://www.flaticon.com/free-icons/hand" title="hand icons">Hand icons created by Freepik - Flaticon</a>
-<a href="https://www.flaticon.com/free-icons/search" title="search icons">Search icons created by Icon home - Flaticon</a>
-<a href="https://www.flaticon.com/free-icons/letter-e" title="letter e icons">Letter e icons created by Md Tanvirul Haque - Flaticon</a>
-<a href="https://www.flaticon.com/free-icons/message" title="message icons">Message icons created by Becris - Flaticon</a>
-<a href="https://www.flaticon.com/free-icons/interaction" title="interaction icons">Interaction icons created by smashingstocks - Flaticon</a>
-<a href="https://www.flaticon.com/free-icons/no-key" title="no key icons">No key icons created by Liyuza - Flaticon</a>
-<a href="https://www.flaticon.com/free-icons/password" title="password icons">Password icons created by Pixel perfect - Flaticon</a>
-

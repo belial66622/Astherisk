@@ -24,6 +24,7 @@ namespace ThePatient
         public event Action Interact = delegate { };
         public event Action<bool> Pause = delegate { };
         public event Action Flashlight = delegate { };
+        public event Action WalkieTalkie = delegate { };
         public event Action UIClick = delegate { };
 
         public bool UIClicked => _inputs.UI.Click.ReadValue<float>() > 0;
@@ -178,13 +179,22 @@ namespace ThePatient
             }
         }
 
-
         public void OnToggleFlashlight(InputAction.CallbackContext context)
         {
             switch (context.phase)
             {
                 case InputActionPhase.Performed:
                     Flashlight.Invoke();
+                    break;
+            }
+        }
+
+        public void OnToggleWalkieTalkie(InputAction.CallbackContext context)
+        {
+            switch (context.phase)
+            {
+                case InputActionPhase.Performed:
+                    WalkieTalkie.Invoke();
                     break;
             }
         }
@@ -344,6 +354,7 @@ namespace ThePatient
                     break;
             }
         }
+
 
 
         #endregion

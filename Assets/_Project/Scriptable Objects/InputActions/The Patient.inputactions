@@ -94,6 +94,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ToggleWalkieTalkie",
+                    "type": "Button",
+                    "id": "b24b195d-a11e-4e54-a65b-d7ad4b927689",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -457,6 +466,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "ToggleFlashlight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "526f6680-331e-45d1-9b4f-5fc8685c6512",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ToggleWalkieTalkie",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "de639158-cc46-46b0-9780-61ef4bde31ef",
+                    "path": "<Gamepad>/leftStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "ToggleWalkieTalkie",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
