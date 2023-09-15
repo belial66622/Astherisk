@@ -7,6 +7,7 @@ namespace ThePatient
 {
     public class LockObject : InspectPickup
     {
+        [Header("Lock Parameter")]
         [SerializeField] int password;
 
         [SerializeField] Transform[] numberRolls;
@@ -35,7 +36,8 @@ namespace ThePatient
 
         protected override void OnEnable()
         {
-            OnInspectExit += CheckPasswordMatching;
+            base.OnEnable();
+            OnInspectExit += CheckPassword;
             _input.InspectExit += ExitInspect;
             _input.SelectUp += SelectUp;
             _input.SelectDown += SelectDown;
@@ -47,7 +49,7 @@ namespace ThePatient
 
         protected override void OnDisable()
         {
-            OnInspectExit -= CheckPasswordMatching;
+            OnInspectExit -= CheckPassword;
             _input.InspectExit -= ExitInspect;
             _input.SelectUp -= SelectUp;
             _input.SelectDown -= SelectDown;
@@ -64,7 +66,7 @@ namespace ThePatient
             selectedRoll.UpdateMaterial(1, .5f);
         }
 
-        void CheckPasswordMatching(string audio)
+        void CheckPassword(string audio)
         {
             if(AppendRollNumber() == password)
             {

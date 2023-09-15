@@ -5,18 +5,15 @@ namespace ThePatient
 {
     public class InspectPickup : InspectInteractable, IPickupable
     {
+        [Header("Inventory Parameter")]
         [SerializeField] private InventoryItem itemSO;
         protected virtual void OnEnable()
         {
-            OnInspectExit += Pickup;
-            _input.InspectExit += DestroyInspect;
             itemSO.SetItem(this);
         }
 
         protected virtual void OnDisable()
         {
-            OnInspectExit -= Pickup;
-            _input.InspectExit -= DestroyInspect;
         }
 
         public override bool Interact()
@@ -36,7 +33,7 @@ namespace ThePatient
             EventAggregate<InteractionIconEventArgs>.Instance.TriggerEvent(
                 new InteractionIconEventArgs(true, InteractionType.Pickup));
         }
-        public virtual void Pickup([DefaultValue("Key Pickup")] string pickupAudio)
+        public virtual void Pickup([DefaultValue("KeyPickup")] string pickupAudio)
         {
             AudioManager.Instance.PlaySFX(pickupAudio);
             Inventory.Instance.AddItem(this);

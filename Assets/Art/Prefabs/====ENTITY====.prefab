@@ -181,153 +181,6 @@ Transform:
   m_Father: {fileID: 3095203114973272929}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1824369387
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1824369388}
-  m_Layer: 0
-  m_Name: Flashlight
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1824369388
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1824369387}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.21500015, y: 0, z: 0.11400032}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2106222174}
-  m_Father: {fileID: 9039822862283974244}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1857111690
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1857111691}
-  - component: {fileID: 1857111693}
-  - component: {fileID: 1857111692}
-  m_Layer: 0
-  m_Name: Spot Light
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1857111691
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1857111690}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.1258, y: 0, z: -0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2106222174}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!108 &1857111693
-Light:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1857111690}
-  m_Enabled: 1
-  serializedVersion: 10
-  m_Type: 0
-  m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 25
-  m_Range: 20
-  m_SpotAngle: 74.59392
-  m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 2
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-    m_CullingMatrixOverride:
-      e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 2800000, guid: b3582cf4fa4a68d43bc54ae622608d12, type: 3}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingLayerMask: 1
-  m_Lightmapping: 4
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 0
-  m_ColorTemperature: 6799
-  m_UseColorTemperature: 1
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
---- !u!114 &1857111692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1857111690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Version: 1
-  m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_LightCookieSize: {x: 1, y: 1}
-  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &2032277235
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,39 +299,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!1 &2106222173
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2106222174}
-  m_Layer: 0
-  m_Name: Flashlight (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2106222174
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2106222173}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 616106368124647215}
-  - {fileID: 1857111691}
-  m_Father: {fileID: 1824369388}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &616106367074238997
 GameObject:
   m_ObjectHideFlags: 0
@@ -1152,6 +972,7 @@ GameObject:
   - component: {fileID: 892861297832890234}
   - component: {fileID: 7272821007678047775}
   - component: {fileID: 7272821007678047768}
+  - component: {fileID: 3737625252877899180}
   m_Layer: 7
   m_Name: kayu pintu
   m_TagString: Untagged
@@ -1252,6 +1073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 616106367285775060}
   doorState: 2
   requiredKey: {fileID: 5597148771783297876}
@@ -1263,6 +1085,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0.3
   lockDuration: 1
+--- !u!114 &3737625252877899180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587588043861957978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!1 &2614653569635669831
 GameObject:
   m_ObjectHideFlags: 0
@@ -2217,6 +2052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 3546884958190873240}
   doorState: 0
   requiredKey: {fileID: 0}
@@ -2228,6 +2064,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0
   lockDuration: 1
+--- !u!114 &7377306397287177546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6500739355799822662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!4 &7175909659435418433 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7717246349459268815, guid: b3edb90deb4fbd4439eeb04a1d3ee32f,
@@ -2252,6 +2101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 7175909659435418433}
   doorState: 0
   requiredKey: {fileID: 0}
@@ -2263,6 +2113,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0
   lockDuration: 1
+--- !u!114 &5960471919943460226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7560786771185297344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!1001 &616106367267603449
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2490,6 +2353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 6038035031183926410}
   doorState: 0
   requiredKey: {fileID: 5597148771783297876}
@@ -2501,6 +2365,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0.3
   lockDuration: 1
+--- !u!114 &6434794822752947936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2390591273007300553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!4 &6038035031183926410 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -2645950934974027917, guid: ae8dc155a8852164bbd3d714ae58e424,
@@ -2966,6 +2843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 3546884958339918531}
   doorState: 0
   requiredKey: {fileID: 0}
@@ -2977,6 +2855,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0
   lockDuration: 1
+--- !u!114 &5091667512646245494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6500739355919507741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!4 &7175909659584430874 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7717246349459268815, guid: b3edb90deb4fbd4439eeb04a1d3ee32f,
@@ -3001,6 +2892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 7175909659584430874}
   doorState: 0
   requiredKey: {fileID: 0}
@@ -3012,6 +2904,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0
   lockDuration: 1
+--- !u!114 &8426215635024727767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7560786771065874331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!1001 &616106367379953635
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3260,6 +3165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 6038035031064135716}
   doorState: 0
   requiredKey: {fileID: 5597148771783297876}
@@ -3271,6 +3177,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0.3
   lockDuration: 1
+--- !u!114 &4864626871864519787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2390591273134969703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!4 &6038035031064135716 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -2645950934974027917, guid: ae8dc155a8852164bbd3d714ae58e424,
@@ -3736,6 +3655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 3546884958441811341}
   doorState: 0
   requiredKey: {fileID: 0}
@@ -3747,6 +3667,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0
   lockDuration: 1
+--- !u!114 &4636967001439627119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6500739355817322067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!4 &7175909659483325524 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7717246349459268815, guid: b3edb90deb4fbd4439eeb04a1d3ee32f,
@@ -3771,6 +3704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 7175909659483325524}
   doorState: 0
   requiredKey: {fileID: 0}
@@ -3782,6 +3716,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0
   lockDuration: 1
+--- !u!114 &5512838428464301325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7560786770963849429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!1001 &616106367445166028
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4009,6 +3956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 6038035031009411263}
   doorState: 2
   requiredKey: {fileID: 5597148771783297876}
@@ -4020,6 +3968,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0.3
   lockDuration: 1
+--- !u!114 &5287315180868291576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2390591273112493052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!4 &6038035031009411263 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -2645950934974027917, guid: ae8dc155a8852164bbd3d714ae58e424,
@@ -4591,6 +4552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 3546884958708098169}
   doorState: 2
   requiredKey: {fileID: 0}
@@ -4602,6 +4564,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0
   lockDuration: 1
+--- !u!114 &2273288170747054158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6500739355014197159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!4 &7175909659724549536 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7717246349459268815, guid: b3edb90deb4fbd4439eeb04a1d3ee32f,
@@ -4626,6 +4601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 7175909659724549536}
   doorState: 2
   requiredKey: {fileID: 0}
@@ -4637,6 +4613,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0
   lockDuration: 1
+--- !u!114 &3479034474700214043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7560786770668071201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!1001 &616106367718751288
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4865,7 +4854,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quest: {fileID: 11400000, guid: 5b27cefd42133af4e9a4e53602d01635, type: 2}
-  objective: Unlock Door
+  objective: 0
 --- !u!114 &616106369150368917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4878,6 +4867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 6038035030737541963}
   doorState: 2
   requiredKey: {fileID: 1881460463867665128}
@@ -4889,6 +4879,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0.5
   lockDuration: 0.5
+--- !u!114 &6046010702426666899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2390591273394454536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!4 &6038035030737541963 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -2645950934974027917, guid: ae8dc155a8852164bbd3d714ae58e424,
@@ -5354,6 +5357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 3546884958780332164}
   doorState: 0
   requiredKey: {fileID: 0}
@@ -5365,6 +5369,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0
   lockDuration: 1
+--- !u!114 &683297439097081565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6500739355210552154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!4 &7175909659949330781 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7717246349459268815, guid: b3edb90deb4fbd4439eeb04a1d3ee32f,
@@ -5389,6 +5406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 7175909659949330781}
   doorState: 0
   requiredKey: {fileID: 0}
@@ -5400,6 +5418,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0
   lockDuration: 1
+--- !u!114 &5916404163723234445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7560786770625517020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!1001 &616106367796979548
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5785,6 +5816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 136436389604701370}
   doorState: 0
   requiredKey: {fileID: 0}
@@ -5796,6 +5828,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0
   lockDuration: 1
+--- !u!114 &5962849884311523814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3188985112559472331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!1001 &616106367882366928
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6058,6 +6103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 6038035030440061091}
   doorState: 0
   requiredKey: {fileID: 5597148771783297876}
@@ -6069,6 +6115,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0.3
   lockDuration: 1
+--- !u!114 &4333887162603240631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2390591273616815072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!4 &6038035030440061091 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -2645950934974027917, guid: ae8dc155a8852164bbd3d714ae58e424,
@@ -6224,6 +6283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 136436389764312971}
   doorState: 0
   requiredKey: {fileID: 0}
@@ -6235,6 +6295,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0
   lockDuration: 1
+--- !u!114 &1671429973303351156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3188985112198403578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!1001 &616106367953724465
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6869,6 +6942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 3546884958935896671}
   doorState: 2
   requiredKey: {fileID: 0}
@@ -6880,6 +6954,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0
   lockDuration: 1
+--- !u!114 &4640528536128584852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6500739355323259265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!4 &7175909660029434758 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7717246349459268815, guid: b3edb90deb4fbd4439eeb04a1d3ee32f,
@@ -6904,6 +6991,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 7175909660029434758}
   doorState: 2
   requiredKey: {fileID: 0}
@@ -6915,6 +7003,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0
   lockDuration: 1
+--- !u!114 &6748838989481187584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7560786770436071175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!1001 &616106368007109100
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7202,7 +7303,7 @@ PrefabInstance:
     - target: {fileID: 4506132474116542703, guid: d0b9cf862179659458ef727a9e9d2d4b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4541663398606187810, guid: d0b9cf862179659458ef727a9e9d2d4b,
         type: 3}
@@ -7535,6 +7636,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7725730970431778588, guid: d0b9cf862179659458ef727a9e9d2d4b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8021876631472215529, guid: d0b9cf862179659458ef727a9e9d2d4b,
         type: 3}
       propertyPath: m_Layer
@@ -7699,7 +7805,7 @@ PrefabInstance:
         type: 3}
       propertyPath: flashlightTransform
       value: 
-      objectReference: {fileID: 1824369388}
+      objectReference: {fileID: 0}
     - target: {fileID: 8502584466122023897, guid: d0b9cf862179659458ef727a9e9d2d4b,
         type: 3}
       propertyPath: m_Layer
@@ -7863,12 +7969,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0b9cf862179659458ef727a9e9d2d4b, type: 3}
---- !u!4 &9039822862283974244 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8502584464949337992, guid: d0b9cf862179659458ef727a9e9d2d4b,
-    type: 3}
-  m_PrefabInstance: {fileID: 616106368007109100}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9039822862316872875 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8502584464985120071, guid: d0b9cf862179659458ef727a9e9d2d4b,
@@ -8037,44 +8137,6 @@ MonoBehaviour:
   crouchStepMultiplier: 0.6
   playerAudioSource: {fileID: 247198515}
   footstepTimer: 0
---- !u!114 &9039822864075918521 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8502584465407112533, guid: d0b9cf862179659458ef727a9e9d2d4b,
-    type: 3}
-  m_PrefabInstance: {fileID: 616106368007109100}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9039822864075918522}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 760cfb9a926005448b040a09395eb661, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &9039822864075918522 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8502584465407112534, guid: d0b9cf862179659458ef727a9e9d2d4b,
-    type: 3}
-  m_PrefabInstance: {fileID: 616106368007109100}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &201344616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9039822864075918522}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48923e1fd953a854d8045e5049c195ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flashlightObject: {fileID: 0}
-  _input: {fileID: 11400000, guid: 70dccaa611a3c2045b57dfb21865e234, type: 2}
-  cameraController: {fileID: 9039822864075918521}
-  flashlightTransform: {fileID: 1824369388}
-  maxRotX: 20
-  maxRotY: 10
-  flashlightrotateMultiplier: 1.5
-  rotateSmooth: 7
 --- !u!1001 &616106368086392847
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8284,6 +8346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 136436389905003540}
   doorState: 0
   requiredKey: {fileID: 0}
@@ -8295,6 +8358,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0
   lockDuration: 1
+--- !u!114 &2836456397260167578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3188985112330473061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!1001 &616106368107897167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8562,6 +8638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 6038035030346810940}
   doorState: 2
   requiredKey: {fileID: 5597148771783297876}
@@ -8573,6 +8650,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0.5
   lockDuration: 0.5
+--- !u!114 &7452179529707259132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2390591273775226239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!4 &6038035030346810940 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -2645950934974027917, guid: ae8dc155a8852164bbd3d714ae58e424,
@@ -8806,6 +8896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 6038035030333331302}
   doorState: 0
   requiredKey: {fileID: 5597148771783297876}
@@ -8817,74 +8908,24 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0.3
   lockDuration: 1
+--- !u!114 &9032562830042168394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2390591273796406309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!4 &6038035030333331302 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -2645950934974027917, guid: ae8dc155a8852164bbd3d714ae58e424,
     type: 3}
   m_PrefabInstance: {fileID: 616106368119648277}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &616106368124513711
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 2106222174}
-    m_Modifications:
-    - target: {fileID: 100000, guid: 9a3b57f0a1248be419dd9c4d54748512, type: 3}
-      propertyPath: m_Name
-      value: Flashlight
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 9a3b57f0a1248be419dd9c4d54748512, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 9a3b57f0a1248be419dd9c4d54748512, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 9a3b57f0a1248be419dd9c4d54748512, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 9a3b57f0a1248be419dd9c4d54748512, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 9a3b57f0a1248be419dd9c4d54748512, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 9a3b57f0a1248be419dd9c4d54748512, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 9a3b57f0a1248be419dd9c4d54748512, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 9a3b57f0a1248be419dd9c4d54748512, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 9a3b57f0a1248be419dd9c4d54748512, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 9a3b57f0a1248be419dd9c4d54748512, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 9a3b57f0a1248be419dd9c4d54748512, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9a3b57f0a1248be419dd9c4d54748512, type: 3}
---- !u!4 &616106368124647215 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400000, guid: 9a3b57f0a1248be419dd9c4d54748512,
-    type: 3}
-  m_PrefabInstance: {fileID: 616106368124513711}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &616106368163419717
 PrefabInstance:
@@ -9345,6 +9386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 3546884957036763987}
   doorState: 0
   requiredKey: {fileID: 0}
@@ -9356,6 +9398,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0
   lockDuration: 1
+--- !u!114 &4031343781072942502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6500739354538233997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!4 &7175909658204287626 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7717246349459268815, guid: b3edb90deb4fbd4439eeb04a1d3ee32f,
@@ -9380,6 +9435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 7175909658204287626}
   doorState: 0
   requiredKey: {fileID: 0}
@@ -9391,6 +9447,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0
   lockDuration: 1
+--- !u!114 &4862310637110584895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7560786770221471243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!1001 &616106368201471592
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9940,6 +10009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 3546884957138195558}
   doorState: 0
   requiredKey: {fileID: 0}
@@ -9951,6 +10021,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0
   lockDuration: 1
+--- !u!114 &5831006954553388254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6500739354705207224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!4 &7175909658374438335 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7717246349459268815, guid: b3edb90deb4fbd4439eeb04a1d3ee32f,
@@ -9975,6 +10058,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 7175909658374438335}
   doorState: 0
   requiredKey: {fileID: 0}
@@ -9986,6 +10070,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0
   lockDuration: 1
+--- !u!114 &1938802621423818947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7560786770124233022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!1001 &616106368440718372
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10131,6 +10228,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -6547273188191380993, guid: ae8dc155a8852164bbd3d714ae58e424, type: 3}
+--- !u!114 &198041525067878463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2390591271965812756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!114 &616106368227526482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10143,6 +10253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 6038035032021496663}
   doorState: 2
   requiredKey: {fileID: 5597148771783297876}
@@ -10317,6 +10428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 6038035032127111739}
   doorState: 0
   requiredKey: {fileID: 5597148771783297876}
@@ -10328,6 +10440,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0.3
   lockDuration: 1
+--- !u!114 &7968500717244135483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2390591272070388088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!4 &6038035032127111739 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -2645950934974027917, guid: ae8dc155a8852164bbd3d714ae58e424,
@@ -10624,6 +10749,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -6547273188191380993, guid: ae8dc155a8852164bbd3d714ae58e424, type: 3}
+--- !u!114 &562253384535397913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2390591272234942506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!114 &616106368190306065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10636,6 +10774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 6038035031754808169}
   doorState: 0
   requiredKey: {fileID: 0}
@@ -10802,6 +10941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 136436388553619102}
   doorState: 0
   requiredKey: {fileID: 0}
@@ -10813,6 +10953,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0
   lockDuration: 1
+--- !u!114 &7165555017275932298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3188985111532145903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!1001 &616106368950243388
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11272,6 +11425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 3546884957790297386}
   doorState: 0
   requiredKey: {fileID: 0}
@@ -11283,6 +11437,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0
   lockDuration: 1
+--- !u!114 &9156185101793866758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6500739354321311476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!4 &7175909659026502899 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7717246349459268815, guid: b3edb90deb4fbd4439eeb04a1d3ee32f,
@@ -11307,6 +11474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 7175909659026502899}
   doorState: 0
   requiredKey: {fileID: 0}
@@ -11318,6 +11486,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0
   lockDuration: 1
+--- !u!114 &1145236296047846946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7560786769434120306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!1001 &616106369058274899
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11908,6 +12089,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 616106369083898453}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &168883208638710188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6500739354451917981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!114 &616106369083898446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11920,6 +12114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 3546884957928372035}
   doorState: 0
   requiredKey: {fileID: 0}
@@ -11955,6 +12150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 7175909659162369690}
   doorState: 0
   requiredKey: {fileID: 0}
@@ -11966,6 +12162,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0
   lockDuration: 1
+--- !u!114 &6606544231591719850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7560786769300650523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!1001 &616106369096422069
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12193,6 +12402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 6038035031368906182}
   doorState: 0
   requiredKey: {fileID: 5597148771783297876}
@@ -12204,6 +12414,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0.3
   lockDuration: 1
+--- !u!114 &7740572420830459324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2390591272687578757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!4 &6038035031368906182 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -2645950934974027917, guid: ae8dc155a8852164bbd3d714ae58e424,
@@ -12437,6 +12660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799e4250cc9157d4a9892976b37b6940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventname: 0
   doorPivot: {fileID: 6038035031432556568}
   doorState: 0
   requiredKey: {fileID: 5597148771783297876}
@@ -12448,6 +12672,19 @@ MonoBehaviour:
   rattleDuration: 0.05
   cooldownTime: 0.3
   lockDuration: 1
+--- !u!114 &4753701211057143458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2390591272697752411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!4 &6038035031432556568 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -2645950934974027917, guid: ae8dc155a8852164bbd3d714ae58e424,

@@ -104,7 +104,7 @@ namespace ThePatient
 
             foreach(var item in inventoryItems)
             {
-                item.GetObject().Pickup("");
+                item.GetObject().gameObject.SetActive(false);
             }
         }
     }

@@ -5,7 +5,7 @@ namespace ThePatient
 {
     public abstract class InspectInteractable : BaseInteractable
     {
-
+        [Header("Inspect Parameter")] 
         [SerializeField] protected InputReader _input;
         [SerializeField] protected Vector3 inspectRotation = new Vector3(0, 0, 0);
         [SerializeField][Range(.15f, .5f)] protected float zoomInspect = .5f;
