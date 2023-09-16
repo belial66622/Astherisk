@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 namespace Utilities {
     public class SceneLoader
     {
-        public string[] SceneName = {"Main Menu","the patient" };
+        public string[] SceneName = {"Main Menu","the patient programmer" };
 
 
         public void ChangeScene(ESceneName name)

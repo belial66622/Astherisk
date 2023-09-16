@@ -75,6 +75,7 @@ namespace ThePatient
 
         private void StopLooping(string _sfxTobeStopped)
         {
+            if(AudioManager.Instance != null && _tempSound != null)
             AudioManager.Instance.StopLoopingSFX(_tempSound);
         }
 

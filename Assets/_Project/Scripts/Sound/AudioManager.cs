@@ -39,13 +39,55 @@ public class AudioManager : MonoBehaviour
             LoadAudioSetting();
             //PlayBGM(_savedSounds.MainMenuBGM); // Only called once when application is opened
         }
-
+    /*
         private void UpdateMixerVolume(bool _isMute)
         {
-            _masterAudio.audioMixer.SetFloat("Volume", _isMute ? -80f : 0f);
+            _masterAudio.audioMixer.SetFloat("Master", _isMute ? -80f : 0f);
+        }
+      */  
+
+        private void UpdateMixerBGM(bool _isMute)
+        {
+            _masterAudio.audioMixer.SetFloat("BGM", _isMute ? -80f : 0f);
+        }
+        
+        private void UpdateVolumeBGM(float volume)
+        {
+            if (PlayerPrefs.HasKey("_isBGMMute"))
+            {
+                if (PlayerPrefs.GetInt("_isBGMMute") == 1)
+                { 
+                    return; 
+                }
+                else
+                {
+                    _masterAudio.audioMixer.SetFloat("BGM", volume);
+                }
+            }
         }
 
-        public bool LoadAudioSetting()
+        private void UpdateMixerSFX(bool _isMute)
+        {
+            _masterAudio.audioMixer.SetFloat("SFX", _isMute ? -80f : 0f);
+        }
+        
+        private void UpdateVolumeSFX(float volume)
+        {
+            if (PlayerPrefs.HasKey("_isSFXMute"))
+            {
+                if (PlayerPrefs.GetInt("_isSFXMute") == 1)
+                { 
+                    return; 
+                }
+                else
+                {
+                    _masterAudio.audioMixer.SetFloat("SFX", volume);
+                }
+            }
+        }
+
+
+    public bool LoadAudioSetting()
         {
             bool _temp;
             if (!PlayerPrefs.HasKey("_isMute"))
@@ -54,20 +96,49 @@ public class AudioManager : MonoBehaviour
                 PlayerPrefs.Save();
             }
             _temp = !(PlayerPrefs.GetInt("_isMute") == 0);
-            UpdateMixerVolume(_temp);
+           // UpdateMixerVolume(_temp);
             return _temp;
         }
-
-        public void UpdateAudioSetting(bool _isMute)
+        
+        public void BGMVolume(float volume)
         {
-            if (!PlayerPrefs.HasKey("_isMute"))
+        if (!PlayerPrefs.HasKey("_BGMVolume"))
+        {
+            PlayerPrefs.SetFloat("_BGMVolume", 0);
+        }
+            PlayerPrefs.SetFloat("_BGMVolume", volume);
+            UpdateVolumeBGM(volume);
+        }
+
+        public void SFXVolume(float volume) 
+        {
+
+            if (!PlayerPrefs.HasKey("_SFXVolume"))
             {
-                PlayerPrefs.SetInt("_isMute", 0);
-                PlayerPrefs.Save();
+                PlayerPrefs.SetFloat("_SFXVolume", 0);
             }
-            PlayerPrefs.SetInt("_isMute", _isMute ? 1 : 0);
-            PlayerPrefs.Save();
-            UpdateMixerVolume(_isMute);
+            PlayerPrefs.SetFloat("_SFXVolume", volume);
+            UpdateVolumeSFX(volume);
+        }
+
+        public void UpdateBGMSetting(bool _isMute)
+        {
+            if (!PlayerPrefs.HasKey("_isBGMMute"))
+            {
+                PlayerPrefs.SetInt("_isBGMMute", 0);
+            }
+            PlayerPrefs.SetInt("_isBGMMute", _isMute ? 1 : 0);
+            UpdateMixerBGM(_isMute);
+        }
+
+        public void UpdateSFXSetting(bool _isMute)
+        {
+            if (!PlayerPrefs.HasKey("_isSFXMute"))
+            {
+                PlayerPrefs.SetInt("_isSFXMute", 0);
+            }
+            PlayerPrefs.SetInt("_isSFXMute", _isMute ? 1 : 0);
+            UpdateMixerBGM(_isMute);
         }
 
         private void AudioSourceInit(Sound _sound)
