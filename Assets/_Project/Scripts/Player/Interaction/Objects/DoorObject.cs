@@ -19,7 +19,7 @@ public class DoorObject : BaseInteractable
 
     [Header ("Trigger Parameter")]
     [SerializeField] EEventData eventname;
-    NodeParser dialogue;
+    DialogOnly dialogue;
 
 
     [Header("Reference")]
@@ -51,7 +51,7 @@ public class DoorObject : BaseInteractable
 
     protected override void Start()
     {
-        dialogue = GetComponent<NodeParser>();
+        dialogue = GetComponent<DialogOnly>();
         _spatialsound = this.AddComponent<AudioSource>();
         defaultRotation = doorPivot.localRotation;
         doorCooldownTimer = new CountdownTimer(cooldownTime);
