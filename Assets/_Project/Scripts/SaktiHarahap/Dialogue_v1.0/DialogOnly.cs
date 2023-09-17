@@ -39,8 +39,9 @@ public class DialogOnly : MonoBehaviour
         {
             speaker.text = dataParts[1];
             dialogue.text = dataParts[2];
-            yield return new WaitUntil (() => Input.GetMouseButtonDown(0));
-            yield return new WaitUntil(() => Input.GetMouseButtonUp(0));
+            yield return new WaitForSeconds(.1f);
+            yield return new WaitUntil (() => Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space));
+            yield return new WaitUntil(() => Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Space));
             currentDialogue++;
             int totalNodes = graph.nodes.Count - 1;
 

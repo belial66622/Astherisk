@@ -20,6 +20,7 @@ public class NodeParser : InspectOnly
     [SerializeField] GameObject dialogueCanva;
 
     [SerializeField] UnityEvent OnDialogueEnd;
+    [SerializeField] EEventData _eventName;
     IEnumerator ParseNode()
     {
         BaseNode baseNode = graph.current;
@@ -38,8 +39,8 @@ public class NodeParser : InspectOnly
         {
             speaker.text = dataParts[1];
             dialogue.text = dataParts[2];
-            yield return new WaitUntil (() => Input.GetMouseButtonDown(0));
-            yield return new WaitUntil(() => Input.GetMouseButtonUp(0));
+            yield return new WaitUntil (() => Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space));
+            yield return new WaitUntil(() => Input.GetMouseButtonUp(0) || Input.GetKeyDown(KeyCode.Space));
             currentDialogue++;
             int totalNodes = graph.nodes.Count - 1;
 
@@ -57,6 +58,8 @@ public class NodeParser : InspectOnly
                 OnDialogueEnd?.Invoke();
             }
         }
+        TriggerManager.Instance.OnEnter(_eventName);
+
     }
 
     public void NextNode(string fieldName)

@@ -6,10 +6,14 @@ namespace ThePatient
 {
     public enum EEventData 
     {
-        WomanCry,
-        WomanScream,
+
         DoNothing,
         Tutorial,
-        Block
+        Block,
+        Absent,
+        SuperKey,
+        WomanCry,
+        WomanScream
+
     }
 }

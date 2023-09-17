@@ -80,6 +80,32 @@ namespace ThePatient
             return false;
         }
 
+        public bool CheckMultiple(EEventData[] _multipleEvent)
+        {
+            int[] checklist = new int[_multipleEvent.Length];
+
+            for (int i = 0; i < _multipleEvent.Length; i++)
+            {
+                STrigger _searchedTrigger = System.Array.Find(_triggerList, trigger => trigger._name == _multipleEvent[i]);
+                if (_searchedTrigger != null)
+                {
+                    checklist[i] = _searchedTrigger._isActive ? 1:0 ;
+                }
+                if (_searchedTrigger._name == EEventData.DoNothing)
+                {
+                    return false;
+                }
+            }
+
+            foreach (int c in checklist)
+            {
+                if (c == 1)
+                { 
+                    return true;
+                }
+            }
+            return false;
+        }
 
         public void EventSetter()
         {

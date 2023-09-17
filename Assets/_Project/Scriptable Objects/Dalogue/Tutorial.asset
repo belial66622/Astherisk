@@ -74,7 +74,7 @@ MonoBehaviour:
   entry: 0
   exit: 0
   speakerName: Saya
-  dialogueLine: Ambil Kunci Dulu Nich
+  dialogueLine: tadi mau ngapain ya?
   sprite: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:

@@ -23,7 +23,7 @@ MonoBehaviour:
     _deactivate: 
   - _name: 1
     _isActive: 1
-    _activate: 00000000
+    _activate: 
     _deactivate: 01000000
   - _name: 3
     _isActive: 1
@@ -32,4 +32,4 @@ MonoBehaviour:
   - _name: 4
     _isActive: 1
     _activate: 
-    _deactivate: 
+    _deactivate: 04000000

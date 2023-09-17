@@ -18,7 +18,7 @@ public class DoorObject : BaseInteractable
     }
 
     [Header ("Trigger Parameter")]
-    [SerializeField] EEventData eventname;
+    [SerializeField] EEventData[] eventname;
     DialogOnly dialogue;
 
 
@@ -100,9 +100,9 @@ public class DoorObject : BaseInteractable
 
     public override bool Interact()
     {
-        if (!TriggerManager.Instance.CheckActive(eventname) || eventname == EEventData.DoNothing)
+        if (!TriggerManager.Instance.CheckMultiple(eventname) || eventname == null)
         { HandleDoorState(doorState); }
-        else if (TriggerManager.Instance.CheckActive(eventname))
+        else
         {
             dialogue.Interact();
         }
