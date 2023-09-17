@@ -78,26 +78,29 @@ namespace ThePatient
             _graphic.onClick.AddListener(SettingGraphic);
             _bgmVolume.onValueChanged.AddListener(delegate 
             {
-                AudioManager.Instance.BGMVolume((_bgmVolume.value - 100) * 0.8f);                
+                AudioManager.Instance.BGMVolume(_bgmVolume.value);                
                 _bgmValue.text = _bgmVolume.value.ToString();
             });
 
             _sfxVolume.onValueChanged.AddListener(delegate
             {
-                AudioManager.Instance.SFXVolume((_sfxVolume.value - 100) * 0.8f);
+                AudioManager.Instance.SFXVolume(_sfxVolume.value);
                 _sfxValue.text = _sfxVolume.value.ToString();
             });
 
             _bgm.onValueChanged.AddListener(delegate 
             {
                 AudioManager.Instance.UpdateBGMSetting(!_bgm.isOn);
+                _bgmValue.text = _bgmVolume.value.ToString();
             }
             );
             _sfx.onValueChanged.AddListener(delegate 
             {
-                AudioManager.Instance.UpdateSFXSetting(!_bgm.isOn);
+                AudioManager.Instance.UpdateSFXSetting(!_sfx.isOn);
+                _sfxValue.text = _sfxVolume.value.ToString();
             }
             );
+            OptionLoad();
         }
 
 
@@ -150,6 +153,17 @@ namespace ThePatient
         public void Exit()
         {
                 Application.Quit();
+        }
+
+
+        void OptionLoad()
+        {
+            _bgm.isOn = PlayerPrefs.GetInt("_isBGMMute") ==0;
+            _sfx.isOn = PlayerPrefs.GetInt("_isSFXMute") == 0;
+            _sfxValue.text = PlayerPrefs.GetFloat("_SFXVolume").ToString();
+            _bgmValue.text = PlayerPrefs.GetFloat("_BGMVolume").ToString();
+            _sfxVolume.value = PlayerPrefs.GetFloat("_SFXVolume");
+            _bgmVolume.value = PlayerPrefs.GetFloat("_BGMVolume");
         }
     }
 }
