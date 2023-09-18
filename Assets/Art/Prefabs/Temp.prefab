@@ -63,8 +63,10 @@ MonoBehaviour:
   _input: {fileID: 11400000, guid: 70dccaa611a3c2045b57dfb21865e234, type: 2}
   inspectRotation: {x: 0, y: 25, z: 0}
   zoomInspect: 0.2
-  itemSO: {fileID: 0}
+  itemSO: {fileID: 11400000, guid: 51c8c509d220fab4a9ef694b223c03fd, type: 2}
   pickupAudio: KeyPickup
+  _event: 0
+  _dialog: {fileID: 0}
 --- !u!114 &9048090802983121138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,6 +80,107 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uniqueIdentifier: 4d1439fe-57c9-40d5-9fd7-845288d73309
+--- !u!1 &1767170970
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1767170971}
+  - component: {fileID: 1767170975}
+  - component: {fileID: 1767170974}
+  - component: {fileID: 1767170973}
+  - component: {fileID: 1767170972}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1767170971
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767170970}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.7311, y: 0.5063, z: -4.4618}
+  m_LocalScale: {x: 8.595186, y: 2.0125, z: 13.66817}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6379708218804364128}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &1767170975
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767170970}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &1767170974
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767170970}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1767170973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767170970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14f14f0d13792c94f945f148135122ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sightLocation: {fileID: 6379708218804364128}
+  _radius: 20
+  _angle: 360
+  _playerPos: {x: 0, y: 0, z: 0}
+  _playerRef: {fileID: 0}
+  _targetMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _obstructionMask:
+    serializedVersion: 2
+    m_Bits: 1664
+  _canSeePlayer: 0
+  _Countdownstat: 0
+  _playersighted: 0
+  _playerlost: 0
+  _player: {fileID: 0}
+--- !u!114 &1767170972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767170970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7eb98f39b6468d478ec875bc49a4446, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eventName: 0
+  _needCollision: 0
+  _soundName: Radio
+  _maxDistance: 10
+  _checkmultiple: 01000000
 --- !u!1 &790629897955257984
 GameObject:
   m_ObjectHideFlags: 0
@@ -995,6 +1098,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6379708218804364128}
   - component: {fileID: 5299769876639941316}
+  - component: {fileID: 790629899304107782}
+  - component: {fileID: 790629899304107783}
+  - component: {fileID: 790629899304107786}
   m_Layer: 0
   m_Name: Walkie Talkie
   m_TagString: Untagged
@@ -1015,6 +1121,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 815606608637514355}
+  - {fileID: 1767170971}
   m_Father: {fileID: 1135942455285232474}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1031,6 +1138,72 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.15
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &790629899304107782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8933936655877436790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d7306832075e2a4091b378ba60c7324, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _input: {fileID: 11400000, guid: 70dccaa611a3c2045b57dfb21865e234, type: 2}
+  inspectRotation: {x: -60, y: 50, z: -60}
+  zoomInspect: 0.2
+  itemSO: {fileID: 11400000, guid: a602836b0681c9b43b47a5e4a11788f8, type: 2}
+  pickupAudio: KeyPickup
+  _event: 1
+  _dialog: {fileID: 790629899304107786}
+--- !u!114 &790629899304107783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8933936655877436790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190fd3557975ffb4e8340e978e541449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 7cf822ed-f6f1-4c30-b653-09da36e1cd37
+--- !u!114 &790629899304107786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8933936655877436790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51f00082b5839e944a01a84a5cb2a046, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000, guid: 07931f73011310b44b0cca9e68d8a079, type: 2}
+  speaker: {fileID: 0}
+  dialogue: {fileID: 0}
+  speakerImage: {fileID: 0}
+  _input: {fileID: 11400000, guid: 70dccaa611a3c2045b57dfb21865e234, type: 2}
+  currentDialogue: 0
+  dialogueCanva: {fileID: 0}
+  OnDialogueEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 790629899304107782}
+        m_TargetAssemblyTypeName: ThePatient.InspectPickupObject, Assembly-CSharp
+        m_MethodName: EndDialog
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &790629899782239546
 PrefabInstance:
   m_ObjectHideFlags: 0

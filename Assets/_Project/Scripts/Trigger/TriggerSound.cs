@@ -8,12 +8,15 @@ namespace ThePatient
 {
     public class TriggerSound : Trigger, Icheck
     {
+
         PlayerCheck _checkPlayer;
         float _volume;
         [SerializeField] string _soundName;
         Sound _tempSound;
         [SerializeField] float _maxDistance;
         AudioSource TempSound;
+        [Header("Use multiple check for this trigger")]
+        [SerializeField]EEventData[] _checkmultiple;
 
         protected override void OnEnable()
         {
@@ -39,7 +42,7 @@ namespace ThePatient
         public void Distance(float distance)
         {
 
-            if (TriggerManager.Instance.CheckActive(_eventName))
+            if (TriggerManager.Instance.CheckMultiple(_checkmultiple))
             {
                 _volume = -1 * ((Mathf.Clamp(Mathf.Min(distance, _maxDistance) / _maxDistance, 0f, .9f)) - 1f);
                 Debug.Log("volume" + _volume);

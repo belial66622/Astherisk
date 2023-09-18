@@ -15,7 +15,15 @@ namespace ThePatient
         WomanCry,
         WomanScream,
         ActiveWT,
-        DeactiveWT
+        DeactiveWT,
+        toilet1_1,
+        toilet1_2,
+        toilet2_1,
+        toilet2_2,
+        toilet3_1,
+        toilet3_2,
+        toilet4_1,
+        toilet4_2,
 
     }
 }
