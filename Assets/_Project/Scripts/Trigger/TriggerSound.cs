@@ -46,6 +46,10 @@ namespace ThePatient
                 LoopingAudioSfxProcess(_soundName);
                 AudioManager.Instance.SetVolume(_tempSound, _volume, _maxDistance);
             }
+            else
+            { 
+                StopLooping(_soundName);
+            }
         }
 
 
