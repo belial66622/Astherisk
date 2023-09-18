@@ -338,10 +338,11 @@ namespace ThePatient
         {
             ITrigger[] itrigger;
             INoCollision icheckcollider;
-
+            Icheck icheck;
             itrigger = other.GetComponents<ITrigger>();
 
             icheckcollider = other.GetComponent<INoCollision>();
+            icheck = other.GetComponent<Icheck>();
 
             if(icheckcollider != null)
             { 
@@ -354,6 +355,21 @@ namespace ThePatient
                         triggerobj.DoSomething();
                     }
                 }
+            }
+
+            if(icheck != null)
+            {
+                icheck.OnEnter();
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            Icheck icheck;
+            icheck = other.GetComponent<Icheck>();
+            if (icheck != null)
+            {
+                icheck.OnExit();
             }
         }
     }

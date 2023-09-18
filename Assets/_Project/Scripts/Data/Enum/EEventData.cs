@@ -13,7 +13,9 @@ namespace ThePatient
         Absent,
         SuperKey,
         WomanCry,
-        WomanScream
+        WomanScream,
+        ActiveWT,
+        DeactiveWT
 
     }
 }
