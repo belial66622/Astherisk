@@ -7,6 +7,9 @@ namespace ThePatient
 {
     public class BakeLightmapSwapper : SingletonBehaviour<BakeLightmapSwapper>, ISaveable
     {
+        [SerializeField] Material lampSharedBaked;
+        [SerializeField] SwitchObject[] switchObjects;
+
         [SerializeField] LightmapData[] brightLMData;
         [SerializeField] LightmapData[] darkLMData;
 
@@ -43,6 +46,9 @@ namespace ThePatient
             }
 
             darkLMData = darkLMlist.ToArray();
+
+            switchObjects = FindObjectsOfType<SwitchObject>();
+            SetBrightLM();
         }
 
         private void Update()
@@ -61,12 +67,23 @@ namespace ThePatient
         {
             LightmapSettings.lightmaps = brightLMData;
             LightmapSettings.lightProbes.bakedProbes = lightmapSO[0].lightProbesData;
+            lampSharedBaked.EnableKeyword("_EMISSION");
+            foreach(var swtichobject in switchObjects)
+            {
+                swtichobject.ToggleLight(false);
+            }
             return false;
         }
+
         bool SetDarkLM()
         {
             LightmapSettings.lightmaps = darkLMData;
             LightmapSettings.lightProbes.bakedProbes = lightmapSO[1].lightProbesData;
+            lampSharedBaked.DisableKeyword("_EMISSION");
+            foreach (var swtichobject in switchObjects)
+            {
+                swtichobject.ToggleLight(true);
+            }
             return true;
         }
 

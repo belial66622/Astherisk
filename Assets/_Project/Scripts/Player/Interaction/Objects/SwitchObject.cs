@@ -39,7 +39,7 @@ namespace ThePatient
             return false;
         }
 
-        private void ToggleLight(bool isOn)
+        public void ToggleLight(bool isOn)
         {
             if (isOn)
             {
