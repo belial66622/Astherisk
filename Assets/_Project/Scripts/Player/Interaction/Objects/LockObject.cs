@@ -12,10 +12,11 @@ namespace ThePatient
 
         [SerializeField] Transform[] numberRolls;
 
-        NumberRoll selectedRoll;
+        [SerializeField] NumberRoll selectedRoll;
 
-        NumberRoll[] numberRollsArray;
+        [SerializeField] NumberRoll[] numberRollsArray;
 
+        [System.Serializable]
         class NumberRoll
         {
             public Transform transform;
@@ -25,6 +26,12 @@ namespace ThePatient
             {
                 this.transform = transform;
                 this.number = number;
+            }
+
+            public void ResetNumberRoll()
+            {
+                number = 0;
+                transform.localRotation = Quaternion.Euler(0,60,0);
             }
 
             public void UpdateMaterial(int active, float value)
@@ -120,6 +127,15 @@ namespace ThePatient
             UpdateSelectedRollMaterial();
         }
 
+        private void ResetPuzzleNumber()
+        {
+            foreach(var numberRoll in numberRollsArray)
+            {
+                numberRoll.ResetNumberRoll();
+            }
+            selectedRoll = numberRollsArray[0];
+        }
+
         private void SelectDown()
         {
             int index = GetSelectedIndex() + 1;
@@ -184,6 +200,7 @@ namespace ThePatient
         {
             Inspect();
             selectedRoll = numberRollsArray[0];
+            ResetPuzzleNumber();
             UpdateSelectedRollMaterial();
             _input.EnableLockPuzzleControl();
             return true;
