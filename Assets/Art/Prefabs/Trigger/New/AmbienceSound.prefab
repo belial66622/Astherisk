@@ -239,6 +239,11 @@ PrefabInstance:
       propertyPath: _eventName
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7927206167614320675, guid: 8c21d79d200a61246aa11e2a7918820a,
+        type: 3}
+      propertyPath: _needCollision
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c21d79d200a61246aa11e2a7918820a, type: 3}
 --- !u!4 &8193430768748131392 stripped
@@ -262,6 +267,11 @@ PrefabInstance:
     - target: {fileID: 1313305521697620996, guid: c790c015b912b7b469822faf14e5edff,
         type: 3}
       propertyPath: _eventName
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1313305521697620996, guid: c790c015b912b7b469822faf14e5edff,
+        type: 3}
+      propertyPath: _needCollision
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3486875872032205379, guid: c790c015b912b7b469822faf14e5edff,
@@ -453,6 +463,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _maxDistance
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7927206167614320675, guid: 8c21d79d200a61246aa11e2a7918820a,
+        type: 3}
+      propertyPath: _needCollision
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c21d79d200a61246aa11e2a7918820a, type: 3}

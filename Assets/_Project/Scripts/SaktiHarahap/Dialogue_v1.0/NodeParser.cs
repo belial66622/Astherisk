@@ -114,4 +114,11 @@ public class NodeParser : InspectOnly
     {
 
     }
+
+
+    public void disablethis(NodeParser temp)
+    {
+        this.GetComponent<NodeParser>().enabled = false;
+        temp.enabled = true;
+    }
 }
