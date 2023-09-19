@@ -23,7 +23,7 @@ namespace ThePatient
 
                 lmData.lightmapDir = lightmapSO[0].lightMapDir[i];
                 lmData.lightmapColor = lightmapSO[0].lightMapColor[i];
-
+                lmData.shadowMask = lightmapSO[0].shadowMaskColor[i];
                 brightLMlist.Add(lmData);
             }
 
@@ -37,6 +37,7 @@ namespace ThePatient
 
                 lmData.lightmapDir = lightmapSO[1].lightMapDir[i];
                 lmData.lightmapColor = lightmapSO[1].lightMapColor[i];
+                lmData.shadowMask = lightmapSO[0].shadowMaskColor[i];
 
                 darkLMlist.Add(lmData);
             }

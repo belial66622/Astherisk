@@ -11,6 +11,7 @@ namespace ThePatient
     {
         public Texture2D[] lightMapDir;
         public Texture2D[] lightMapColor;
+        public Texture2D[] shadowMaskColor;
         public SphericalHarmonicsL2[] lightProbesData;
 
         SphericalHarmonicsL2[] currentSceneData;

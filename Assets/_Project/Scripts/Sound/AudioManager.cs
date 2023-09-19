@@ -292,7 +292,7 @@ public class AudioManager : MonoBehaviour
     public void SetVolume(Sound _sound, float _volume, float distance)
     {
         _sound.AudioSource.volume = _volume;
-        Debug.Log("Manager volume" + _volume);
+        //Debug.Log("Manager volume" + _volume);
         _sound.AudioSource.maxDistance= distance;
         _sound.AudioSource.minDistance = distance;
     }

@@ -45,7 +45,7 @@ namespace ThePatient
             if (TriggerManager.Instance.CheckMultiple(_checkmultiple))
             {
                 _volume = -1 * ((Mathf.Clamp(Mathf.Min(distance, _maxDistance) / _maxDistance, 0f, .9f)) - 1f);
-                Debug.Log("volume" + _volume);
+                //Debug.Log("volume" + _volume);
                 LoopingAudioSfxProcess(_soundName);
                 AudioManager.Instance.SetVolume(_tempSound, _volume, _maxDistance);
             }
