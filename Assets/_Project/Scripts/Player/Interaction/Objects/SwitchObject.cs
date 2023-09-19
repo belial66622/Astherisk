@@ -75,7 +75,7 @@ namespace ThePatient
         public override void OnInteractEvent()
         {
             EventAggregate<InteractionIconEventArgs>.Instance.TriggerEvent(
-                new InteractionIconEventArgs(true, InteractionType.Interact));
+                new InteractionIconEventArgs(true, InteractionType.Switch));
         }
 
         public override object CaptureState()

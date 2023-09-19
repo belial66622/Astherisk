@@ -3120,7 +3120,7 @@ PrefabInstance:
     - target: {fileID: 8567748783599894139, guid: cd90baea4dff96042960db495e64d286,
         type: 3}
       propertyPath: interactionIconsUI.Array.size
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8567748783599894139, guid: cd90baea4dff96042960db495e64d286,
         type: 3}
@@ -3132,41 +3132,53 @@ PrefabInstance:
         type: 3}
       propertyPath: interactionIconsUI.Array.data[1].icon
       value: 
-      objectReference: {fileID: 21300000, guid: 8e1f978ad00c2d347a1048850c3d141b,
+      objectReference: {fileID: 21300000, guid: 207fb91a2bc3fe340ad78da4e5d589c0,
         type: 3}
     - target: {fileID: 8567748783599894139, guid: cd90baea4dff96042960db495e64d286,
         type: 3}
       propertyPath: interactionIconsUI.Array.data[2].icon
       value: 
-      objectReference: {fileID: 21300000, guid: 8e1f978ad00c2d347a1048850c3d141b,
+      objectReference: {fileID: 21300000, guid: 6f0325b1a69c317498d571d517582921,
         type: 3}
     - target: {fileID: 8567748783599894139, guid: cd90baea4dff96042960db495e64d286,
         type: 3}
       propertyPath: interactionIconsUI.Array.data[3].icon
       value: 
-      objectReference: {fileID: 21300000, guid: 1c11b169ac20c864f937a394d788bf80,
+      objectReference: {fileID: 21300000, guid: 8e1f978ad00c2d347a1048850c3d141b,
         type: 3}
     - target: {fileID: 8567748783599894139, guid: cd90baea4dff96042960db495e64d286,
         type: 3}
       propertyPath: interactionIconsUI.Array.data[4].icon
       value: 
-      objectReference: {fileID: 21300000, guid: 7e54648b67598f5478d06ef86365e1d0,
+      objectReference: {fileID: 21300000, guid: 1c11b169ac20c864f937a394d788bf80,
         type: 3}
     - target: {fileID: 8567748783599894139, guid: cd90baea4dff96042960db495e64d286,
         type: 3}
       propertyPath: interactionIconsUI.Array.data[5].icon
       value: 
-      objectReference: {fileID: 21300000, guid: 3e0f728278fcc9741a193f1f34dc5895,
+      objectReference: {fileID: 21300000, guid: 7e54648b67598f5478d06ef86365e1d0,
         type: 3}
     - target: {fileID: 8567748783599894139, guid: cd90baea4dff96042960db495e64d286,
         type: 3}
       propertyPath: interactionIconsUI.Array.data[6].icon
       value: 
-      objectReference: {fileID: 21300000, guid: 555db07ebf857264da54a996f2fa998e,
+      objectReference: {fileID: 21300000, guid: 3e0f728278fcc9741a193f1f34dc5895,
         type: 3}
     - target: {fileID: 8567748783599894139, guid: cd90baea4dff96042960db495e64d286,
         type: 3}
       propertyPath: interactionIconsUI.Array.data[7].icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 555db07ebf857264da54a996f2fa998e,
+        type: 3}
+    - target: {fileID: 8567748783599894139, guid: cd90baea4dff96042960db495e64d286,
+        type: 3}
+      propertyPath: interactionIconsUI.Array.data[8].icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 8e1f978ad00c2d347a1048850c3d141b,
+        type: 3}
+    - target: {fileID: 8567748783599894139, guid: cd90baea4dff96042960db495e64d286,
+        type: 3}
+      propertyPath: interactionIconsUI.Array.data[9].icon
       value: 
       objectReference: {fileID: 21300000, guid: 8e1f978ad00c2d347a1048850c3d141b,
         type: 3}
@@ -3204,6 +3216,16 @@ PrefabInstance:
         type: 3}
       propertyPath: interactionIconsUI.Array.data[7].interactionType
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567748783599894139, guid: cd90baea4dff96042960db495e64d286,
+        type: 3}
+      propertyPath: interactionIconsUI.Array.data[8].interactionType
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567748783599894139, guid: cd90baea4dff96042960db495e64d286,
+        type: 3}
+      propertyPath: interactionIconsUI.Array.data[9].interactionType
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8651939611294722180, guid: cd90baea4dff96042960db495e64d286,
         type: 3}

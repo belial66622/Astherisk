@@ -4,6 +4,7 @@
     {
         Interact,
         Inspect,
+        Switch,
         Pickup,
         Door,
         NoKey,

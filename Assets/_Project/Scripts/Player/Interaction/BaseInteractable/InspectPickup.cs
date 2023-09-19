@@ -31,7 +31,7 @@ namespace ThePatient
         public override void OnInteractEvent()
         {
             EventAggregate<InteractionIconEventArgs>.Instance.TriggerEvent(
-                new InteractionIconEventArgs(true, InteractionType.Pickup));
+                new InteractionIconEventArgs(true, InteractionType.Inspect));
         }
         public virtual void Pickup([DefaultValue("KeyPickup")] string pickupAudio)
         {
