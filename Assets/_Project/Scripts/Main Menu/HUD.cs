@@ -16,8 +16,9 @@ namespace ThePatient
 
 
         [Header("Main Menu Button")]
+        [SerializeField] Button _start;
+        [SerializeField] Button _setting;
         [SerializeField] Button _exit;
-        [SerializeField] Button _setting, _start;
 
 
         [Header("Menu Canvas")]
@@ -27,12 +28,14 @@ namespace ThePatient
 
         [Header("Setting Menu")]
         [SerializeField] Button _backMenu;
+        [SerializeField] Button _saveButton;
         [SerializeField] Button _control,_sound,_graphic;
         [SerializeField] GameObject _controlDisplay,_soundDisplay,_graphicDisplay;
 
 
         [Header("Control Display")]
         [SerializeField] Slider _mouseSensitivity;
+        [SerializeField] TextMeshProUGUI _sensValue;
 
 
         [Header("Sound Display")]
@@ -51,14 +54,20 @@ namespace ThePatient
 
         private void OnEnable()
         {
-            _menuManager.OpenMenu += MainMenu;
-            _menuManager.OpenSetting += Setting;
+            if(_menuManager != null)
+            {
+                _menuManager.OpenMenu += MainMenu;
+                _menuManager.OpenSetting += Setting;
+            }
         }
 
         private void OnDisable()
         {
-            _menuManager.OpenMenu -= MainMenu;
-            _menuManager.OpenSetting -= Setting;
+            if (_menuManager != null)
+            {
+                _menuManager.OpenMenu -= MainMenu;
+                _menuManager.OpenSetting -= Setting;
+            }
         }
 
         private void Start()
@@ -66,6 +75,10 @@ namespace ThePatient
             _backMenu.onClick.AddListener(delegate 
             {   ClearHUD();
                 OpenMenu?.Invoke();
+            });
+            _saveButton.onClick.AddListener(() => 
+            {
+                ControlSettingManager.Instance.SaveSetting(_mouseSensitivity.value);
             });
             _exit.onClick.AddListener(Exit);
             _setting.onClick.AddListener(delegate 
@@ -100,6 +113,11 @@ namespace ThePatient
                 _sfxValue.text = _sfxVolume.value.ToString();
             }
             );
+            _mouseSensitivity.onValueChanged.AddListener((float value) =>
+            {
+                _sensValue.text = value.ToString("#.#");
+            });
+
             OptionLoad();
         }
 
@@ -139,8 +157,11 @@ namespace ThePatient
 
         void Setting()
         {
+            var sensValue = ControlSettingManager.Instance.UpdateMouseSensivity();
+            _sensValue.text = sensValue.ToString("#.#");
+            _mouseSensitivity.value = sensValue;
             _settingCanvas.SetActive(true);
-
+            _control.Select();
         }
 
         void ClearHUD()
@@ -158,7 +179,13 @@ namespace ThePatient
 
         void OptionLoad()
         {
-            _bgm.isOn = PlayerPrefs.GetInt("_isBGMMute") ==0;
+            //mouse sensivity
+            var sensValue = ControlSettingManager.Instance.UpdateMouseSensivity();
+            _sensValue.text = sensValue.ToString("#.#");
+            _mouseSensitivity.value = sensValue;
+
+            //Sound
+            _bgm.isOn = PlayerPrefs.GetInt("_isBGMMute") == 0;
             _sfx.isOn = PlayerPrefs.GetInt("_isSFXMute") == 0;
             _sfxValue.text = PlayerPrefs.GetFloat("_SFXVolume").ToString();
             _bgmValue.text = PlayerPrefs.GetFloat("_BGMVolume").ToString();

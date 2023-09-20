@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using ThePatient;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
 public class CanvasUI : MonoBehaviour
 {
     [System.Serializable]
@@ -19,16 +19,18 @@ public class CanvasUI : MonoBehaviour
 
     [Header("Reference")]
     [SerializeField] Transform buttonEIcon;
-    [SerializeField] Image interactionIconBG;
-    [SerializeField] Image interactionIcon;
-    [SerializeField] TextMeshProUGUI interactPopupText;
     [SerializeField] Transform lockUI;
-    [SerializeField] Image lockUISlider;
     [SerializeField] Transform inspectUI;
     [SerializeField] Transform inspectLockPuzzleUI;
+    [SerializeField] Image interactionIconBG;
+    [SerializeField] Image interactionIcon;
+    [SerializeField] Image lockUISlider;
+    [SerializeField] TextMeshProUGUI interactPopupText;
+
 
     [Header("Pause Menu")]
     [SerializeField] Transform pauseMenu;
+    [SerializeField] Transform settingPanel;
     [SerializeField] Button resume;
     [SerializeField] Button setting;
     [SerializeField] Button exit;
@@ -42,7 +44,6 @@ public class CanvasUI : MonoBehaviour
         setting.onClick.AddListener(Setting);
         exit.onClick.AddListener(Exit);
     }
-
     private void Exit()
     {
         Application.Quit();
@@ -50,7 +51,8 @@ public class CanvasUI : MonoBehaviour
 
     private void Setting()
     {
-
+        pauseMenu.gameObject.SetActive(false);
+        settingPanel.gameObject.SetActive(true);
     }
 
     private void Resume()
@@ -71,9 +73,9 @@ public class CanvasUI : MonoBehaviour
         input.Pause += Input_Pause;
     }
 
-    private void Input_Pause(bool state)
+    private void Input_Pause(bool perform)
     {
-        if (!state && pauseMenu.gameObject.activeSelf)
+        if (!perform && pauseMenu.gameObject.activeSelf)
         {
             Time.timeScale = 1;
             Cursor.lockState = CursorLockMode.Locked;
@@ -82,11 +84,16 @@ public class CanvasUI : MonoBehaviour
         }
         else
         {
+            ControlSettingManager.Instance.UpdateMouseSensivity();
             Time.timeScale = 0;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             input.EnableUIControl();
             input.DisablePlayerControll();
+        }
+        if(settingPanel.gameObject.activeSelf)
+        {
+            settingPanel.gameObject.SetActive(false);
         }
         pauseMenu.gameObject.SetActive(!pauseMenu.gameObject.activeSelf);
     }

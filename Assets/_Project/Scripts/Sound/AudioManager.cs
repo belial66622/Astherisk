@@ -30,8 +30,6 @@ public class AudioManager : MonoBehaviour
                 _sound.AudioSource = gameObject.AddComponent<AudioSource>();
                 AudioSourceInit(_sound);
             }
-
-            DontDestroyOnLoad(gameObject);
         }
 
         private void Start()
