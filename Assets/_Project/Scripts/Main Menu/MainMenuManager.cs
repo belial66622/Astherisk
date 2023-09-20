@@ -23,7 +23,7 @@ namespace ThePatient
 
         private void OnEnable()
         {
-            _hud.StartGame += delegate { _sceneLoader.ChangeScene(ESceneName.ThePatient); };
+            _hud.StartGame += delegate { StartCoroutine(_sceneLoader.ChangeScene(ESceneName.ThePatient)); };
             _hud.OpenMenu += Menu;
             _hud.OpenSetting += Setting;
         }

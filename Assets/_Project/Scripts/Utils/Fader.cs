@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace ThePatient
 {
+    [RequireComponent(typeof(CanvasGroup))]
     public class Fader : SingletonBehaviour<Fader>
     {
         CanvasGroup canvasGroup;

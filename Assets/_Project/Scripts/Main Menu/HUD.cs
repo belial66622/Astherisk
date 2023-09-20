@@ -85,7 +85,10 @@ namespace ThePatient
             {   ClearHUD(); 
                 OpenSetting?.Invoke(); 
             });
-            _start.onClick.AddListener(delegate { StartGame?.Invoke(); });
+            _start.onClick.AddListener(delegate { 
+                StartGame?.Invoke(); 
+                _menuCanvas.SetActive(false);
+            });
             _control.onClick.AddListener(SettingControl);
             _sound.onClick.AddListener(SettingSound);
             _graphic.onClick.AddListener(SettingGraphic);

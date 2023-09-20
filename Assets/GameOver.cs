@@ -26,12 +26,12 @@ namespace ThePatient
             _tryAgain.onClick.AddListener(delegate 
             { 
                 save.GetComponent<SavingWrapper>().Save();
-                _loader.ChangeScene(ESceneName.ThePatient); 
+                StartCoroutine(_loader.ChangeScene(ESceneName.ThePatient)); 
             });
             _mainMenu.onClick.AddListener(delegate 
             {
                 save.GetComponent<SavingWrapper>().Save();
-                _loader.ChangeScene(ESceneName.MainMenu); 
+                StartCoroutine(_loader.ChangeScene(ESceneName.MainMenu)); 
             });
             save.GetComponent<SavingWrapper>().Load();
         }
