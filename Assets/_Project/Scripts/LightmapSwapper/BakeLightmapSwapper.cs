@@ -14,10 +14,14 @@ namespace ThePatient
         [SerializeField] LightmapData[] darkLMData;
 
         [SerializeField] List<BakeLightmapSwapperSO> lightmapSO;
+        [SerializeField] EEventData _lightOn , _lightOff;
 
         bool isDarkness;
         private void Start()
         {
+            TriggerManager.Instance._deactivateSendSignal+= LightOn;
+
+
             List<LightmapData> brightLMlist = new List<LightmapData>();
 
             for (int i = 0; i < lightmapSO[0].lightMapDir.Length; i++)
@@ -62,6 +66,17 @@ namespace ThePatient
                 isDarkness = SetDarkLM();
             }
         }
+         
+        void LightOn(EEventData data)
+        {
+            if (_lightOn == data)
+            isDarkness = SetBrightLM();
+
+            if (_lightOff == data)
+                isDarkness = SetDarkLM();
+        }
+    
+
 
         bool SetBrightLM()
         {

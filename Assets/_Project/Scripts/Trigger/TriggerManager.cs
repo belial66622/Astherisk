@@ -10,8 +10,7 @@ namespace ThePatient
         [SerializeField] ScriptableTrigger _savedTrigger;
         [SerializeField] STrigger[] _triggerList;
         STrigger _tempTrigger;
-        public Action<EEventData> _activateblocker;
-
+        public Action<EEventData> _activeSendSignal,_deactivateSendSignal;
 
         protected override void Awake()
         {
@@ -90,6 +89,7 @@ namespace ThePatient
                 if (_searchedTrigger != null)
                 {
                     checklist[i] = _searchedTrigger._isActive ? 1:0 ;
+
                 }
                 if (_searchedTrigger._name == EEventData.DoNothing)
                 {
@@ -118,13 +118,13 @@ namespace ThePatient
             { for (int i = 0; i < _tempTrigger._activate.Length; i++)
                 {
                     EEventData temp = _tempTrigger._activate[i];
-
+                    if(_tempTrigger._enableGameObject)
+                    _activeSendSignal?.Invoke(temp);
                     foreach (STrigger trigger in _triggerList)
                     {
                         if (temp == trigger._name)
                         {
                             trigger.SetActive(true);
-                            _activateblocker?.Invoke(temp);
                         }
                     }
                 }
@@ -138,7 +138,8 @@ namespace ThePatient
                 for (int i = 0; i < _tempTrigger._deactivate.Length; i++)
                 {
                     EEventData temp = _tempTrigger._deactivate[i];
-
+                    if (_tempTrigger._disableGameObject)
+                        _deactivateSendSignal?.Invoke(temp);
                     foreach (STrigger trigger in _triggerList)
                     {
                         if (temp == trigger._name)
