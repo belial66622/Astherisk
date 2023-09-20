@@ -10,7 +10,7 @@ namespace ThePatient
 
         protected override void Start()
         {
-            TriggerManager.Instance._activateblocker += EnableCollider; 
+            TriggerManager.Instance._activeSendSignal += EnableCollider; 
         }
 
         public override void DoSomething()

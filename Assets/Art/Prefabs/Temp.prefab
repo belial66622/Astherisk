@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1227504346}
   - component: {fileID: 1227504348}
-  - component: {fileID: 1227504349}
+  - component: {fileID: 6668681230290935415}
   - component: {fileID: 9048090802983121138}
+  - component: {fileID: 9218286556375704028}
   m_Layer: 0
   m_Name: Flashlight
   m_TagString: Untagged
@@ -26,8 +27,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1227504345}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.997999, y: 3.4318001, z: -2.7500002}
+  m_LocalRotation: {x: -0.06853204, y: -0.79933393, z: 0.09527186, w: -0.5893149}
+  m_LocalPosition: {x: 1.729, y: 3.668, z: 20.757}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -48,7 +49,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1227504349
+--- !u!114 &6668681230290935415
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -57,7 +58,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1227504345}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d7306832075e2a4091b378ba60c7324, type: 3}
+  m_Script: {fileID: 11500000, guid: e107eba58df6dad40b8b74b71188c059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _input: {fileID: 11400000, guid: 70dccaa611a3c2045b57dfb21865e234, type: 2}
@@ -65,7 +66,7 @@ MonoBehaviour:
   zoomInspect: 0.2
   itemSO: {fileID: 11400000, guid: 51c8c509d220fab4a9ef694b223c03fd, type: 2}
   pickupAudio: KeyPickup
-  _event: 0
+  _event: 11
   _dialog: {fileID: 0}
 --- !u!114 &9048090802983121138
 MonoBehaviour:
@@ -80,6 +81,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uniqueIdentifier: 4d1439fe-57c9-40d5-9fd7-845288d73309
+--- !u!114 &9218286556375704028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227504345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51f00082b5839e944a01a84a5cb2a046, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  graph: {fileID: 0}
+  speaker: {fileID: 0}
+  dialogue: {fileID: 0}
+  speakerImage: {fileID: 0}
+  _input: {fileID: 0}
+  currentDialogue: 0
+  dialogueCanva: {fileID: 0}
+  OnDialogueEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1767170970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1098,7 +1121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6379708218804364128}
   - component: {fileID: 5299769876639941316}
-  - component: {fileID: 790629899304107782}
+  - component: {fileID: 4508337758459010676}
   - component: {fileID: 790629899304107783}
   - component: {fileID: 790629899304107786}
   m_Layer: 0
@@ -1138,7 +1161,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.15
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &790629899304107782
+--- !u!114 &4508337758459010676
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1147,7 +1170,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8933936655877436790}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d7306832075e2a4091b378ba60c7324, type: 3}
+  m_Script: {fileID: 11500000, guid: e107eba58df6dad40b8b74b71188c059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _input: {fileID: 11400000, guid: 70dccaa611a3c2045b57dfb21865e234, type: 2}
@@ -1192,7 +1215,7 @@ MonoBehaviour:
   OnDialogueEnd:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 790629899304107782}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ThePatient.InspectPickupObject, Assembly-CSharp
         m_MethodName: EndDialog
         m_Mode: 1

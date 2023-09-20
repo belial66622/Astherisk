@@ -9,7 +9,7 @@ using UnityEngine.Events;
 
 public class NodeParser : InspectOnly
 {
-    public DialogueGraph graph;
+    public DialogueGraph graph, afterdialogue;
     Coroutine _parser;
     public TextMeshProUGUI speaker;
     public TextMeshProUGUI dialogue;
@@ -116,9 +116,8 @@ public class NodeParser : InspectOnly
     }
 
 
-    public void disablethis(NodeParser temp)
+    public void NextDialogue()
     {
-        this.GetComponent<NodeParser>().enabled = false;
-        temp.enabled = true;
+        graph = afterdialogue;
     }
 }
