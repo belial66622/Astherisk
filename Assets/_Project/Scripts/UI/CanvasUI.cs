@@ -49,7 +49,7 @@ public class CanvasUI : MonoBehaviour
         setting.onClick.AddListener(Setting);
         exit.onClick.AddListener(Exit);
     }
-    private void Exit()
+    public void Exit()
     {
         //Application.Quit();
         MainMenuManager mainmenu = FindObjectOfType<MainMenuManager>();
