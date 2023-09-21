@@ -9,13 +9,14 @@ namespace ThePatient
 {
     public class MainMenuManager : MonoBehaviour
     {
-        [SerializeField] HUD _hud;
+        [field: SerializeField]public HUD _hud { get; private set; }
+        [SerializeField] CanvasUI canvas;
         [SerializeField] Animator _animator;
         
         bool _muteVolume => !_volume.isOn;
         [SerializeField]Toggle _volume;
         [SerializeField] bool _done = true;
-        SceneLoader _sceneLoader;
+        [field: SerializeField] public SceneLoader _sceneLoader { get; private set; }
 
         public Action OpenSetting, OpenMenu;
 
@@ -23,9 +24,23 @@ namespace ThePatient
 
         private void OnEnable()
         {
-            _hud.StartGame += delegate { StartCoroutine(_sceneLoader.ChangeScene(ESceneName.ThePatient)); };
+            _hud.StartGame += delegate
+            {
+                StartCoroutine(_sceneLoader.ChangeScene(ESceneName.ThePatient));
+                ToggleChild(false);
+                _hud.DisableMainMenu();
+                canvas.gameObject.SetActive(true);
+            };
             _hud.OpenMenu += Menu;
             _hud.OpenSetting += Setting;
+        }
+
+        public void ToggleChild(bool state)
+        {
+            foreach (Transform transform in transform)
+            {
+                transform.gameObject.SetActive(state);
+            }
         }
 
         private void OnDisable()

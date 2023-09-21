@@ -79,6 +79,7 @@ namespace ThePatient
             _saveButton.onClick.AddListener(() => 
             {
                 ControlSettingManager.Instance.SaveSetting(_mouseSensitivity.value);
+                OptionLoad();
             });
             _exit.onClick.AddListener(Exit);
             _setting.onClick.AddListener(delegate 
@@ -153,11 +154,14 @@ namespace ThePatient
         }
 
 
-        void MainMenu()
+        public void MainMenu()
         {
             _menuCanvas.SetActive(true);
         }
-
+        public void DisableMainMenu()
+        {
+            _menuCanvas.SetActive(false);
+        }
         void Setting()
         {
             var sensValue = ControlSettingManager.Instance.UpdateMouseSensivity();

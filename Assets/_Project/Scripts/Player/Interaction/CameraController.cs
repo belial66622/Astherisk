@@ -40,8 +40,7 @@ namespace ThePatient
             _input.Interact += OnInteract;
             new TickUpdateSystem(15).TickUpdate += CameraController_TickUpdate;
 
-            _lookSpeed = ControlSettingManager.Instance.Mouse_Sensivity;
-            if (_lookSpeed <= 0f) _lookSpeed = .1f;
+            ControlSettingManager.Instance.OnSettingChanged += (float value) => _lookSpeed = value;
         }
 
         

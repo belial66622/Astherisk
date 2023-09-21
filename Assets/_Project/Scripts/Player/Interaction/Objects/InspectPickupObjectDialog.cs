@@ -43,6 +43,7 @@ namespace ThePatient
                 base.Pickup(audio);
                 return;
             }
+
             if (i == 2)
             {
                 if (!_noDialog)

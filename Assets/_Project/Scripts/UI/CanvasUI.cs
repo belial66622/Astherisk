@@ -6,8 +6,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Windows;
+
 public class CanvasUI : MonoBehaviour
 {
+    public string[] SceneName = { "Main Menu", "the patient programmer" };
+
     [System.Serializable]
     class InteractionIconUI
     {
@@ -19,6 +23,7 @@ public class CanvasUI : MonoBehaviour
 
     [Header("Reference")]
     [SerializeField] Transform buttonEIcon;
+    [SerializeField] Transform buttonHoldEIcon;
     [SerializeField] Transform lockUI;
     [SerializeField] Transform inspectUI;
     [SerializeField] Transform inspectLockPuzzleUI;
@@ -46,7 +51,19 @@ public class CanvasUI : MonoBehaviour
     }
     private void Exit()
     {
-        Application.Quit();
+        //Application.Quit();
+        MainMenuManager mainmenu = FindObjectOfType<MainMenuManager>();
+        StartCoroutine(mainmenu._sceneLoader.ChangeScene(Utilities.ESceneName.MainMenu));
+        Input_Pause(false);
+        SceneManager.sceneLoaded += (Scene scene, LoadSceneMode loadSceneMode) => 
+        { 
+            if (scene == SceneManager.GetSceneByName(SceneName[0]))
+            {
+                input.DisablePlayerControll();
+                mainmenu.ToggleChild(true);
+                mainmenu._hud.MainMenu();
+            }
+        };
     }
 
     private void Setting()
@@ -137,18 +154,26 @@ public class CanvasUI : MonoBehaviour
         if (e.isActive)
         {
             interactionIconBG.gameObject.SetActive(true);
-            if(e.interactionType == InteractionType.NoKey || e.interactionType == InteractionType.Locked)
+            if(e.interactionType == InteractionType.NoKey)
             {
                 buttonEIcon.gameObject.SetActive(false);
             }
             else
             {
-                buttonEIcon.gameObject.SetActive(true);
+                if (e.interactionType == InteractionType.Locked)
+                {
+                    buttonHoldEIcon.gameObject.SetActive(true);
+                }
+                else
+                {
+                    buttonEIcon.gameObject.SetActive(true);
+                }
             }
         }
         else
         {
             buttonEIcon.gameObject.SetActive(false);
+            buttonHoldEIcon.gameObject.SetActive(false);
             interactionIconBG.gameObject.SetActive(false);
         }
     }

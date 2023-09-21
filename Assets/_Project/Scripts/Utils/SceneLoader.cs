@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Utilities {
+    [System.Serializable]
     public class SceneLoader
     {
         public string[] SceneName = {"Main Menu","the patient programmer" };

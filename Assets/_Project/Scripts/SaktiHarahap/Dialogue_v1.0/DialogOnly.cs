@@ -21,6 +21,17 @@ public class DialogOnly : MonoBehaviour
     [SerializeField] GameObject dialogueCanva;
 
     [SerializeField] UnityEvent OnDialogueEnd;
+
+    private void OnEnable()
+    {
+        if (dialogueCanva == null)
+        {
+            dialogueCanva = DialogCanvas.Instance.gameObject;
+            speaker = DialogCanvas.Instance.speaker;
+            dialogue = DialogCanvas.Instance.dialogue;
+        }
+    }
+
     IEnumerator ParseNode()
     {
         BaseNode baseNode = graph.current;
