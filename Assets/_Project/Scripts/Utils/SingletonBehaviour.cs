@@ -9,7 +9,8 @@ public class SingletonBehaviour<T> : MonoBehaviour where T : MonoBehaviour
     {
         if (Instance != null)
         {
-            Debug.LogError("Instance already exists");
+            Debug.LogWarning("Instance already exists " + Instance.name);
+            Destroy(gameObject);
             return;
         }
         Instance = this as T;

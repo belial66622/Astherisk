@@ -6,8 +6,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Windows;
+
 public class CanvasUI : MonoBehaviour
 {
+    public string[] SceneName = { "Main Menu", "the patient programmer" };
+
     [System.Serializable]
     class InteractionIconUI
     {
@@ -47,7 +51,19 @@ public class CanvasUI : MonoBehaviour
     }
     private void Exit()
     {
-        Application.Quit();
+        //Application.Quit();
+        MainMenuManager mainmenu = FindObjectOfType<MainMenuManager>();
+        StartCoroutine(mainmenu._sceneLoader.ChangeScene(Utilities.ESceneName.MainMenu));
+        Input_Pause(false);
+        SceneManager.sceneLoaded += (Scene scene, LoadSceneMode loadSceneMode) => 
+        { 
+            if (scene == SceneManager.GetSceneByName(SceneName[0]))
+            {
+                input.DisablePlayerControll();
+                mainmenu.ToggleChild(true);
+                mainmenu._hud.MainMenu();
+            }
+        };
     }
 
     private void Setting()

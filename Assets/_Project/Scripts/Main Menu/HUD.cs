@@ -154,11 +154,14 @@ namespace ThePatient
         }
 
 
-        void MainMenu()
+        public void MainMenu()
         {
             _menuCanvas.SetActive(true);
         }
-
+        public void DisableMainMenu()
+        {
+            _menuCanvas.SetActive(false);
+        }
         void Setting()
         {
             var sensValue = ControlSettingManager.Instance.UpdateMouseSensivity();
