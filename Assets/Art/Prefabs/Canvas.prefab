@@ -7791,6 +7791,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2002d5c8da6fa34894b267a7db8329b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SceneName:
+  - Main Menu
+  - the patient programmer
   interactionIconsUI:
   - interactionType: 0
     icon: {fileID: 21300000, guid: 8e1f978ad00c2d347a1048850c3d141b, type: 3}
@@ -7815,7 +7818,7 @@ MonoBehaviour:
   lockUI: {fileID: 7179564011193845877}
   inspectUI: {fileID: 1336689898}
   inspectLockPuzzleUI: {fileID: 5692987691691950675}
-  interactionIconBG: {fileID: 8181244043397315265}
+  interactionIconBG: {fileID: 8244185919877786580}
   interactionIcon: {fileID: 4452704179416723096}
   lockUISlider: {fileID: 1914448238715974956}
   interactPopupText: {fileID: 7760628615667833897}
