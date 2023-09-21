@@ -42,7 +42,7 @@ public class DialogOnly : MonoBehaviour
             yield return new WaitForSeconds(.1f);
             yield return new WaitUntil (() => Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space));
             yield return new WaitUntil(() => Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Space));
-            currentDialogue++;
+              currentDialogue++;
             int totalNodes = graph.nodes.Count - 1;
 
             if(currentDialogue < totalNodes)

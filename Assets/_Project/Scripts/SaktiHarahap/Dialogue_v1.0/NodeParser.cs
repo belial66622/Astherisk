@@ -59,9 +59,11 @@ public class NodeParser : InspectOnly
                 dialogueCanva.SetActive(false);
 
                 OnDialogueEnd?.Invoke();
+
             }
         }
         TriggerManager.Instance.OnEnter(_eventName);
+
 
     }
 
@@ -118,6 +120,9 @@ public class NodeParser : InspectOnly
 
     }
 
+    public void SendEvent()
+    {
+    }
 
     public void NextDialogue()
     {
