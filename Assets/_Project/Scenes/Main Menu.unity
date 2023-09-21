@@ -8107,11 +8107,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1229675893423680795, guid: b6ba0e8e50ea7f346a08d363c4fcb1f0,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2727834769977834097, guid: b6ba0e8e50ea7f346a08d363c4fcb1f0,
         type: 3}
       propertyPath: m_ChildCameras.Array.size
