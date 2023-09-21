@@ -26,6 +26,12 @@ public class DialogbySignal : InspectOnly
     {
         base.Start();
         TriggerManager.Instance._activeSendSignal += ChangeDialog;
+        if (dialogueCanva == null)
+        {
+            dialogueCanva = DialogCanvas.Instance.gameObject;
+            speaker = DialogCanvas.Instance.speaker;
+            dialogue = DialogCanvas.Instance.dialogue;
+        }
     }
 
     void ChangeDialog(EEventData data)
