@@ -23,15 +23,6 @@ namespace ThePatient
         float mouseX = 0;
         float mouseY = 0;
 
-        IPickupable flashlight;
-        IPickupable walkietalkie;
-
-        private void Start()
-        {
-            flashlight = Inventory.Instance.GetItemFromID(flashlightObject.GetItemID()).GetObject();
-            walkietalkie = Inventory.Instance.GetItemFromID(walkietalkieObject.GetItemID()).GetObject();
-        }
-
         private void OnEnable()
         {
             _input.Flashlight += ToggleFlashlight;
@@ -49,14 +40,14 @@ namespace ThePatient
 
         private void ToggleFlashlight()
         {
-            if (Inventory.Instance.HasItem(flashlight))
+            if (Inventory.Instance.HasItem(flashlightObject))
             {
                 flashlightTransform.gameObject.SetActive(!flashlightTransform.gameObject.activeSelf);
             }
         }
         private void ToggleWalkieTalkie()
         {
-            if (Inventory.Instance.HasItem(walkietalkie))
+            if (Inventory.Instance.HasItem(walkietalkieObject))
             {
                 walkietalkieTransform.gameObject.SetActive(!walkietalkieTransform.gameObject.activeSelf);
             }

@@ -22,7 +22,16 @@ public class NodeParser : InspectOnly
     [SerializeField] UnityEvent OnDialogueEnd;
     [SerializeField] EEventData _eventName;
 
-
+    protected override void Start()
+    {
+        base.Start();
+        if (dialogueCanva == null)
+        {
+            dialogueCanva = DialogCanvas.Instance.gameObject;
+            speaker = DialogCanvas.Instance.speaker;
+            dialogue = DialogCanvas.Instance.dialogue;
+        }
+    }
 
     IEnumerator ParseNode()
     {

@@ -44,7 +44,7 @@ public class DoorObject : BaseInteractable
 
     Quaternion defaultRotation;
 
-    IPickupable key;
+    InventoryItem key;
     bool needKey = false;
     AudioSource _spatialsound;
     SoundUtils sound;
@@ -74,7 +74,7 @@ public class DoorObject : BaseInteractable
         needKey = requiredKey != null;
     
         if (needKey)
-            key = requiredKey.GetComponent<IPickupable>();
+            key = requiredKey.GetComponent<InspectPickup>().GetItem();
     }
 
     protected override void Update()

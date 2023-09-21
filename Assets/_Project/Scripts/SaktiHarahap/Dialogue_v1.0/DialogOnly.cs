@@ -22,7 +22,7 @@ public class DialogOnly : MonoBehaviour
 
     [SerializeField] UnityEvent OnDialogueEnd;
 
-    private void OnEnable()
+    private void Start()
     {
         if (dialogueCanva == null)
         {

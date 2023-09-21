@@ -6,6 +6,7 @@ namespace ThePatient
     public class InventoryItem : ScriptableObject, ISerializationCallbackReceiver
     {
         [SerializeField] string itemID;
+        [SerializeField] Sprite itemIcon;
 
         InspectPickup inspectObject;
         public void SetItem(InspectPickup inspectObject)
@@ -14,6 +15,7 @@ namespace ThePatient
         }
 
         public string GetItemID() => itemID;
+        public Sprite GetItemIcon() => itemIcon;
 
         public InspectPickup GetObject() => inspectObject;
 

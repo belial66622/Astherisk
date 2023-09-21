@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Unity.VisualScripting;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ThePatient
@@ -15,6 +15,8 @@ namespace ThePatient
         [Tooltip("Every Items that exist in the game")]
         Dictionary<string, InventoryItem> itemDatabase = new Dictionary<string, InventoryItem>();
 
+        public event Action<List<InventoryItem>> OnInventoryChanged;
+
         protected override void Awake()
         {
             base.Awake();
@@ -22,26 +24,44 @@ namespace ThePatient
             PopulateItemDatabase();
         }
 
-        public void AddItem(IPickupable item)
+        public void AddItem(InventoryItem item)
         {
             if (HasItem(item)) return;
 
-            inventoryItems.Add(item.GetItem());
-            items.Add(item);
+            inventoryItems.Add(item);
+            //items.Add(item);
+
+            OnInventoryChanged?.Invoke(GetInventoryItems());
         }
 
-        public void RemoveItem(IPickupable item)
+        public void RemoveItem(InventoryItem item)
         {
             if (HasItem(item))
             {
-                inventoryItems.Remove(item.GetItem());
-                items.Remove(item);
+                inventoryItems.Remove(item);
+                //items.Remove(item);
             }
+            OnInventoryChanged?.Invoke(GetInventoryItems());
         }
 
-        public bool HasItem(IPickupable item)
+        public bool HasItem(InventoryItem item)
         {
-            return items.Contains(item) || inventoryItems.Contains(item.GetItem());
+            foreach(InventoryItem item2 in inventoryItems)
+            {
+                if (item.GetItemID() == item2.GetItemID())
+                {
+                    Debug.Log("item sama");
+                    return true;
+                }
+            }
+
+            Debug.Log("item beda");
+            return false;
+        }
+
+        public List<InventoryItem> GetInventoryItems()
+        {
+            return inventoryItems;
         }
 
         public void PopulateItemDatabase()

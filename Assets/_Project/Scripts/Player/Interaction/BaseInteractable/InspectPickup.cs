@@ -36,7 +36,7 @@ namespace ThePatient
         public virtual void Pickup([DefaultValue("KeyPickup")] string pickupAudio)
         {
             AudioManager.Instance.PlaySFX(pickupAudio);
-            Inventory.Instance.AddItem(this);
+            Inventory.Instance.AddItem(itemSO);
             gameObject.SetActive(false);
             Debug.Log("Pickup " + this.ToString());
         }
