@@ -125,7 +125,6 @@ namespace ThePatient
                         if (temp == trigger._name)
                         {
                             trigger.SetActive(true);
-                            return;
                         }
                     }
                 }
@@ -146,7 +145,6 @@ namespace ThePatient
                         if (temp == trigger._name)
                         {
                             trigger.SetActive(false);
-                            return;
                         }
                     }
                 }

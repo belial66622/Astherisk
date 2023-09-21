@@ -23,7 +23,8 @@ namespace ThePatient
         Matilampu,
         phase1,
         Phase2,
-        disableblock
+        disableblock,
+        enableAI
         
 
     }
