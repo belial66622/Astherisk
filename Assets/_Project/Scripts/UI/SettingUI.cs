@@ -66,10 +66,6 @@ public class SettingUI : MonoBehaviour
         OptionLoad();
     }
 
-    private void Start()
-    {
-        gameObject.SetActive(false);
-    }
     void EnableDisplay(GameObject transform)
     {
         SettingClear();

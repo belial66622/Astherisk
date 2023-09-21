@@ -88,11 +88,11 @@ public class DoorObject : BaseInteractable
         {
             lockTimer.Start();
         }
-        else if(!OnHold && lockTimer.IsRunning && lockTimer.Progress > 0)
+        else if(!OnHold && lockTimer.IsRunning && lockTimer.InverseProgress < 1)
         {
             lockTimer.Pause();
         }
-        else if(OnHold && lockTimer.IsRunning && lockTimer.Progress <= 0)
+        else if(OnHold && lockTimer.IsRunning && lockTimer.InverseProgress >= 1)
         {
             lockTimer.Stop();
         }
@@ -117,7 +117,7 @@ public class DoorObject : BaseInteractable
         switch (state)
         {
             case DoorState.Closed:
-                if (lockTimer.Progress <= 0 && needKey)
+                if (lockTimer.InverseProgress >= 1 && needKey)
                 {
                     if (doorCooldownTimer.IsRunning) return;
                     sound.PlaySound(AudioManager.Instance.GetSfx("LockDoor"),_spatialsound);
@@ -137,7 +137,7 @@ public class DoorObject : BaseInteractable
                 break;
             case DoorState.Locked:
                 if (doorCooldownTimer.IsRunning) return;
-                if (lockTimer.Progress <= 0 && needKey)
+                if (lockTimer.InverseProgress >= 1 && needKey)
                 {
                     sound.PlaySound(AudioManager.Instance.GetSfx("UnlockDoor"),_spatialsound);
                     doorState = DoorState.Closed;
@@ -210,7 +210,7 @@ public class DoorObject : BaseInteractable
     public override void OnFinishInteractEvent()
     {
         EventAggregate<InteractionIconEventArgs>.Instance.TriggerEvent(new InteractionIconEventArgs(false, InteractionType.Default));
-        EventAggregate<InteractionLockUIEventArgs>.Instance.TriggerEvent(new InteractionLockUIEventArgs(false, 1));
+        EventAggregate<InteractionLockUIEventArgs>.Instance.TriggerEvent(new InteractionLockUIEventArgs(false, 0));
     }
 
     
@@ -220,9 +220,9 @@ public class DoorObject : BaseInteractable
         EventAggregate<InteractionIconEventArgs>.Instance.TriggerEvent(new InteractionIconEventArgs(true,
             GetIcon(doorState)));
 
-        if (lockTimer.IsRunning && lockTimer.InverseProgress >= .2f && lockTimer.Progress > 0 && doorState != DoorState.Opened)
+        if (lockTimer.IsRunning && lockTimer.InverseProgress >= .2f && doorState != DoorState.Opened)
         {
-            EventAggregate<InteractionLockUIEventArgs>.Instance.TriggerEvent(new InteractionLockUIEventArgs(true, lockTimer.Progress));
+            EventAggregate<InteractionLockUIEventArgs>.Instance.TriggerEvent(new InteractionLockUIEventArgs(true, lockTimer.InverseProgress));
         }
     }
     InteractionType GetIcon(DoorState state)

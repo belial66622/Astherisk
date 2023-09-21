@@ -19,6 +19,7 @@ public class CanvasUI : MonoBehaviour
 
     [Header("Reference")]
     [SerializeField] Transform buttonEIcon;
+    [SerializeField] Transform buttonHoldEIcon;
     [SerializeField] Transform lockUI;
     [SerializeField] Transform inspectUI;
     [SerializeField] Transform inspectLockPuzzleUI;
@@ -137,18 +138,26 @@ public class CanvasUI : MonoBehaviour
         if (e.isActive)
         {
             interactionIconBG.gameObject.SetActive(true);
-            if(e.interactionType == InteractionType.NoKey || e.interactionType == InteractionType.Locked)
+            if(e.interactionType == InteractionType.NoKey)
             {
                 buttonEIcon.gameObject.SetActive(false);
             }
             else
             {
-                buttonEIcon.gameObject.SetActive(true);
+                if (e.interactionType == InteractionType.Locked)
+                {
+                    buttonHoldEIcon.gameObject.SetActive(true);
+                }
+                else
+                {
+                    buttonEIcon.gameObject.SetActive(true);
+                }
             }
         }
         else
         {
             buttonEIcon.gameObject.SetActive(false);
+            buttonHoldEIcon.gameObject.SetActive(false);
             interactionIconBG.gameObject.SetActive(false);
         }
     }
