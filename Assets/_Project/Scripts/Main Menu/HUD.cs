@@ -79,6 +79,7 @@ namespace ThePatient
             _saveButton.onClick.AddListener(() => 
             {
                 ControlSettingManager.Instance.SaveSetting(_mouseSensitivity.value);
+                OptionLoad();
             });
             _exit.onClick.AddListener(Exit);
             _setting.onClick.AddListener(delegate 

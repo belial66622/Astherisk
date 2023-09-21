@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,12 +10,14 @@ namespace ThePatient
     {
         public const string MOUSE_SENSIVITY = "MouseSensivity";
 
-        public float Mouse_Sensivity {  get; private set; }
+        [field: SerializeField]public float Mouse_Sensivity {  get; private set; }
+
+        public event Action<float> OnSettingChanged;
 
         protected override void Awake()
         {
             base.Awake();
-            UpdateMouseSensivity();
+            Mouse_Sensivity = UpdateMouseSensivity();
         }
         public float UpdateMouseSensivity()
         {
@@ -22,12 +25,15 @@ namespace ThePatient
             {
                 Mouse_Sensivity = PlayerPrefs.GetFloat(MOUSE_SENSIVITY);
             }
+            Debug.Log("Load setting");
+            OnSettingChanged?.Invoke(Mouse_Sensivity);
             return Mouse_Sensivity;
         }
         public void SaveSetting(float value)
         {
             PlayerPrefs.SetFloat(MOUSE_SENSIVITY, value);
             PlayerPrefs.Save();
+            Debug.Log("Save setting");
         }
     }
 }

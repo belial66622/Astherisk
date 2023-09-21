@@ -42,8 +42,8 @@ namespace ThePatient
                 return;
             }
 
-                transform.GetChild(0).gameObject.SetActive(false);
-                TriggerManager.Instance.OnEnter(_event);
+            transform.GetChild(0).gameObject.SetActive(false);
+            TriggerManager.Instance.OnEnter(_event);
             if (!_noDialog)
             {
                 _dialog.Interact();

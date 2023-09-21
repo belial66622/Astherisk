@@ -1,4 +1,5 @@
-﻿using ThePatient;
+﻿using System;
+using ThePatient;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,11 +31,8 @@ public class SettingUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI _bgmValue;
     [SerializeField] TextMeshProUGUI _sfxValue;
 
+
     private void OnEnable()
-    {
-        OptionLoad();
-    }
-    private void Start()
     {
         _control.onClick.AddListener(() => { EnableDisplay(_controlDisplay); });
         _sound.onClick.AddListener(() => { EnableDisplay(_soundDisplay); });
@@ -62,7 +60,15 @@ public class SettingUI : MonoBehaviour
         _saveButton.onClick.AddListener(() =>
         {
             ControlSettingManager.Instance.SaveSetting(_mouseSensitivity.value);
+            OptionLoad();
         });
+
+        OptionLoad();
+    }
+
+    private void Start()
+    {
+        gameObject.SetActive(false);
     }
     void EnableDisplay(GameObject transform)
     {
