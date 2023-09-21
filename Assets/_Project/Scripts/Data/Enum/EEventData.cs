@@ -21,9 +21,10 @@ namespace ThePatient
         MatiinLampu,
         NyalainLampu,
         Matilampu,
-        toilet3_2,
-        toilet4_1,
-        toilet4_2,
+        phase1,
+        Phase2,
+        disableblock
+        
 
     }
 }

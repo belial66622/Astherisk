@@ -8,7 +8,7 @@ namespace ThePatient
     {
         [SerializeField] protected EEventData _eventName;
         protected bool _active => TriggerManager.Instance.CheckActive(_eventName);
-        [SerializeField] bool _needCollision;
+        [SerializeField]protected bool _needCollision;
         public bool CheckCollision() => _needCollision;
 
         protected virtual void OnEnable()

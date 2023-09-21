@@ -21,6 +21,9 @@ public class NodeParser : InspectOnly
 
     [SerializeField] UnityEvent OnDialogueEnd;
     [SerializeField] EEventData _eventName;
+
+
+
     IEnumerator ParseNode()
     {
         BaseNode baseNode = graph.current;
