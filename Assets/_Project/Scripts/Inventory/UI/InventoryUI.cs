@@ -5,13 +5,16 @@ namespace ThePatient
 {
     public class InventoryUI : MonoBehaviour
     {
-        [SerializeField] Transform iconParent;
         [SerializeField] InventoryItemIconUI iconPrefab;
 
         List<InventoryItem> inventoryItems = new List<InventoryItem>();
-        void Start()
+        void OnEnable()
         {
             Inventory.Instance.OnInventoryChanged += Instance_OnInventoryChanged;
+        }
+
+        private void Start()
+        {
             PopulateInventoryIconUI();
         }
 
@@ -25,16 +28,21 @@ namespace ThePatient
 
         void PopulateInventoryIconUI()
         {
-            foreach(Transform icon in iconParent)
+            if (transform.childCount > 0)
             {
-                Destroy(icon.gameObject);
+                foreach (Transform icon in transform)
+                {
+                    Destroy(icon.gameObject);
+                }
+
             }
+
 
             if (inventoryItems.Count <= 0) return;
 
             foreach(InventoryItem item in inventoryItems)
             {
-                var iconInstance = Instantiate(iconPrefab, iconParent);
+                var iconInstance = Instantiate(iconPrefab, transform);
                 iconInstance.Setup(item.GetItemIcon(), item.name);
             }
         }

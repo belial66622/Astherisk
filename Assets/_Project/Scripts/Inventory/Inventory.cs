@@ -14,6 +14,8 @@ namespace ThePatient
 
         [Tooltip("Every Items that exist in the game")]
         Dictionary<string, InventoryItem> itemDatabase = new Dictionary<string, InventoryItem>();
+        [SerializeField] List<InventoryItem> inventoryItemsDictionary = new List<InventoryItem>();
+
 
         public event Action<List<InventoryItem>> OnInventoryChanged;
 
@@ -75,6 +77,7 @@ namespace ThePatient
                 }
                 Debug.Log(item.GetItemID());
                 itemDatabase.Add(item.GetItemID(),item);
+                inventoryItemsDictionary.Add(item);
             }
         }
 

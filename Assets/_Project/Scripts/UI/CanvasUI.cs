@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Windows;
 
-public class CanvasUI : MonoBehaviour
+public class CanvasUI : SingletonBehaviour<CanvasUI>
 {
     public string[] SceneName = { "Main Menu", "the patient programmer" };
 
