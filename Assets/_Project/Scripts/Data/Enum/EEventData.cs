@@ -24,8 +24,8 @@ namespace ThePatient
         phase1,
         Phase2,
         disableblock,
-        enableAI
-        
-
+        enableAI,
+        Matilampusenter,
+        dialoglampumati
     }
 }

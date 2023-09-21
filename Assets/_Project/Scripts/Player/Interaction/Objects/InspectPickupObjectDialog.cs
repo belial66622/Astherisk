@@ -7,6 +7,7 @@ namespace ThePatient
         [SerializeField] private string pickupAudio;
         [SerializeField]EEventData _event;
         [SerializeField] DialogOnly _dialog;
+        int i= 0;
         bool _noDialog;
         bool check => TriggerManager.Instance.CheckActive(_event);
         protected override void OnEnable()
@@ -35,6 +36,7 @@ namespace ThePatient
 
         public override void Pickup(string audio)
         {
+            i++;
             audio = pickupAudio;
             if(_dialog ==null)
             {
@@ -42,14 +44,20 @@ namespace ThePatient
                 return;
             }
 
-            transform.GetChild(0).gameObject.SetActive(false);
-            TriggerManager.Instance.OnEnter(_event);
-            if (!_noDialog)
+            if (i == 2)
             {
-                _dialog.Interact();
-                return;
+                if (!_noDialog)
+                {
+                    transform.GetChild(0).gameObject.SetActive(false);
+                    TriggerManager.Instance.OnEnter(_event);
+
+                    _dialog.Interact();
+                }
+                else
+                {
+                    base.Pickup(pickupAudio);
+                }
             }
-            base.Pickup(pickupAudio);
         }
 
         public void DialogDeactivate(EEventData data) 
