@@ -7,44 +7,47 @@ namespace ThePatient
     {
         [SerializeField] InventoryItemIconUI iconPrefab;
 
-        List<InventoryItem> inventoryItems = new List<InventoryItem>();
-        void OnEnable()
-        {
-            Inventory.Instance.OnInventoryChanged += Instance_OnInventoryChanged;
-        }
+        public List<InventoryItem> inventoryItems = new List<InventoryItem>();
+
+        public Inventory inventory;
 
         private void Start()
         {
+            inventory = Inventory.Instance;
+            inventory.OnInventoryChanged += Instance_OnInventoryChanged;
             PopulateInventoryIconUI();
         }
 
-        private void Instance_OnInventoryChanged(List<InventoryItem> obj)
+        private void Instance_OnInventoryChanged()
         {
-            //inventoryItems.Clear();
-            inventoryItems = obj;
+            inventoryItems.Clear();
+            foreach (InventoryItem item in Inventory.Instance.GetInventoryItems()) 
+            { 
+                inventoryItems.Add(item);
+            }
 
             PopulateInventoryIconUI();
         }
 
         void PopulateInventoryIconUI()
         {
-            if (transform.childCount > 0)
+            foreach (Transform icon in transform)
             {
-                foreach (Transform icon in transform)
-                {
-                    Destroy(icon.gameObject);
-                }
-
+                Destroy(icon.gameObject);
             }
+            Debug.Log("icon destroyed");
 
 
+            Debug.Log("icon <= 0");
             if (inventoryItems.Count <= 0) return;
+            Debug.Log("icon > 1");
 
             foreach(InventoryItem item in inventoryItems)
             {
                 var iconInstance = Instantiate(iconPrefab, transform);
                 iconInstance.Setup(item.GetItemIcon(), item.name);
             }
+            Debug.Log("Populate icon");
         }
     }
 }

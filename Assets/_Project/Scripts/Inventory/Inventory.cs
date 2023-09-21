@@ -17,7 +17,7 @@ namespace ThePatient
         [SerializeField] List<InventoryItem> inventoryItemsDictionary = new List<InventoryItem>();
 
 
-        public event Action<List<InventoryItem>> OnInventoryChanged;
+        public event Action OnInventoryChanged;
 
         protected override void Awake()
         {
@@ -33,7 +33,7 @@ namespace ThePatient
             inventoryItems.Add(item);
             //items.Add(item);
 
-            OnInventoryChanged?.Invoke(GetInventoryItems());
+            OnInventoryChanged?.Invoke();
         }
 
         public void RemoveItem(InventoryItem item)
@@ -43,7 +43,7 @@ namespace ThePatient
                 inventoryItems.Remove(item);
                 //items.Remove(item);
             }
-            OnInventoryChanged?.Invoke(GetInventoryItems());
+            OnInventoryChanged?.Invoke();
         }
 
         public bool HasItem(InventoryItem item)
