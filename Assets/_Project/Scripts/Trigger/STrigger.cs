@@ -10,7 +10,8 @@ namespace ThePatient
         public EEventData _name;
         public bool _isActive;
         public EEventData[] _activate,_deactivate;
-        public bool _enableGameObject,_disableGameObject;
+        public bool _hasEnable, _HasDisable;
+        public EEventData[] _enableGameObject,_disableGameObject;
 
         public void SetActive(bool isActive)
         {

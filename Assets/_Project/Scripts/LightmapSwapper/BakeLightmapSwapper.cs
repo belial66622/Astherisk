@@ -19,7 +19,7 @@ namespace ThePatient
         bool isDarkness;
         private void Start()
         {
-            TriggerManager.Instance._deactivateSendSignal+= LightOn;
+            TriggerManager.Instance._activeSendSignal+= LightOn;
 
 
             List<LightmapData> brightLMlist = new List<LightmapData>();

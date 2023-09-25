@@ -137,4 +137,9 @@ public class NodeParser : InspectOnly
     {
         graph = afterdialogue;
     }
+
+    public void DisableDialogue()
+    { 
+        this.GetComponent<MeshCollider>().enabled = false;
+    }
 }

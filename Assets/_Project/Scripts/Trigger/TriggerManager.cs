@@ -56,6 +56,7 @@ namespace ThePatient
             if (eventname != EEventData.DoNothing)
             {
                 EventSetter();
+                EventObject();
             }
         }
 
@@ -113,13 +114,18 @@ namespace ThePatient
             DeactivateEvent();
         }
 
+        public void EventObject()
+        { 
+            ActivateObject();
+            DeactivateObject();
+        }
+
         public void ActivateEvent()
         { if (_tempTrigger._activate != null)
             { for (int i = 0; i < _tempTrigger._activate.Length; i++)
                 {
                     EEventData temp = _tempTrigger._activate[i];
-                    if(_tempTrigger._enableGameObject)
-                    _activeSendSignal?.Invoke(temp);
+
                     foreach (STrigger trigger in _triggerList)
                     {
                         if (temp == trigger._name)
@@ -138,8 +144,7 @@ namespace ThePatient
                 for (int i = 0; i < _tempTrigger._deactivate.Length; i++)
                 {
                     EEventData temp = _tempTrigger._deactivate[i];
-                    if (_tempTrigger._disableGameObject)
-                        _deactivateSendSignal?.Invoke(temp);
+
                     foreach (STrigger trigger in _triggerList)
                     {
                         if (temp == trigger._name)
@@ -151,5 +156,32 @@ namespace ThePatient
             }
         }
 
+
+        public void ActivateObject()
+        {
+            if (_tempTrigger._hasEnable)
+            {
+                for (int i = 0; i < _tempTrigger._enableGameObject.Length; i++)
+                {
+                    EEventData temp = _tempTrigger._enableGameObject[i];
+                    _activeSendSignal?.Invoke(temp);
+                }
+
+            }
+        }
+
+        public void DeactivateObject()
+        {
+            if (_tempTrigger._HasDisable)
+            {
+                for (int i = 0; i < _tempTrigger._disableGameObject.Length; i++)
+                {
+                    EEventData temp = _tempTrigger._disableGameObject[i];
+                    _deactivateSendSignal?.Invoke(temp);
+                }
+
+            }
+
+        }
     }
 }
