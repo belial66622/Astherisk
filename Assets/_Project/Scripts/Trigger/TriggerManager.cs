@@ -33,6 +33,13 @@ namespace ThePatient
         void Start()
         {
             AudioManager.Instance.PlayBGM("LevelBGM");
+            foreach (STrigger trigger in _triggerList)
+            {
+                if (trigger._isActive)
+                {       ActivateObject(trigger);
+                DeactivateObject(trigger);
+            }
+            }
         }
 
         // Update is called once per frame
@@ -56,7 +63,6 @@ namespace ThePatient
             if (eventname != EEventData.DoNothing)
             {
                 EventSetter();
-                EventObject();
             }
         }
 
@@ -114,11 +120,7 @@ namespace ThePatient
             DeactivateEvent();
         }
 
-        public void EventObject()
-        { 
-            ActivateObject();
-            DeactivateObject();
-        }
+
 
         public void ActivateEvent()
         { if (_tempTrigger._activate != null)
@@ -131,6 +133,8 @@ namespace ThePatient
                         if (temp == trigger._name)
                         {
                             trigger.SetActive(true);
+                            ActivateObject(trigger);
+                            DeactivateObject(trigger);
                         }
                     }
                 }
@@ -157,26 +161,26 @@ namespace ThePatient
         }
 
 
-        public void ActivateObject()
+        public void ActivateObject(STrigger _enable)
         {
-            if (_tempTrigger._hasEnable)
+            if (_enable._hasEnable)
             {
-                for (int i = 0; i < _tempTrigger._enableGameObject.Length; i++)
+                for (int i = 0; i < _enable._enableGameObject.Length; i++)
                 {
-                    EEventData temp = _tempTrigger._enableGameObject[i];
+                    EEventData temp = _enable._enableGameObject[i];
                     _activeSendSignal?.Invoke(temp);
                 }
 
             }
         }
 
-        public void DeactivateObject()
+        public void DeactivateObject(STrigger _disable)
         {
-            if (_tempTrigger._HasDisable)
+            if (_disable._HasDisable)
             {
-                for (int i = 0; i < _tempTrigger._disableGameObject.Length; i++)
+                for (int i = 0; i < _disable._disableGameObject.Length; i++)
                 {
-                    EEventData temp = _tempTrigger._disableGameObject[i];
+                    EEventData temp = _disable._disableGameObject[i];
                     _deactivateSendSignal?.Invoke(temp);
                 }
 

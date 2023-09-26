@@ -33,6 +33,7 @@ namespace ThePatient
         disableblock,
         enableAI,
         Matilampusenter,
-        dialoglampumati
+        dialoglampumati,
+        NyalaLampu
     }
 }
