@@ -9,15 +9,16 @@ using UnityEngine.AI;
 [SelectionBase]
 public class Ghost : MonoBehaviour
 {
+    [SerializeField] SphereCollider sphere;
     private StateMachine _stateMachine;
-    [SerializeField]Waypoint patrolPos;
+    [SerializeField] Waypoint patrolPos;
     [SerializeField] List<Vector3> _waypoint => patrolPos.Waypoints;
-    Vector3 _playerPosition,_lastPosition;
+    Vector3 _playerPosition, _lastPosition;
     public Vector3 LastPosition => _lastPosition;
     public Vector3 PlayerPosition => _playerPosition;
     bool _canSeePlayer;
     [SerializeField] GameObject _player;
-    [SerializeField] float _recognizeTime , _searchTime;
+    [SerializeField] float _recognizeTime, _searchTime;
     [SerializeField] FieldOfView _fieldofview;
 
     public FieldOfView fieldOfView => _fieldofview;
@@ -33,11 +34,11 @@ public class Ghost : MonoBehaviour
 
         _stateMachine = new StateMachine();
 
-        
-        var patrol = new GhostPatrolState(this, _waypoint, animator,navMeshAgent,_searchTime);
-        var recognize = new GhostRecognizeState(this, animator,_recognizeTime);
-        var search = new GhostSearchState(this, animator,_searchTime, navMeshAgent);
-        var chase = new GhostChaseState(this,animator,navMeshAgent,audioSource);
+
+        var patrol = new GhostPatrolState(this, _waypoint, animator, navMeshAgent, _searchTime);
+        var recognize = new GhostRecognizeState(this, animator, _recognizeTime);
+        var search = new GhostSearchState(this, animator, _searchTime, navMeshAgent);
+        var chase = new GhostChaseState(this, animator, navMeshAgent, audioSource);
 
 
         At(patrol, recognize, HasTarget());
@@ -51,13 +52,13 @@ public class Ghost : MonoBehaviour
         _stateMachine.SetState(patrol);
 
         void At(IState to, IState from, Func<bool> condition) => _stateMachine.AddTransition(to, from, condition);
-        
+
         Func<bool> HasTarget() => () => _canSeePlayer;
         Func<bool> HasNoTarget() => () => !_canSeePlayer;
         Func<bool> HasTargetRecognize() => () => _canSeePlayer && recognize.Chase == true;
-        Func<bool> HasNoTargetRecognize() => () => !_canSeePlayer && recognize.Lost== true;
-        Func<bool> HasNoTargetSearch() => () => !_canSeePlayer&& search.Patrol == true;
-        Func<bool> HasTargetSearch() => () => _canSeePlayer&& search.Chase==true;
+        Func<bool> HasNoTargetRecognize() => () => !_canSeePlayer && recognize.Lost == true;
+        Func<bool> HasNoTargetSearch() => () => !_canSeePlayer && search.Patrol == true;
+        Func<bool> HasTargetSearch() => () => _canSeePlayer && search.Chase == true;
 
 
     }
@@ -90,5 +91,18 @@ public class Ghost : MonoBehaviour
         _scream = condition;
     }
 
-    
+    public void EnableCollision()
+    {
+        sphere.enabled = true;
+    }
+
+    public void DisableCollision()
+    {
+        sphere.enabled = false;
+    }
+
+    public void GameOver()
+    {
+        
+    }
 }

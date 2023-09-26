@@ -34,7 +34,9 @@ public class GhostChaseState : IState
 
     public void OnEnter()
     {
+        _ghost.EnableCollision();
         _ghost.fieldOfView.fullradius();
+        _navMeshAgent.speed = 2.5f;
         AudioManager.Instance.PlayBGM("Chase");
         if(_ghost.scream)
         sound.CustomBPlaySound(AudioManager.Instance.GetSfx("FemaleScream"), _audioSource);
@@ -46,6 +48,7 @@ public class GhostChaseState : IState
 
     public void OnExit()
     {
+        _ghost.DisableCollision();
         _navMeshAgent.enabled = false;
 
         _ghost.fieldOfView.PatrolRadius();

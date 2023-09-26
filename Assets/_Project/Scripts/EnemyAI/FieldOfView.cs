@@ -47,7 +47,7 @@ public class FieldOfView : MonoBehaviour
     }
     protected virtual void Start()
     {
-        defaultradius = _radius;
+        defaultradius = _angle;
         StartCoroutine(FOVRoutine());
         //StartCoroutine(setpos());
     }
@@ -67,12 +67,12 @@ public class FieldOfView : MonoBehaviour
 
     public void fullradius()
     {
-        _radius = 360;
+        _angle = 360;
     }
 
     public void PatrolRadius()
     {
-        _radius = defaultradius;
+        _angle = defaultradius;
     }
 protected virtual void FieldOfViewCheck()
     {
