@@ -62,6 +62,7 @@ public class CanvasUI : SingletonBehaviour<CanvasUI>
                 input.DisablePlayerControll();
                 mainmenu.ToggleChild(true);
                 mainmenu._hud.MainMenu();
+                Inventory.Instance.ResetItem();
             }
         };
     }

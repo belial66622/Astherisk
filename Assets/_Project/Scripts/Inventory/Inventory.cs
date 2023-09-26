@@ -46,6 +46,13 @@ namespace ThePatient
             OnInventoryChanged?.Invoke();
         }
 
+        public void ResetItem()
+        {
+            inventoryItems.Clear();
+
+            OnInventoryChanged?.Invoke();
+        }
+
         public bool HasItem(InventoryItem item)
         {
             foreach(InventoryItem item2 in inventoryItems)
@@ -130,5 +137,7 @@ namespace ThePatient
                 item.GetObject().gameObject.SetActive(false);
             }
         }
+
+
     }
 }

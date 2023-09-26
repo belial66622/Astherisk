@@ -5,12 +5,25 @@ namespace ThePatient
 {
     public class InventoryUI : MonoBehaviour
     {
+        public static InventoryUI Instance { get; private set; }
         [SerializeField] InventoryItemIconUI iconPrefab;
 
         public List<InventoryItem> inventoryItems = new List<InventoryItem>();
 
         public Inventory inventory;
 
+        private void Awake()
+        {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            else
+            {
+                Instance = this;
+            }
+        }
         private void Start()
         {
             inventory = Inventory.Instance;
@@ -20,13 +33,14 @@ namespace ThePatient
 
         private void Instance_OnInventoryChanged()
         {
-            inventoryItems.Clear();
-            foreach (InventoryItem item in Inventory.Instance.GetInventoryItems()) 
-            { 
-                inventoryItems.Add(item);
-            }
 
-            PopulateInventoryIconUI();
+                inventoryItems.Clear();
+                foreach (InventoryItem item in Inventory.Instance.GetInventoryItems())
+                {
+                    inventoryItems.Add(item);
+                }
+
+                PopulateInventoryIconUI();
         }
 
         void PopulateInventoryIconUI()

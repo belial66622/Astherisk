@@ -7,7 +7,8 @@ public class SingletonBehaviour<T> : MonoBehaviour where T : MonoBehaviour
 
     protected virtual void Awake()
     {
-        if (Instance != null)
+
+        if (Instance != null && Instance != this)
         {
             Debug.LogWarning("Instance already exists " + Instance.name);
             Destroy(gameObject);
