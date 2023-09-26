@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Utilities;
 
@@ -72,6 +73,11 @@ namespace ThePatient
 
         private void Start()
         {
+            SceneManager.sceneLoaded += (Scene scene, LoadSceneMode loadSceneMode) =>
+            {
+                OptionLoad();
+            };
+
             _backMenu.onClick.AddListener(delegate 
             {   ClearHUD();
                 OpenMenu?.Invoke();
@@ -87,7 +93,7 @@ namespace ThePatient
                 OpenSetting?.Invoke(); 
             });
             _start.onClick.AddListener(delegate { 
-                StartGame?.Invoke(); 
+                StartGame?.Invoke();
                 _menuCanvas.SetActive(false);
             });
             _control.onClick.AddListener(SettingControl);

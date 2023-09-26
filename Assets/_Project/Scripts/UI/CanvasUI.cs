@@ -43,8 +43,10 @@ public class CanvasUI : SingletonBehaviour<CanvasUI>
     [Header("!!! TEMP, DELETE LATER !!!")]
     [SerializeField] InputReader input;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         resume.onClick.AddListener(Resume);
         setting.onClick.AddListener(Setting);
         exit.onClick.AddListener(Exit);

@@ -21,13 +21,17 @@ namespace ThePatient
         }
         public float UpdateMouseSensivity()
         {
-            if (PlayerPrefs.HasKey(MOUSE_SENSIVITY))
+            if (!PlayerPrefs.HasKey(MOUSE_SENSIVITY))
+            {
+                return 5f;
+            }
+            else
             {
                 Mouse_Sensivity = PlayerPrefs.GetFloat(MOUSE_SENSIVITY);
+                Debug.Log("Load setting");
+                OnSettingChanged?.Invoke(Mouse_Sensivity);
+                return Mouse_Sensivity;
             }
-            Debug.Log("Load setting");
-            OnSettingChanged?.Invoke(Mouse_Sensivity);
-            return Mouse_Sensivity;
         }
         public void SaveSetting(float value)
         {
