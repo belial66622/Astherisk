@@ -18,7 +18,12 @@ public class Ghost : MonoBehaviour
     bool _canSeePlayer;
     [SerializeField] GameObject _player;
     [SerializeField] float _recognizeTime , _searchTime;
-    [SerializeField] FieldOfView _playerPrefab;
+    [SerializeField] FieldOfView _fieldofview;
+
+    public FieldOfView fieldOfView => _fieldofview;
+    int defaultview;
+    public bool scream => _scream;
+    bool _scream;
     private void Awake()
     {
 
@@ -54,6 +59,7 @@ public class Ghost : MonoBehaviour
         Func<bool> HasNoTargetSearch() => () => !_canSeePlayer&& search.Patrol == true;
         Func<bool> HasTargetSearch() => () => _canSeePlayer&& search.Chase==true;
 
+
     }
 
     void OnEnable()
@@ -78,4 +84,11 @@ public class Ghost : MonoBehaviour
         _canSeePlayer = canSeePlayer;
         _lastPosition = PlayerPosition;
     }
+
+    public void CanScream(bool condition)
+    {
+        _scream = condition;
+    }
+
+    
 }

@@ -7,9 +7,9 @@ using System;
 using UnityEngine.UIElements;
 
 [SelectionBase]
-    public class FieldOfView : MonoBehaviour
-    {
-    public Action<Vector3,bool> PlayerPos;
+public class FieldOfView : MonoBehaviour
+{
+    public Action<Vector3, bool> PlayerPos;
     [SerializeField] protected Transform _sightLocation;
 
     public Transform sightLocation => _sightLocation;
@@ -24,7 +24,8 @@ using UnityEngine.UIElements;
     [SerializeField] protected LayerMask _obstructionMask;
     [SerializeField] protected bool _canSeePlayer, _Countdownstat;
     public bool _playersighted = false, _playerlost = false;
-    [SerializeField]protected Transform _player;
+    [SerializeField] protected Transform _player;
+    float defaultradius;
     #endregion
 
     #region Reference
@@ -37,15 +38,16 @@ using UnityEngine.UIElements;
 
     protected virtual void OnEnable()
     {
-        
+
     }
 
     protected virtual void OnDisable()
     {
-        
+
     }
     protected virtual void Start()
     {
+        defaultradius = _radius;
         StartCoroutine(FOVRoutine());
         //StartCoroutine(setpos());
     }
@@ -63,10 +65,16 @@ using UnityEngine.UIElements;
         }
     }
 
+    public void fullradius()
+    {
+        _radius = 360;
+    }
 
-
-
-    protected virtual void FieldOfViewCheck()
+    public void PatrolRadius()
+    {
+        _radius = defaultradius;
+    }
+protected virtual void FieldOfViewCheck()
     {
         Collider[] rangeChecks = Physics.OverlapSphere(_sightLocation.position, _radius, _targetMask);
 
@@ -108,5 +116,5 @@ using UnityEngine.UIElements;
 
     #endregion
 
-
+    
 }
