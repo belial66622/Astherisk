@@ -40,6 +40,11 @@ public class CanvasUI : SingletonBehaviour<CanvasUI>
     [SerializeField] Button setting;
     [SerializeField] Button exit;
 
+
+    [Header("Game Over")]
+    [SerializeField] GameObject _gameOver;
+    [SerializeField] Button _gameOverButton;
+
     [Header("!!! TEMP, DELETE LATER !!!")]
     [SerializeField] InputReader input;
 
@@ -50,6 +55,7 @@ public class CanvasUI : SingletonBehaviour<CanvasUI>
         resume.onClick.AddListener(Resume);
         setting.onClick.AddListener(Setting);
         exit.onClick.AddListener(Exit);
+        _gameOverButton.onClick.AddListener(ExitGameOver);
     }
     public void Exit()
     {
@@ -204,5 +210,36 @@ public class CanvasUI : SingletonBehaviour<CanvasUI>
         //    lockUI.gameObject.SetActive(false);
         //}
         interactionIconBG.fillAmount = e.valueFraction;
+    }
+
+    public void GameoverHUD()
+    {
+        Debug.Log("pause"); 
+        ControlSettingManager.Instance.UpdateMouseSensivity();
+        Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        input.EnableUIControl();
+        input.DisablePlayerControll();
+        _gameOver.SetActive(true);
+
+    }
+
+    public void ExitGameOver()
+    {
+        //Application.Quit();
+        _gameOver.SetActive(false);
+        MainMenuManager mainmenu = FindObjectOfType<MainMenuManager>();
+        StartCoroutine(mainmenu._sceneLoader.ChangeScene(Utilities.ESceneName.MainMenu));
+        SceneManager.sceneLoaded += (Scene scene, LoadSceneMode loadSceneMode) =>
+        {
+            if (scene == SceneManager.GetSceneByName(SceneName[0]))
+            {
+                input.DisablePlayerControll();
+                mainmenu.ToggleChild(true);
+                mainmenu._hud.MainMenu();
+                Inventory.Instance.ResetItem();
+            }
+        };
     }
 }

@@ -14,7 +14,7 @@ namespace ThePatient
         // Events
         public event Action OnPlayerJump;
         public event Action OnPlayerLand;
-
+        [SerializeField] CanvasUI _gameOver;
 
         [Header("References")]
         [SerializeField] InputReader _input;
@@ -78,7 +78,7 @@ namespace ThePatient
             _cam = Camera.main.transform;
             _stepUpperTransform.localPosition = new Vector3(0, _stepHeight, 0);
             _rb.freezeRotation = true;
-
+            _gameOver = FindObjectOfType<CanvasUI>();
 
             SetupTimer();
             SetupStateMachine();
@@ -360,6 +360,12 @@ namespace ThePatient
             if(icheck != null)
             {
                 icheck.OnEnter();
+            }
+
+            if (other.TryGetComponent(out Ghost ghost))
+            {
+                _gameOver.GameoverHUD();
+                Debug.Log("gameover");
             }
         }
 

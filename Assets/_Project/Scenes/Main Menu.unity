@@ -310,7 +310,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.37253138, y: 0.869}
   m_AnchorMax: {x: 0.38200003, y: 0.92200005}
-  m_AnchoredPosition: {x: -0.11629486, y: 0.05696869}
+  m_AnchoredPosition: {x: -0.11629486, y: 0.05697632}
   m_SizeDelta: {x: 0.31720734, y: -0.07216644}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &198707595
@@ -1555,7 +1555,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.62, y: 0.869}
   m_AnchorMax: {x: 0.6314686, y: 0.91700006}
-  m_AnchoredPosition: {x: -0.008735657, y: 0.05696869}
+  m_AnchoredPosition: {x: -0.008735657, y: 0.05697632}
   m_SizeDelta: {x: -0.6828079, y: -0.07216644}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &822569090
@@ -2222,6 +2222,12 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!1 &1442436064 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 722915514510770791, guid: b6ba0e8e50ea7f346a08d363c4fcb1f0,
+    type: 3}
+  m_PrefabInstance: {fileID: 7876867463129666374}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1475331169 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7fc1fa4f19125b340ab690fbff53b02e,
@@ -2425,6 +2431,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fc1fa4f19125b340ab690fbff53b02e, type: 3}
+--- !u!114 &1639663065 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3217064158292887439, guid: b6ba0e8e50ea7f346a08d363c4fcb1f0,
+    type: 3}
+  m_PrefabInstance: {fileID: 7876867463129666374}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1663630410 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3538083686544188331, guid: b6ba0e8e50ea7f346a08d363c4fcb1f0,
@@ -8982,6 +9000,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 722915514510770791, guid: b6ba0e8e50ea7f346a08d363c4fcb1f0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 913135672934165244, guid: b6ba0e8e50ea7f346a08d363c4fcb1f0,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -9010,7 +9033,7 @@ PrefabInstance:
     - target: {fileID: 992421079868511423, guid: b6ba0e8e50ea7f346a08d363c4fcb1f0,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1203367864525622742, guid: b6ba0e8e50ea7f346a08d363c4fcb1f0,
         type: 3}
@@ -9042,6 +9065,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1263938958848156813, guid: b6ba0e8e50ea7f346a08d363c4fcb1f0,
+        type: 3}
+      propertyPath: _gameOver
+      value: 
+      objectReference: {fileID: 1442436064}
+    - target: {fileID: 1263938958848156813, guid: b6ba0e8e50ea7f346a08d363c4fcb1f0,
+        type: 3}
+      propertyPath: _gameOverButton
+      value: 
+      objectReference: {fileID: 1639663065}
     - target: {fileID: 1597881492244550013, guid: b6ba0e8e50ea7f346a08d363c4fcb1f0,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -9175,7 +9208,7 @@ PrefabInstance:
     - target: {fileID: 2396572852443298005, guid: b6ba0e8e50ea7f346a08d363c4fcb1f0,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.40596008
+      value: 0.40594482
       objectReference: {fileID: 0}
     - target: {fileID: 2396572852443298005, guid: b6ba0e8e50ea7f346a08d363c4fcb1f0,
         type: 3}
@@ -10295,7 +10328,7 @@ PrefabInstance:
     - target: {fileID: 5502720178917739937, guid: b6ba0e8e50ea7f346a08d363c4fcb1f0,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.21002197
+      value: -0.21008301
       objectReference: {fileID: 0}
     - target: {fileID: 5502720178917739937, guid: b6ba0e8e50ea7f346a08d363c4fcb1f0,
         type: 3}
