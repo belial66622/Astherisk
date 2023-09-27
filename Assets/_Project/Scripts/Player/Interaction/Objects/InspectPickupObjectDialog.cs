@@ -65,6 +65,8 @@ namespace ThePatient
             if (data == _event)
             {
                 _noDialog = true;
+                if (data == EEventData.NyalaLampu) ;
+                AudioManager.Instance.PlayBGM("LevelBGMMatiLampu");
             }
         }
 

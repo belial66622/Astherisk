@@ -26,7 +26,7 @@ public class GhostPatrolState : IState
     {
         _ghost.CanScream(true);
         _navMeshAgent.speed = 1.5f;
-        AudioManager.Instance.PlayBGM("LevelBGM");
+        AudioManager.Instance.PlayBGM("Chase");
         _navMeshAgent.enabled = true;
         _navMeshAgent.SetDestination(_patrolPoint[_wayPointPos]);
         _defaultWait = _waitTime;

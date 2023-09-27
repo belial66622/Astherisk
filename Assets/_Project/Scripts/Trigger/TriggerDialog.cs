@@ -29,7 +29,11 @@ namespace ThePatient
             if (_active)
             {
                 base.DoSomething();
+                if (_eventName == EEventData.phase1)
+                {
+                    AudioManager.Instance.PlayBGM("LevelBGM2");
 
+                        }
                 dialog.Interact();
             }
         }

@@ -37,7 +37,7 @@ public class GhostChaseState : IState
         _ghost.EnableCollision();
         _ghost.fieldOfView.fullradius();
         _navMeshAgent.speed = 2.5f;
-        AudioManager.Instance.PlayBGM("Chase");
+        AudioManager.Instance.PlayBGM("AfterAIChase");
         if(_ghost.scream)
         sound.CustomBPlaySound(AudioManager.Instance.GetSfx("FemaleScream"), _audioSource);
         _ghost.CanScream(false);

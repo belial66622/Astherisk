@@ -37,7 +37,11 @@ public class DialogbySignal : InspectOnly
     void ChangeDialog(EEventData data)
     {
         if (data == _eventName)
+        { 
             _dialogue = afterdialogue;
+            if (data == EEventData.MatiinLampu) ;
+            AudioManager.Instance.PlayBGM("LevelBGM");
+        }
     }
 
 
