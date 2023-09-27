@@ -56,6 +56,7 @@ public class CanvasUI : SingletonBehaviour<CanvasUI>
         setting.onClick.AddListener(Setting);
         exit.onClick.AddListener(Exit);
         _gameOverButton.onClick.AddListener(ExitGameOver);
+        _gameOver.SetActive(false);
     }
     public void Exit()
     {
@@ -229,6 +230,7 @@ public class CanvasUI : SingletonBehaviour<CanvasUI>
     {
         //Application.Quit();
         _gameOver.SetActive(false);
+        Resume();
         MainMenuManager mainmenu = FindObjectOfType<MainMenuManager>();
         StartCoroutine(mainmenu._sceneLoader.ChangeScene(Utilities.ESceneName.MainMenu));
         SceneManager.sceneLoaded += (Scene scene, LoadSceneMode loadSceneMode) =>
