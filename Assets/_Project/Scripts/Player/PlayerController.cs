@@ -26,7 +26,7 @@ namespace ThePatient
         [SerializeField] GroundChecker _groundChecker;
         [SerializeField] CinemachineVirtualCamera _virtualCamera;
 
-        [Header("Movement Settings")]
+        [Header("Movement Settings")]	
         [SerializeField] float _baseSpeed = 3f;
         [SerializeField] float _crouchSpeed = 3f;
         [SerializeField] float _sprintSpeed = 3f;

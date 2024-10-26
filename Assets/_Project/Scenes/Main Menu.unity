@@ -10093,6 +10093,11 @@ PrefabInstance:
       propertyPath: m_Spacing
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 3445820126289749908, guid: b6ba0e8e50ea7f346a08d363c4fcb1f0,
+        type: 3}
+      propertyPath: m_text
+      value: How To Play
+      objectReference: {fileID: 0}
     - target: {fileID: 3449853415225897939, guid: b6ba0e8e50ea7f346a08d363c4fcb1f0,
         type: 3}
       propertyPath: m_AnchorMax.y

@@ -15,6 +15,7 @@ namespace ThePatient
         IPlayerActions, IDialogueActions, IInteractionInspectActions, ILockPuzzleActions, IUIActions
     {
         //player action Events
+        //Vector2 Move;
         public event Action<Vector2> Move = delegate { };
         public event Action<Vector2, bool> Look = delegate { };
         public event Action<bool> Jump = delegate { };
